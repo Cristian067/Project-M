@@ -42,6 +42,11 @@ public class CamControl : MonoBehaviour
             //cam.transform.position.y = player.transform.position.y;
         }
 
+        if (transform.position.x < -1)
+        {
+            transform.position = new Vector3(-1,transform.position.y,transform.position.z);
+        }
+
         //if(trans)
 
         

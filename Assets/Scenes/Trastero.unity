@@ -741,7 +741,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6.105302
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -767,7 +767,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3375, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -4379,7 +4379,6 @@ GameObject:
   - component: {fileID: 1514278724}
   - component: {fileID: 1514278723}
   - component: {fileID: 1514278722}
-  - component: {fileID: 1514278721}
   - component: {fileID: 1514278725}
   m_Layer: 0
   m_Name: Trigger_cam
@@ -4388,20 +4387,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1514278721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1514278720}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fdeebf27274517469cea6845202de09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1804830874}
-  followPlayer: 0
 --- !u!61 &1514278722
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4554,7 +4539,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1804830874}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 33c1b8349ee358c449b42094956b03c3, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4646,7 +4631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  jumpForce: 3
+  jumpForce: 350
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
