@@ -1,0 +1,4439 @@
+fileFormatVersion: 2
+guid: 164e8d585c5be1845a13448fe082b83b
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Mossy - TileSet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3328
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19227317f733d894cac2e78e2c8228d0
+      internalID: 684842076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 3328
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc7164ae144ce19489f375737b5cd78a
+      internalID: 36354010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 3328
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eebed7dccdcfe4248b27f243aae078be
+      internalID: -1429544936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 3328
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 012b06c32f610e7448d8f19104451abb
+      internalID: -2089654938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 3328
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08e330096ccd1344486b3c490c474789
+      internalID: 67568962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 3328
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a52082ff9bc74e94687d5627ec557355
+      internalID: -662676901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 3328
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90b5795af2bdc4747b1dd59e65684a33
+      internalID: -1239704137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 3328
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9735e79684ee47e4182a1b4558d8aaf6
+      internalID: 1124842733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_8
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 3328
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1b5a0430e7f37b41bc1b1eace610288
+      internalID: -153747978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_9
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 3328
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72660dadb828a524a9bba2e5a7e6315e
+      internalID: 597560536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_10
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 3328
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7b6650ae258a6543ae5a0ee5107384d
+      internalID: 2034906902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_11
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 3328
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6d68fb35c34e814aa8745bfb8548452
+      internalID: -2018810360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_12
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 3328
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 881353bdea4e4ad4dbf6bdc5b843b846
+      internalID: -90175588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_13
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 3328
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3335fc145a87b8249b6a8c3db056d7c9
+      internalID: 556016796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3072
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dbe838608c79d54e87c2d5fb5f4ba9f
+      internalID: -578436904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_15
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 3072
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e574a500a7d9ade4aafb15febe1871b9
+      internalID: -423932923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 3072
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1f052db22c69934eb03227bce89038c
+      internalID: 882192708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_17
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 3072
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 156825d4891d1004a8117fa708feca9c
+      internalID: -18582577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_18
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 3072
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca466068cb465974d8708c2fe5ef1141
+      internalID: -512035337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_19
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 3072
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d40c30f332a5334a904cdc03af349fa
+      internalID: 852132931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_20
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 3072
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4eda82432f4943b45b4acbdd7721838b
+      internalID: -1028996568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_21
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 3072
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 241ae6527355a944ca0d6dfe2413edc7
+      internalID: -1391326301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_22
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 3072
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 669b7210d579c534ca5409788dab91c4
+      internalID: 1166730983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_23
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 3072
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85551a598c29c1e4dafabd10da8c3c38
+      internalID: 205686932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_24
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 3072
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c5e83f0149bc6c4c82e4790fe4a7add
+      internalID: -1540808232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_25
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 3072
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d38095ef8d574a4997b82133fde4efd
+      internalID: -1643442982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_26
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 3072
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4ac0a1fe18b81a46abbea8f8bfd004c
+      internalID: 1503157236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_27
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 3072
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64a98dcceb6d77f4ab29ce3d2d28ef26
+      internalID: 485833616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2816
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53dfa653190d3ca41851bf8f05470ea9
+      internalID: 1321158653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_29
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2816
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a745e5d96b50c24d843c3fd98665644
+      internalID: -2096003881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_30
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2816
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18aa8665e4f57e14ab4910f252946cd7
+      internalID: 1153000732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_31
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2816
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16799bb74d1287b45b032a8a392ae91f
+      internalID: 1831129219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_32
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2816
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af8ce9bee81c59747b72506c4c8b8e0e
+      internalID: 90792251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_33
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2816
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 232cf0f3bbd510a4fb5eaf3ba3078013
+      internalID: 1927573088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_34
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2816
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ee22bdc9b3c7894098434b879f2c99e
+      internalID: -91272213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_35
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 2816
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b9be1e38b2b8cf479fe68cb7db4e435
+      internalID: 1913613672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_36
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2816
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69623e96a7b75c9418af94e432676881
+      internalID: 1529824946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_37
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2816
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6dc5ebdeaa6cdb4aa3dffbdbe99f100
+      internalID: -364696714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_38
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 2816
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 193eef315dfa13d49b0e947406ac14f1
+      internalID: 2103132797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_39
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 2816
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7450ce80b10f6be48b53253b5e9376ad
+      internalID: 1761997501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_40
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 2816
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a3490815ab1c71448a8e10a1d10f95f
+      internalID: -2123389513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_41
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 2816
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 810a04e4d368c8f46a3b9a7cb50217bc
+      internalID: -672696096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2560
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15eb3eecb35060f4aba62b0f9669c1cb
+      internalID: 2022711213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_43
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2560
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e57f3ca9ea90d44bb18a6c734d3d87f
+      internalID: -685182456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_44
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2560
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78789fc020cf8874c8e9dfefc3128dbf
+      internalID: -1757107895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_45
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2560
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a967b993118606e4f963a1378cd4129d
+      internalID: -398063280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_46
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2560
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 580fd05cb9b010f41a499997c2909cdd
+      internalID: -541619781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_47
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2560
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9714a1d52aabac2408eeda948401395a
+      internalID: -1109414057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_48
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2560
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1affe8c2e732c3f418c0e6d083d6b524
+      internalID: 2066498822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_49
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 2560
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b912996d7b13fa04390b0cdc3564b6e1
+      internalID: 1615741516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_50
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2560
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbf1f570ff9857347bcba2b09281b222
+      internalID: 70649414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_51
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2560
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 506f6b4c47406ac43a0e6cef7816316a
+      internalID: 1333198189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_52
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 2560
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d1d0719992c1ac409da8d16ac9df64c
+      internalID: 617251870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_53
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 2560
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07426bbb0aecebd499465527025d5c77
+      internalID: -1621937899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_54
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 2560
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a506235a13a608b498c20af424a33eb1
+      internalID: 1339188148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_55
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 2560
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0215a712646bd4428e4fc86155697f8
+      internalID: -241712968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2304
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b40d532a1173f2a4b8c2e652568e4939
+      internalID: -1168522484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_57
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2304
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e04407195c8c07442a0d432ee6021d10
+      internalID: -1961361761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_58
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2304
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcb6b58291df463459b645593b78cdda
+      internalID: 1780932904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_59
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2304
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 491cd0e81b432a24bac38602c2af59fd
+      internalID: -626319106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_60
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2304
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 164d65c72bc5e564894e8ef4338dc43f
+      internalID: -1722842244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_61
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2304
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9b97817ae3f0664baacb439065d9be7
+      internalID: 2033803329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_62
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2304
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0ab14f48b470d741b0a2e36d62b5c26
+      internalID: -1028392054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_63
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 2304
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aa2bc2ffb6c71e4c9816366027f167d
+      internalID: -197570072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_64
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2304
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d644d6ff1f35a540ac49632079e01e1
+      internalID: -1918758610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_65
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2304
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c9720819b3a1c4428d1275cb3e5f8a8
+      internalID: 665860285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_66
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 2304
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8639a7f86091b484f8cfd6e76516cfd5
+      internalID: -574357005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_67
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 2304
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46fcf9b209e7bc548acd0cccd6e7a75a
+      internalID: -777181951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_68
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 2304
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c138fe23aedbbf47bddc114135889e0
+      internalID: -1045004325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_69
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 2304
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7eb391a4ce21b2479db11b462fcdab8
+      internalID: 2105219504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2048
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebde173b92493bf4fb49a7f6ba51a06e
+      internalID: -135987737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_71
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 2048
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fbd98ec2f5e8be4a81b01bd0dd67280
+      internalID: -1966874307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_72
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 2048
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c04a8aa6f278b045b70ed227ad94438
+      internalID: 1467898478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_73
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 2048
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 541de2654fc55cc44b26dfa7a06d9dc3
+      internalID: 229208587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_74
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 2048
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ab06e6fa4bbd164ca503d0a3d5613ac
+      internalID: -506682162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_75
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 2048
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51acd9537894e0040991cc9f545479cf
+      internalID: 1640382835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_76
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2048
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbd8e7eabd6524e4b9291181a31ae9e1
+      internalID: -295414087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_77
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 2048
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2316cdac68300a0498099c91f42aa27c
+      internalID: -90801698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_78
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 2048
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ec60adbfbabd4f4899042979389821a
+      internalID: 1803680630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_79
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 2048
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5db719b6cd3986f43bf0263a006ca7d7
+      internalID: -68409006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_80
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 2048
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03a04c06e913dd848950b8e5862c3412
+      internalID: 217455966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_81
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 2048
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce478b2e978afb6408294cd600554e6a
+      internalID: -1998860979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_82
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 2048
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8386136090bb55f4b9d64688771f186e
+      internalID: 951977657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_83
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 2048
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd5583454bd5ab14381dcbf05bc97ea5
+      internalID: -1496708755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e5630cae2ad45842aca1fd971550373
+      internalID: -1865681938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_85
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5e58d7b0032bea46b6a11c92e7f05bd
+      internalID: 30339695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_86
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d70240b633bb3a4d8e8f43736bb3b93
+      internalID: -610250142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_87
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79225c8cd7c095b468c720fdf290a947
+      internalID: -691502377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_88
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5d70d1eda2eafa4288dc6c30e113f6f
+      internalID: -345618444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_89
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0d8c6e96662aec4a97a65977750d2c0
+      internalID: -2000629567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_90
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f519a11fcbbf0324c804370b1a7ba145
+      internalID: -1708744126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_91
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b1ed71e1cfce26459da60d79b3bdf01
+      internalID: 2115050025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_92
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a093d3d14ddc59b46ae5ae1b38048e83
+      internalID: 222258203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_93
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16e50f3284e3771468c8c3c130fb85ec
+      internalID: -272488904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_94
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4aa6fa88c00bcf4a95a84622b5f4ff9
+      internalID: 1667054398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_95
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43c4a83300f0d754caa45e27b5407b57
+      internalID: -207173693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_96
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b10d4274780397f4b9483e0700e36c69
+      internalID: -939050233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_97
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 1792
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dd9baa9ea1e17641ad402454e204024
+      internalID: -157488651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_98
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ce235c6cc26ea84eaea71960e5c5b67
+      internalID: 955942127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_99
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f55ed92561fdd649af8fbcd40a48981
+      internalID: -418625072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_100
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ca042c30aeee2a4fbe530544457df2b
+      internalID: -1707381486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_101
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9ccd69b071b9af499e36d755bd89c2b
+      internalID: -1598833294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_102
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdef63c1c6ca2214ab960c3c48a117e1
+      internalID: 1590348017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_103
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32c2837cf0507ec4d9da561d6c919349
+      internalID: 13116663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_104
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89e403ec958081549a9cb6e608d0755b
+      internalID: -507409164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_105
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a8351b20fad3e342a8b6cc3a8b54c96
+      internalID: -1473302315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_106
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2f961f0c187172468ad5de39c67cf20
+      internalID: 1081587860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_107
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5323203d916bd4c49b81caa128169578
+      internalID: -2116482049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_108
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 632feeb86256b954aa01b40030bf54b2
+      internalID: 1609427433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_109
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 645f62a0fe2d40842a8d70ec0442997c
+      internalID: 700017219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_110
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28ccb54383630ac44950821c5b40a80b
+      internalID: 1176083555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_111
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 1536
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6d1e69956bb2e245b7d78af3aee76c7
+      internalID: 1782437910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_112
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c196106cecbb2c248ac56dab0bea00a7
+      internalID: 594869978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_113
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ba281a3e83e39441bccd809ee76b856
+      internalID: -890663394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_114
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 727b8c0e647e72740ba0ac721987cc31
+      internalID: 2077432580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_115
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09c812dee62aaf744b3430db401de5ff
+      internalID: -950926994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_116
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44053adde41cfea4283dd5dced3f3bed
+      internalID: -1040231314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_117
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ee1799180530e34a95b7693c991bec7
+      internalID: -1315748641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_118
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83653635f0184184da70bce1ca924d90
+      internalID: -836177502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_119
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d768b3bef47c294ea10227a4b8ace2f
+      internalID: 469021857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_120
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98f97bb376a297d469c0b03d26a39ecd
+      internalID: 625316398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_121
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd6ae8576c483404f9d12f33c7fc0e46
+      internalID: -2131183963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_122
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e670a6e81d646df4ab7b80185d9abe18
+      internalID: 1796364920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_123
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1adef1b85dfdbc8458c44d7ea424608a
+      internalID: 170091571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_124
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 060c1a9d23aa96041b4b5f3eadc1b223
+      internalID: 985767941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_125
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 1280
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6fa35b2bd2e52d48bcc726cf7f729e8
+      internalID: -418637754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_126
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10d56fa64bbce764489d805cfb143e5b
+      internalID: -177145518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_127
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 631d6a53ffdd3b8448d4d4d33f1ac865
+      internalID: 1083404486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_128
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 500be6d3de4619047ba0de97586187c3
+      internalID: 945734154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_129
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16ebd466516d2314183b038016fa8f6e
+      internalID: 2091024164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_130
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df225df301ebb774c82cf24697dc4d95
+      internalID: -1643357028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_131
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5db133f012083f047b0167dd4ea1404e
+      internalID: -1187860929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_132
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 042294a71f30f0540b44c9bb0dde74cb
+      internalID: -2005564359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_133
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e56b647f2d2298649827bfc1e9ae5078
+      internalID: -1475869129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_134
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e7652717effe884abe9dfae9028084d
+      internalID: 1610474186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_135
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8da1929d10cfd540a15210fefa1c052
+      internalID: -803750979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_136
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7edc33dcea819644681ef4e134aab639
+      internalID: -2052412568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_137
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc6f78df7bd3dfa4280f07c951d0e530
+      internalID: -1444548409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_138
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f0af840cd43b244a8353bc0ac6b9a95
+      internalID: 1518915753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_139
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 1024
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9861bdefaa0a75f4f82554b8ec1bd7cd
+      internalID: -702670238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_140
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a854548626b68f64fa112a7fdbd8f040
+      internalID: -1413350850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_141
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5f45c53d1047a54c84a6f76fcfe5798
+      internalID: 1146117201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_142
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3efdd6961604ae4cbe5509427b9432a
+      internalID: -1255656793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_143
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05345914610329b488eb8e89c467f1b1
+      internalID: 1031860034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_144
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6a58964d3a36ed4d96dbf408892dfc9
+      internalID: -381923842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_145
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c5ff022f1f76ac46940e73cac8151ad
+      internalID: 991689468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_146
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf842af075a03724d8a96b2d9d22ef18
+      internalID: -2130059944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_147
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd8fea2bfc710d14d968e697bf1ef309
+      internalID: -1122487428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_148
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff076be3cc9f96246bbd00db0f131d5d
+      internalID: 605708977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_149
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a42c8991de4aff44bcfd54d927b1207
+      internalID: -1396278133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_150
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a944b0caf42edbc4aaf30c6459ed9690
+      internalID: 2002779554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_151
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f8630692d9f5924484090efd220fd76
+      internalID: 629884398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_152
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f2dee77c8101e248b5c0d5063b44753
+      internalID: -789808710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_153
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcaec808d0517214eb53d7bba0120cb8
+      internalID: 1671609886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_154
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6164b8322a6eb74f9675e617a9e026e
+      internalID: 1355126861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_155
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9bcd0f28d07b794aa3b6608e8656407
+      internalID: -1606374315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_156
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dedd74bd03cdb8a47addaf26632858bc
+      internalID: 644692844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_157
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e8d2be81313a72478293ecadbd51841
+      internalID: -1737747819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_158
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14d1da449602bc14c91c72fa191d6361
+      internalID: 702121401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_159
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4c635b6bd79fad498e108288e72f30f
+      internalID: 166112975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_160
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aac95378292f8af469689d67ed877351
+      internalID: 1854110064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_161
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a5b4c46c523a9d43987580f8ef98e93
+      internalID: -787616022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_162
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb27a45e779ad8f41b117f8b21be8a2a
+      internalID: 1137397540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_163
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f18876e007a2424ab09c69faad11fba
+      internalID: -278340474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_164
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79662b41b85dfe34a8df680e3cf7fcf3
+      internalID: -786363295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_165
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f1dc2545222c7247b24be4fe65a2577
+      internalID: 1945079424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_166
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cfeec48047fb6c418818f8802b399eb
+      internalID: -1780547155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_167
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aa89680132dc3648977f75eaf7ac6ae
+      internalID: -808586593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_168
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d224694b4caa48c409a5bb0927c999ea
+      internalID: -459297385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_169
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6159d0b4ab150df49a2c4b1efbba6a9f
+      internalID: -1074671130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_170
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6968b0ea4f21424cba7df46906e15a6
+      internalID: -1220094928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_171
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef90291a1f7e4e24799e0a59bdd6968c
+      internalID: 331286487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_172
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66095dd6a5329304fa4f49660557e928
+      internalID: -167589601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_173
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cf1c6dd6dc1c244b87956edc46e5713
+      internalID: -773828814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_174
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ede8ec9e2ab265b47b1e054ab2618c1c
+      internalID: 78572396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_175
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26f646e2123ebe949a4c478d902eade2
+      internalID: 1311956407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_176
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcf35e3279757b74abd92aee3f08803b
+      internalID: -238655703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_177
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2293670826eb4d42b0cd4033f865660
+      internalID: 697194656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_178
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2878b11f4d08e648a84238d730235b1
+      internalID: -1633697474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_179
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d035ccad85eec045852f10a87cb55b3
+      internalID: 873272173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_180
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e519ce74f78a634198dea13df0bef29
+      internalID: -393121807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_181
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c93e9eb48548b547828681797415f73
+      internalID: 127065012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_182
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5efb497f842b71e40bfc62d40913440f
+      internalID: -1870680015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_183
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d43a9cbe8effacf4bb8c0fdbfd9ab023
+      internalID: 208698081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_184
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bba01b2d9c2fe34292fd05136984f02
+      internalID: -1237799327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_185
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fc4007e3bd2c8f4aa79eb5745bea70c
+      internalID: 511014942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_186
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc726e46c9f7b334a8d9e685e4615d56
+      internalID: -1132144500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_187
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2da3707434290340afaa61f3d6aa41d
+      internalID: -275680996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_188
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4acac19acc59b744b82513aef90066bd
+      internalID: 1976581000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_189
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d64bfd1a0620ee54893a0d57abdc318a
+      internalID: -1409742637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_190
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 770d0af731afd0545b824f20113f72b5
+      internalID: 909852216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_191
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e7c67cbe97bbe0429e3b0b65da113f9
+      internalID: 534522348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_192
+      rect:
+        serializedVersion: 2
+        x: 2560
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c56c087b33e993347960c00d4be025f9
+      internalID: -906614144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_193
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b919c44772b729f4b944be52063ab0e2
+      internalID: -1203112889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_194
+      rect:
+        serializedVersion: 2
+        x: 3072
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24160fc25f651384498bf1101be5238d
+      internalID: -1999103558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mossy - TileSet_195
+      rect:
+        serializedVersion: 2
+        x: 3328
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f67a503540bdce14dac177493b6dea82
+      internalID: 834083181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Mossy - TileSet_0: 684842076
+      Mossy - TileSet_1: 36354010
+      Mossy - TileSet_10: 2034906902
+      Mossy - TileSet_100: -1707381486
+      Mossy - TileSet_101: -1598833294
+      Mossy - TileSet_102: 1590348017
+      Mossy - TileSet_103: 13116663
+      Mossy - TileSet_104: -507409164
+      Mossy - TileSet_105: -1473302315
+      Mossy - TileSet_106: 1081587860
+      Mossy - TileSet_107: -2116482049
+      Mossy - TileSet_108: 1609427433
+      Mossy - TileSet_109: 700017219
+      Mossy - TileSet_11: -2018810360
+      Mossy - TileSet_110: 1176083555
+      Mossy - TileSet_111: 1782437910
+      Mossy - TileSet_112: 594869978
+      Mossy - TileSet_113: -890663394
+      Mossy - TileSet_114: 2077432580
+      Mossy - TileSet_115: -950926994
+      Mossy - TileSet_116: -1040231314
+      Mossy - TileSet_117: -1315748641
+      Mossy - TileSet_118: -836177502
+      Mossy - TileSet_119: 469021857
+      Mossy - TileSet_12: -90175588
+      Mossy - TileSet_120: 625316398
+      Mossy - TileSet_121: -2131183963
+      Mossy - TileSet_122: 1796364920
+      Mossy - TileSet_123: 170091571
+      Mossy - TileSet_124: 985767941
+      Mossy - TileSet_125: -418637754
+      Mossy - TileSet_126: -177145518
+      Mossy - TileSet_127: 1083404486
+      Mossy - TileSet_128: 945734154
+      Mossy - TileSet_129: 2091024164
+      Mossy - TileSet_13: 556016796
+      Mossy - TileSet_130: -1643357028
+      Mossy - TileSet_131: -1187860929
+      Mossy - TileSet_132: -2005564359
+      Mossy - TileSet_133: -1475869129
+      Mossy - TileSet_134: 1610474186
+      Mossy - TileSet_135: -803750979
+      Mossy - TileSet_136: -2052412568
+      Mossy - TileSet_137: -1444548409
+      Mossy - TileSet_138: 1518915753
+      Mossy - TileSet_139: -702670238
+      Mossy - TileSet_14: -578436904
+      Mossy - TileSet_140: -1413350850
+      Mossy - TileSet_141: 1146117201
+      Mossy - TileSet_142: -1255656793
+      Mossy - TileSet_143: 1031860034
+      Mossy - TileSet_144: -381923842
+      Mossy - TileSet_145: 991689468
+      Mossy - TileSet_146: -2130059944
+      Mossy - TileSet_147: -1122487428
+      Mossy - TileSet_148: 605708977
+      Mossy - TileSet_149: -1396278133
+      Mossy - TileSet_15: -423932923
+      Mossy - TileSet_150: 2002779554
+      Mossy - TileSet_151: 629884398
+      Mossy - TileSet_152: -789808710
+      Mossy - TileSet_153: 1671609886
+      Mossy - TileSet_154: 1355126861
+      Mossy - TileSet_155: -1606374315
+      Mossy - TileSet_156: 644692844
+      Mossy - TileSet_157: -1737747819
+      Mossy - TileSet_158: 702121401
+      Mossy - TileSet_159: 166112975
+      Mossy - TileSet_16: 882192708
+      Mossy - TileSet_160: 1854110064
+      Mossy - TileSet_161: -787616022
+      Mossy - TileSet_162: 1137397540
+      Mossy - TileSet_163: -278340474
+      Mossy - TileSet_164: -786363295
+      Mossy - TileSet_165: 1945079424
+      Mossy - TileSet_166: -1780547155
+      Mossy - TileSet_167: -808586593
+      Mossy - TileSet_168: -459297385
+      Mossy - TileSet_169: -1074671130
+      Mossy - TileSet_17: -18582577
+      Mossy - TileSet_170: -1220094928
+      Mossy - TileSet_171: 331286487
+      Mossy - TileSet_172: -167589601
+      Mossy - TileSet_173: -773828814
+      Mossy - TileSet_174: 78572396
+      Mossy - TileSet_175: 1311956407
+      Mossy - TileSet_176: -238655703
+      Mossy - TileSet_177: 697194656
+      Mossy - TileSet_178: -1633697474
+      Mossy - TileSet_179: 873272173
+      Mossy - TileSet_18: -512035337
+      Mossy - TileSet_180: -393121807
+      Mossy - TileSet_181: 127065012
+      Mossy - TileSet_182: -1870680015
+      Mossy - TileSet_183: 208698081
+      Mossy - TileSet_184: -1237799327
+      Mossy - TileSet_185: 511014942
+      Mossy - TileSet_186: -1132144500
+      Mossy - TileSet_187: -275680996
+      Mossy - TileSet_188: 1976581000
+      Mossy - TileSet_189: -1409742637
+      Mossy - TileSet_19: 852132931
+      Mossy - TileSet_190: 909852216
+      Mossy - TileSet_191: 534522348
+      Mossy - TileSet_192: -906614144
+      Mossy - TileSet_193: -1203112889
+      Mossy - TileSet_194: -1999103558
+      Mossy - TileSet_195: 834083181
+      Mossy - TileSet_2: -1429544936
+      Mossy - TileSet_20: -1028996568
+      Mossy - TileSet_21: -1391326301
+      Mossy - TileSet_22: 1166730983
+      Mossy - TileSet_23: 205686932
+      Mossy - TileSet_24: -1540808232
+      Mossy - TileSet_25: -1643442982
+      Mossy - TileSet_26: 1503157236
+      Mossy - TileSet_27: 485833616
+      Mossy - TileSet_28: 1321158653
+      Mossy - TileSet_29: -2096003881
+      Mossy - TileSet_3: -2089654938
+      Mossy - TileSet_30: 1153000732
+      Mossy - TileSet_31: 1831129219
+      Mossy - TileSet_32: 90792251
+      Mossy - TileSet_33: 1927573088
+      Mossy - TileSet_34: -91272213
+      Mossy - TileSet_35: 1913613672
+      Mossy - TileSet_36: 1529824946
+      Mossy - TileSet_37: -364696714
+      Mossy - TileSet_38: 2103132797
+      Mossy - TileSet_39: 1761997501
+      Mossy - TileSet_4: 67568962
+      Mossy - TileSet_40: -2123389513
+      Mossy - TileSet_41: -672696096
+      Mossy - TileSet_42: 2022711213
+      Mossy - TileSet_43: -685182456
+      Mossy - TileSet_44: -1757107895
+      Mossy - TileSet_45: -398063280
+      Mossy - TileSet_46: -541619781
+      Mossy - TileSet_47: -1109414057
+      Mossy - TileSet_48: 2066498822
+      Mossy - TileSet_49: 1615741516
+      Mossy - TileSet_5: -662676901
+      Mossy - TileSet_50: 70649414
+      Mossy - TileSet_51: 1333198189
+      Mossy - TileSet_52: 617251870
+      Mossy - TileSet_53: -1621937899
+      Mossy - TileSet_54: 1339188148
+      Mossy - TileSet_55: -241712968
+      Mossy - TileSet_56: -1168522484
+      Mossy - TileSet_57: -1961361761
+      Mossy - TileSet_58: 1780932904
+      Mossy - TileSet_59: -626319106
+      Mossy - TileSet_6: -1239704137
+      Mossy - TileSet_60: -1722842244
+      Mossy - TileSet_61: 2033803329
+      Mossy - TileSet_62: -1028392054
+      Mossy - TileSet_63: -197570072
+      Mossy - TileSet_64: -1918758610
+      Mossy - TileSet_65: 665860285
+      Mossy - TileSet_66: -574357005
+      Mossy - TileSet_67: -777181951
+      Mossy - TileSet_68: -1045004325
+      Mossy - TileSet_69: 2105219504
+      Mossy - TileSet_7: 1124842733
+      Mossy - TileSet_70: -135987737
+      Mossy - TileSet_71: -1966874307
+      Mossy - TileSet_72: 1467898478
+      Mossy - TileSet_73: 229208587
+      Mossy - TileSet_74: -506682162
+      Mossy - TileSet_75: 1640382835
+      Mossy - TileSet_76: -295414087
+      Mossy - TileSet_77: -90801698
+      Mossy - TileSet_78: 1803680630
+      Mossy - TileSet_79: -68409006
+      Mossy - TileSet_8: -153747978
+      Mossy - TileSet_80: 217455966
+      Mossy - TileSet_81: -1998860979
+      Mossy - TileSet_82: 951977657
+      Mossy - TileSet_83: -1496708755
+      Mossy - TileSet_84: -1865681938
+      Mossy - TileSet_85: 30339695
+      Mossy - TileSet_86: -610250142
+      Mossy - TileSet_87: -691502377
+      Mossy - TileSet_88: -345618444
+      Mossy - TileSet_89: -2000629567
+      Mossy - TileSet_9: 597560536
+      Mossy - TileSet_90: -1708744126
+      Mossy - TileSet_91: 2115050025
+      Mossy - TileSet_92: 222258203
+      Mossy - TileSet_93: -272488904
+      Mossy - TileSet_94: 1667054398
+      Mossy - TileSet_95: -207173693
+      Mossy - TileSet_96: -939050233
+      Mossy - TileSet_97: -157488651
+      Mossy - TileSet_98: 955942127
+      Mossy - TileSet_99: -418625072
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
