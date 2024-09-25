@@ -1261,7 +1261,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.4162436
+  orthographic size: 5.9300203
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4754,7 +4754,7 @@ TilemapCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.01, y: 0.01}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
@@ -5283,12 +5283,14 @@ MonoBehaviour:
   speed: 4
   jumpForce: 350
   inHook: 0
-  hookDistance: 51.47
-  hookForce: 30
+  hookDistance: 10
+  hookForce: 27
   layerToHit:
     serializedVersion: 2
     m_Bits: 128
   cam: {fileID: 1018985057}
+  minimum: -1
+  maximum: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

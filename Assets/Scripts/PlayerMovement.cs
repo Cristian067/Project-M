@@ -4,6 +4,7 @@ using System.Collections.Generic;
 //using System.Drawing;
 using System.Reflection;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
@@ -33,6 +34,12 @@ public class PlayerMovement : MonoBehaviour
 
 
     private Vector3 hookedPos;
+
+    public float minimum = -1.0F;
+    public float maximum = 1.0F;
+
+    // starting value for the Lerp
+    static float t = 0.0f;
 
 
 
@@ -102,17 +109,39 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
+
+        t += 0.5f * Time.deltaTime;
+        if (!inHook)
+        {
+            rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x,0f,15f * Time.deltaTime), rb.velocity.y); 
+
+        }
+           //new Vector2(Mathf.Lerp(minimum, maximum, 0), rb.velocity.y);
+
         
-        
+
+
     }
     private void FixedUpdate()
     {
-        if (!inHook)
+        
+        if (Input.GetKey(KeyCode.A) && !inHook || Input.GetKey(KeyCode.D) && !inHook)
         {
 
 
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         }
+        /*
+        if (rb.velocity.x >= 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x -0.05f, rb.velocity.y);
+        }
+        else if (rb.velocity.x <= 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x + 0.05f, rb.velocity.y);
+        }
+
+        */
     }
 
 
