@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class CamControl : MonoBehaviour
 {
-
     public static CamControl Instance { get; private set; }
 
     [SerializeField]private GameObject player;
-    //[SerializeField]private GameObject cam;
-
 
     [SerializeField] private bool followPlayer = false;
-
 
     private void Awake()
     {
@@ -35,7 +31,6 @@ public class CamControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (followPlayer)
         {
             transform.position = new Vector3(player.transform.position.x,player.transform.position.y +3,-10);
@@ -47,26 +42,16 @@ public class CamControl : MonoBehaviour
             transform.position = new Vector3(-1,transform.position.y,transform.position.z);
         }
 
-        //if(trans)
-
-        
     }
-
-
-    
 
     public void FollowPlayer()
     {
         followPlayer = true;
     }
 
-
     public void UnFollowPlayer()
     {
         followPlayer = false;
     }
-
-
-
 
 }

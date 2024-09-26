@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
+    [SerializeField] private int lives;
+
+    [SerializeField] private int damage;
+
     private void Awake()
     {
         if (Instance == null)
@@ -31,4 +35,23 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+
+    public void LoseLive(int damage)
+    {
+        lives -= damage;
+
+    }
+
+    public void HealLive(int heal)
+    {
+        lives += heal;
+    }
+
+
+    public int GetPlayerDamage()
+    {
+        return damage;
+    }
+
 }

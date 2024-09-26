@@ -23,6 +23,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float hookDistance;
     [SerializeField] private float hookForce;
 
+    [SerializeField] private GameObject attack;
+    private bool attackInCooldown;
+    [SerializeField] private float attackCooldown;
+
     //[SerializeField] private float currentSpeed;
 
     public LayerMask layerToHit;
@@ -43,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Flip();
+
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             
         horizontal = Input.GetAxis("Horizontal");
@@ -61,17 +66,9 @@ public class PlayerMovement : MonoBehaviour
             isOnGround= false;
         }
 
-        /*
-        if (horizontal != 0)
-        {
-            transform.Translate(new Vector3(1,0,0) * horizontal * speed * Time.deltaTime);
-        }
-        */
-
         Vector3 direction = (mousePos - transform.position).normalized;
 
         //DrawLine(transform.position, mousePos, Color.blue);
-
 
         if (Input.GetKeyDown("w") && isOnGround)
         {
@@ -81,6 +78,11 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(transform.up * jumpForce);
             isOnGround = false;
 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !attackInCooldown)
+        {
+            Attack();
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -160,9 +162,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Attack()
     {
+     
+        Instantiate(attack, transform.position + new Vector3(1f, 0, 0), Quaternion.identity, transform);
+        StartCoroutine("AttackCooldown");
 
     }
 
+    private IEnumerator AttackCooldown()
+    {
+        attackInCooldown = true;
+        yield return new WaitForSeconds(attackCooldown);
+        attackInCooldown = false;
+    }
     private void Flip()
     {
         if (rb.velocity.x < 0f)
