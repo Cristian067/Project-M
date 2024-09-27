@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     private bool attackInCooldown;
     [SerializeField] private float attackCooldown;
 
+    [SerializeField] private string lookDirection;
+
     //[SerializeField] private float currentSpeed;
 
     public LayerMask layerToHit;
@@ -46,6 +48,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
+        if (Input.GetKey("s"))
+        {
+            lookDirection = "down";
+        }
+        */
         Flip();
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -121,6 +129,8 @@ public class PlayerMovement : MonoBehaviour
         }
            */
 
+        
+
     }
     private void FixedUpdate()
     {
@@ -162,8 +172,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void Attack()
     {
-     
-        Instantiate(attack, transform.position + new Vector3(1f, 0, 0), Quaternion.identity, transform);
+        Vector3 attackDirection = new Vector3(0,0,0);
+        Quaternion attackRotation = Quaternion.identity;
+
+        if(lookDirection == "left")
+        {
+            //attackDirection = new Vector3(-1f,0,0);
+            attackRotation = transform.rotation;
+        }
+        else if(lookDirection == "right")
+        {
+            //attackDirection = new Vector3(1f,0,0);
+            attackRotation = transform.rotation;
+        }
+        else if(lookDirection == "down")
+        {
+            attackDirection = new Vector3(0f, 0, 0);
+            attackRotation = Quaternion.Euler(0,0,-90);
+        }
+        
+        Instantiate(attack, transform.position + attackDirection, attackRotation, this.transform);
         StartCoroutine("AttackCooldown");
 
     }
@@ -176,14 +204,39 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Flip()
     {
+        
         if (rb.velocity.x < 0f)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.x,180,transform.rotation.z);
+            if (Input.GetKey("s") && !isOnGround)
+            {
+                lookDirection = "down";
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
+                lookDirection = "left";
+            }
+            
         }
 
         if (rb.velocity.x > 0f)
         {
-            transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
+            if (Input.GetKey("s") && !isOnGround)
+            {
+                lookDirection = "down";
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
+                lookDirection = "right";
+            }
+        }
+        if(rb.velocity.x == 0f && !isOnGround)
+        {
+            if (Input.GetKey("s"))
+            {
+                lookDirection = "down";
+            }
         }
     }
 
