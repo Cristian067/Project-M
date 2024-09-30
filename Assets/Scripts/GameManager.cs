@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int damage;
 
+    [SerializeField] private int fuel;
+
+    [SerializeField] private GameObject player;
+
     private void Awake()
     {
         if (Instance == null)
@@ -41,6 +45,11 @@ public class GameManager : MonoBehaviour
     {
         lives -= damage;
 
+        if (lives < 0)
+        {
+            Destroy(player);
+        }
+
     }
 
     public void HealLive(int heal)
@@ -54,4 +63,16 @@ public class GameManager : MonoBehaviour
         return damage;
     }
 
+    public int GetOil()
+    {
+        return fuel;
+    }
+    public void UseFuel(int usedFuel)
+    {
+        fuel -= usedFuel;
+    }
+    public void RechargeFuel(int moreFuel)
+    {
+        fuel += moreFuel;
+    }
 }

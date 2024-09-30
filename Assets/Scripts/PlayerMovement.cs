@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool inHook;
     [SerializeField] private bool isOnGround;
 
+    [SerializeField] private float maxSpeed;
 
     [SerializeField] private float hookDistance;
     [SerializeField] private float hookForce;
@@ -27,7 +28,12 @@ public class PlayerMovement : MonoBehaviour
     private bool attackInCooldown;
     [SerializeField] private float attackCooldown;
 
+    [SerializeField] private GameObject fireball;
+
     [SerializeField] private string lookDirection;
+
+    [SerializeField] private int maxJumps;
+    [SerializeField] private int extraJumps;
 
     //[SerializeField] private float currentSpeed;
 
@@ -60,16 +66,17 @@ public class PlayerMovement : MonoBehaviour
             
         horizontal = Input.GetAxis("Horizontal");
 
-        //horizontalInt = (int)horizontal;
-
-        RaycastHit2D hitGround = Physics2D.Raycast(transform.position + new Vector3(0, -0.51f, 0), Vector3.down,0.1f);
+        //horizontalInt = (int)horizontal
+        //Detectar suelo
+        RaycastHit2D hitGround1 = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.51f, 0), Vector3.down,0.1f);
+        RaycastHit2D hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down,0.1f);
         //Debug.DrawLine(transform.position + new Vector3(0,-0.51f,0), transform.position + new Vector3(0,-0.61f,0));
 
-        if (hitGround)
+        if (hitGround1 || hitGround2)
         {
             isOnGround = true;
         }
-        else if(!hitGround)
+        else if(!hitGround1 || !hitGround2)
         {
             isOnGround= false;
         }
@@ -78,21 +85,32 @@ public class PlayerMovement : MonoBehaviour
 
         //DrawLine(transform.position, mousePos, Color.blue);
 
-        if (Input.GetKeyDown("w") && isOnGround)
+        //Saltar
+        if (Input.GetKeyDown("space"))
         {
 
             //transform.Translate(new Vector3(0,1,0) * jumpForce);
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-            rb.AddForce(transform.up * jumpForce);
-            isOnGround = false;
+            if (isOnGround)
+            {
+                extraJumps = maxJumps;
+                Jump();
+            }
+            else if(extraJumps > 0 && extraJumps <= maxJumps)
+            {
+                extraJumps--;
+                Jump();
+            }
+            
 
         }
 
+        //Atacar
         if (Input.GetKeyDown(KeyCode.Mouse0) && !attackInCooldown)
         {
             Attack();
         }
 
+        //Usar gancho
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             Debug.DrawLine(transform.position, mousePos, Color.green);
@@ -104,6 +122,12 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log(hit.collider.name);
                 Hook(hit, direction);
             }
+        }
+
+        //Usar Bola de fuego
+        if (Input.GetKeyDown("e"))
+        {
+            Firevall();
         }
         /*
         if(currentSpeed > speed)
@@ -136,7 +160,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A) && !inHook || Input.GetKey(KeyCode.D) && !inHook)
         {
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+            
+            rb.velocity += new Vector2(horizontal * speed, 0);
+
+            if(rb.velocity.x > maxSpeed)
+            {
+                rb.velocity = new Vector2(maxSpeed,rb.velocity.y);
+            }
+            if (rb.velocity.x < -maxSpeed)
+            {
+                rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+            }
         }
         /*
         if(Input.GetKey("a") && !inHook)
@@ -150,19 +184,17 @@ public class PlayerMovement : MonoBehaviour
         */
     }
 
-
     private void Hook(RaycastHit2D hit, Vector2 direction)
     {
         inHook = true;
         rb.velocity = new Vector2(0,0);
-        rb.AddForce(direction * hookForce, ForceMode2D.Impulse);
+        rb.AddForce(direction * (hookForce + maxSpeed), ForceMode2D.Impulse);
         Debug.Log(hit.collider.gameObject.transform.position);
         hookedPos = hit.collider.transform.position;
         isOnGround = false;
         StartCoroutine("CooldownHook");
         //transform.Translate(hit.transform.position);
     }
-
 
     private IEnumerator CooldownHook()
     {
@@ -173,25 +205,29 @@ public class PlayerMovement : MonoBehaviour
     private void Attack()
     {
         Vector3 attackDirection = new Vector3(0,0,0);
+        Vector3 offset = new Vector3(0, 0, 0);
         Quaternion attackRotation = Quaternion.identity;
 
         if(lookDirection == "left")
         {
             //attackDirection = new Vector3(-1f,0,0);
+            offset = new Vector3(-1f, 0, 0);
             attackRotation = transform.rotation;
         }
         else if(lookDirection == "right")
         {
             //attackDirection = new Vector3(1f,0,0);
+            offset = new Vector3(1f, 0, 0);
             attackRotation = transform.rotation;
         }
         else if(lookDirection == "down")
         {
             attackDirection = new Vector3(0f, 0, 0);
+            offset = new Vector3(0f, -1, 0);
             attackRotation = Quaternion.Euler(0,0,-90);
         }
         
-        Instantiate(attack, transform.position + attackDirection, attackRotation, this.transform);
+        Instantiate(attack, transform.position + attackDirection + offset, attackRotation, this.transform);
         StartCoroutine("AttackCooldown");
 
     }
@@ -240,4 +276,42 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void Jump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, 0);
+        rb.AddForce(transform.up * jumpForce);
+        isOnGround = false;
+    }
+
+
+    private void Firevall()
+    {
+        Quaternion attackRotation = Quaternion.identity;
+
+        if (lookDirection == "left")
+        {
+            //attackDirection = new Vector3(-1f,0,0);
+            //offset = new Vector3(-1f, 0, 0);
+            attackRotation = transform.rotation;
+        }
+        else if (lookDirection == "right")
+        {
+            //attackDirection = new Vector3(1f,0,0);
+            //offset = new Vector3(1f, 0, 0);
+            attackRotation = transform.rotation;
+        }
+        else if (lookDirection == "down")
+        {
+            //attackDirection = new Vector3(0f, 0, 0);
+            //offset = new Vector3(0f, -1, 0);
+            attackRotation = Quaternion.Euler(0, 0, -90);
+        }
+
+        if (GameManager.Instance.GetOil() >= 25)
+        {
+            Instantiate(fireball,transform.transform.transform.transform.transform.transform.transform.transform.transform.transform.position, attackRotation);
+            GameManager.Instance.UseFuel(25);
+        }
+
+    }
 }
