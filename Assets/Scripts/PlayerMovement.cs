@@ -20,9 +20,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool isOnGround;
 
     [SerializeField] private float maxSpeed;
+    [SerializeField] private float maxTotalSpeed;
 
     [SerializeField] private float hookDistance;
     [SerializeField] private float hookForce;
+
+    private float inHookSpeed;
 
     [SerializeField] private GameObject attack;
     private bool attackInCooldown;
@@ -38,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     //[SerializeField] private float currentSpeed;
 
     public LayerMask layerToHit;
+    public LayerMask layerToJump;
 
     private float horizontal;
 
@@ -68,8 +72,8 @@ public class PlayerMovement : MonoBehaviour
 
         //horizontalInt = (int)horizontal
         //Detectar suelo
-        RaycastHit2D hitGround1 = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.51f, 0), Vector3.down,0.1f);
-        RaycastHit2D hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down,0.1f);
+        RaycastHit2D hitGround1 = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.51f, 0), Vector3.down,0.1f, layerToJump);
+        RaycastHit2D hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down,0.1f, layerToJump);
         //Debug.DrawLine(transform.position + new Vector3(0,-0.51f,0), transform.position + new Vector3(0,-0.61f,0));
 
         if (hitGround1 || hitGround2)
@@ -142,6 +146,7 @@ public class PlayerMovement : MonoBehaviour
         if (!inHook )
         {
             rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x,0f,15f * Time.deltaTime), rb.velocity.y); 
+            inHookSpeed = Mathf.MoveTowards(inHookSpeed,0f,15f * Time.deltaTime); 
             //currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, 15f * Time.deltaTime);
 
         }
@@ -158,20 +163,37 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        float currentSpeed = 0;
+
         if (Input.GetKey(KeyCode.A) && !inHook || Input.GetKey(KeyCode.D) && !inHook)
         {
             
-            rb.velocity += new Vector2(horizontal * speed, 0);
+            currentSpeed += horizontal * speed;
 
-            if(rb.velocity.x > maxSpeed)
+            if(currentSpeed > maxSpeed)
             {
-                rb.velocity = new Vector2(maxSpeed,rb.velocity.y);
+                currentSpeed = maxSpeed;
             }
-            if (rb.velocity.x < -maxSpeed)
+            if (currentSpeed < -maxSpeed)
             {
-                rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+                currentSpeed = -maxSpeed;
             }
         }
+
+        if (rb.velocity.x > maxTotalSpeed)
+        {
+            rb.velocity = new Vector2(maxTotalSpeed,rb.velocity.y);
+            inHookSpeed = maxTotalSpeed;
+        }
+        if (rb.velocity.x < -maxTotalSpeed)
+        {
+            rb.velocity = new Vector2(-maxTotalSpeed, rb.velocity.y);
+            inHookSpeed = -maxTotalSpeed;
+        }
+
+        rb.velocity = new Vector2(currentSpeed + inHookSpeed, rb.velocity.y);
+
+
         /*
         if(Input.GetKey("a") && !inHook)
         {
@@ -189,6 +211,7 @@ public class PlayerMovement : MonoBehaviour
         inHook = true;
         rb.velocity = new Vector2(0,0);
         rb.AddForce(direction * (hookForce + maxSpeed), ForceMode2D.Impulse);
+        inHookSpeed = rb.velocity.x;
         Debug.Log(hit.collider.gameObject.transform.position);
         hookedPos = hit.collider.transform.position;
         isOnGround = false;
@@ -219,6 +242,12 @@ public class PlayerMovement : MonoBehaviour
             //attackDirection = new Vector3(1f,0,0);
             offset = new Vector3(1f, 0, 0);
             attackRotation = transform.rotation;
+        }
+        else if (lookDirection == "up")
+        {
+            attackDirection = new Vector3(0f, 0, 0);
+            offset = new Vector3(0f, 1, 0);
+            attackRotation = Quaternion.Euler(0, 0, -90);
         }
         else if(lookDirection == "down")
         {
@@ -273,6 +302,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 lookDirection = "down";
             }
+        }
+        if (Input.GetKey("w"))
+        {
+            lookDirection = "up";
         }
     }
 
