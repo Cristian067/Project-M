@@ -28,6 +28,11 @@ public class Enemy : MonoBehaviour
 
     private Rigidbody2D rb;
 
+
+    private RaycastHit2D hitGround1;
+
+    private RaycastHit2D hitGround2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,18 +58,21 @@ public class Enemy : MonoBehaviour
 
         
 
-        RaycastHit2D hitGround1 = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.51f, 0), Vector3.down, 0.1f, layerToJump);
-        RaycastHit2D hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down, 0.1f, layerToJump);
+         hitGround1 = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.51f, 0), Vector3.down, 0.1f, layerToJump);
+        hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down, 0.1f, layerToJump);
         //Debug.DrawLine(transform.position + new Vector3(0,-0.51f,0), transform.position + new Vector3(0,-0.61f,0));
 
         if (hitGround1 || hitGround2)
         {
             isOnGround = true;
         }
-        else if (!hitGround1 || !hitGround2)
+        else if (!hitGround1 && !hitGround2)
         {
             isOnGround = false;
         }
+
+        
+
         Debug.DrawLine(transform.position + new Vector3(0.5f,0,0), transform.position + transform.right, Color.blue);
 
 
@@ -88,6 +96,16 @@ public class Enemy : MonoBehaviour
         else if (!hitWall)
         {
 
+        }
+
+        if (!hitGround1 || !hitGround2)
+        {
+
+            if (isOnGround)
+            {
+                Jump();
+            }
+            
         }
         /*
         GameObject target = FindAnyObjectByType<PlayerMovement>().gameObject;
@@ -168,35 +186,17 @@ public class Enemy : MonoBehaviour
     }
 
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Player")
-        {
-            _distance = collision.gameObject.transform.position - transform.position;
-
-            if (_distance != new Vector2(0, 0))
-            {
-                rb.velocity = new Vector2(_distance.x/2, rb.velocity.y);
-            }
-            
-            
-
-            //Debug.Log(rb.velocity.x);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            _distance = new Vector2(0, 0);
-            
-        }
-    }
+    
     private void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(transform.up * jumpForce);
         isOnGround = false;
     }
+
+    public void GetDistance(Vector2 distance)
+    {
+        _distance = distance;
+    }
+
 }

@@ -16,11 +16,13 @@ public class TriggerCam : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        CamControl.Instance.FollowPlayer();
-
+        if(collision.gameObject.tag == "Player")
+        {
+            CamControl.Instance.FollowPlayer();
+        }
+        
     }
 
 

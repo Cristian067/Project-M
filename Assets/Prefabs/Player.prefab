@@ -211,7 +211,7 @@ MonoBehaviour:
   maxSpeed: 5
   maxTotalSpeed: 8
   hookDistance: 12
-  hookForce: 27
+  hookForce: 2.5
   attack: {fileID: 8595484723746548853, guid: e1b126fa5e380144a8f2f2bb8abaa312, type: 3}
   attackCooldown: 0.7
   fireball: {fileID: 6388315038851373263, guid: fa673291f85afec4da6ccb8c40e89dec, type: 3}
@@ -221,3 +221,6 @@ MonoBehaviour:
   layerToHit:
     serializedVersion: 2
     m_Bits: 128
+  layerToJump:
+    serializedVersion: 2
+    m_Bits: 256

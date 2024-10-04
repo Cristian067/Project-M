@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Usar gancho
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !inHook)
         {
             Debug.DrawLine(transform.position, mousePos, Color.green);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, hookDistance,layerToHit);
@@ -209,8 +209,8 @@ public class PlayerMovement : MonoBehaviour
     private void Hook(RaycastHit2D hit, Vector2 direction)
     {
         inHook = true;
-        rb.velocity = new Vector2(0,0);
-        rb.AddForce(direction * (hookForce + maxSpeed), ForceMode2D.Impulse);
+        rb.velocity = new Vector2(rb.velocity.x,0);
+        rb.AddForce((hit.collider.transform.position - transform.position )* (hookForce), ForceMode2D.Impulse);
         inHookSpeed = rb.velocity.x;
         Debug.Log(hit.collider.gameObject.transform.position);
         hookedPos = hit.collider.transform.position;
