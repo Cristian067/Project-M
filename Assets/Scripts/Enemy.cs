@@ -24,9 +24,14 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private bool isOnGround;
 
+    [SerializeField] private float attackLenght;
+
     public LayerMask layerToJump;
 
     private Rigidbody2D rb;
+
+    private bool thinking;
+
 
 
     private RaycastHit2D hitGround1;
@@ -51,10 +56,7 @@ public class Enemy : MonoBehaviour
         }
 
         
-        if (!attackInCooldown)
-        {
-            Attack();
-        }
+        
 
         
 
@@ -77,6 +79,11 @@ public class Enemy : MonoBehaviour
 
 
         rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 15f * Time.deltaTime), rb.velocity.y);
+
+        if (_distance.x < attackLenght && !thinking && _distance.x != 0)
+        {
+            StartCoroutine("ThinkAttack");
+        }
 
     }
 
@@ -107,6 +114,13 @@ public class Enemy : MonoBehaviour
             }
             
         }
+
+        if (_distance != new Vector2(0, 0))
+        {
+            rb.velocity = new Vector2(speed * (_distance.x/10), rb.velocity.y);
+        }
+
+        //Debug.Log(_distance);
         /*
         GameObject target = FindAnyObjectByType<PlayerMovement>().gameObject;
 
@@ -192,6 +206,18 @@ public class Enemy : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(transform.up * jumpForce);
         isOnGround = false;
+    }
+    
+    private IEnumerator ThinkAttack ()
+    {
+        thinking = true;
+        yield return new WaitForSeconds(Random.Range(0.3f, 1));
+        if (!attackInCooldown)
+        {
+            Attack();
+        }
+        
+        thinking = false;
     }
 
     public void GetDistance(Vector2 distance)

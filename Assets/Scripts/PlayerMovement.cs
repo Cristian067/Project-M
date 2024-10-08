@@ -11,7 +11,7 @@ using static UnityEditor.Searcher.SearcherWindow.Alignment;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    [SerializeField]private Camera cam;
+    //[SerializeField]private Camera cam;
 
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
         if (hitGround1 || hitGround2)
         {
             isOnGround = true;
+            extraJumps = 1;
         }
         else if(!hitGround1 || !hitGround2)
         {
@@ -96,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
             //transform.Translate(new Vector3(0,1,0) * jumpForce);
             if (isOnGround)
             {
-                extraJumps = maxJumps;
+                
                 Jump();
             }
             else if(extraJumps > 0 && extraJumps <= maxJumps)
@@ -145,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
         */
         if (!inHook )
         {
-            rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x,0f,15f * Time.deltaTime), rb.velocity.y); 
+            rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x,0f,20f * Time.deltaTime), rb.velocity.y); 
             inHookSpeed = Mathf.MoveTowards(inHookSpeed,0f,15f * Time.deltaTime); 
             //currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, 15f * Time.deltaTime);
 
@@ -269,8 +270,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Flip()
     {
-        
-        if (rb.velocity.x < 0f)
+        if (Input.GetKey("a"))
         {
             if (Input.GetKey("s") && !isOnGround)
             {
@@ -281,10 +281,9 @@ public class PlayerMovement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
                 lookDirection = "left";
             }
-            
         }
 
-        if (rb.velocity.x > 0f)
+        if (Input.GetKey("d"))
         {
             if (Input.GetKey("s") && !isOnGround)
             {

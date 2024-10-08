@@ -36,10 +36,7 @@ public class Detector : MonoBehaviour
         {
             _distance = collision.gameObject.transform.position - transform.position;
 
-            if (_distance != new Vector2(0, 0))
-            {
-                rb.velocity = new Vector2(_distance.x, rb.velocity.y);
-            }
+           
             enemy.GetDistance(_distance);
             circleCollider.radius = 6;
 
@@ -52,6 +49,7 @@ public class Detector : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             _distance = new Vector2(0, 0);
+            enemy.GetDistance(_distance);
 
             circleCollider.radius = 4;
 

@@ -176,11 +176,12 @@ MonoBehaviour:
   attack: {fileID: 8595484723746548853, guid: e1b126fa5e380144a8f2f2bb8abaa312, type: 3}
   lookDirection: left
   attackCooldown: 1
-  speed: 0
+  speed: 5
   maxSpeed: 0
   _distance: {x: 0, y: 0}
   jumpForce: 400
   isOnGround: 0
+  attackLenght: 3
   layerToJump:
     serializedVersion: 2
     m_Bits: 256
