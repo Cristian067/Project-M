@@ -58,19 +58,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetKey("s"))
-        {
-            lookDirection = "down";
-        }
-        */
         Flip();
 
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             
         horizontal = Input.GetAxis("Horizontal");
 
-        //horizontalInt = (int)horizontal
         //Detectar suelo
         RaycastHit2D hitGround1 = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.51f, 0), Vector3.down,0.1f, layerToJump);
         RaycastHit2D hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down,0.1f, layerToJump);
@@ -79,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         if (hitGround1 || hitGround2)
         {
             isOnGround = true;
+            inHookSpeed = 0;
             extraJumps = 1;
         }
         else if(!hitGround1 || !hitGround2)
@@ -134,6 +128,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Firevall();
         }
+
+        if (Input.GetKeyDown("s"))
+        {
+            DownActions();
+        }
         /*
         if(currentSpeed > speed)
         {
@@ -147,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
         if (!inHook )
         {
             rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x,0f,20f * Time.deltaTime), rb.velocity.y); 
-            inHookSpeed = Mathf.MoveTowards(inHookSpeed,0f,15f * Time.deltaTime); 
+            inHookSpeed = Mathf.MoveTowards(inHookSpeed,0f,25f * Time.deltaTime); 
             //currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, 15f * Time.deltaTime);
 
         }
@@ -211,8 +210,8 @@ public class PlayerMovement : MonoBehaviour
     {
         inHook = true;
         rb.velocity = new Vector2(rb.velocity.x,0);
-        rb.AddForce((hit.collider.transform.position - transform.position )* (hookForce), ForceMode2D.Impulse);
-        inHookSpeed = rb.velocity.x;
+        rb.AddForce((hit.collider.transform.position - transform.position ).normalized* (hookForce), ForceMode2D.Impulse);
+        //inHookSpeed = rb.velocity.x;
         Debug.Log(hit.collider.gameObject.transform.position);
         hookedPos = hit.collider.transform.position;
         isOnGround = false;
@@ -343,6 +342,21 @@ public class PlayerMovement : MonoBehaviour
         {
             Instantiate(fireball,transform.transform.transform.transform.transform.transform.transform.transform.transform.transform.position, attackRotation);
             GameManager.Instance.UseFuel(25);
+        }
+
+    }
+
+    private void DownActions()
+    {
+
+        RaycastHit2D hitDown = Physics2D.Raycast(transform.position + new Vector3(0, -0.6f, 0), Vector3.down,0.3f);
+        
+
+        if(hitDown.transform.gameObject.tag == "Platform")
+        {
+            
+            Platform platform = hitDown.transform.gameObject.GetComponent<Platform>();
+            platform.Activate();
         }
 
     }

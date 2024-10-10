@@ -203,9 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3adaa94e9a200549879903d557527f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
   speed: 4
-  jumpForce: 350
+  jumpForce: 420
   inHook: 0
   isOnGround: 0
   maxSpeed: 5

@@ -92,12 +92,12 @@ public class Enemy : MonoBehaviour
         RaycastHit2D hitWall = Physics2D.Raycast(transform.position, transform.right, 0.8f, layerToJump);
         if (hitWall)
         {
-            Debug.Log(hitWall.collider.gameObject.name);
+            //Debug.Log(hitWall.collider.gameObject.name);
         }
 
         if (hitWall && _distance.x != 0 && isOnGround)
         {
-            Debug.Log("jenye");
+            //Debug.Log("jenye");
             Jump();
         }
         else if (!hitWall)

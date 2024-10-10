@@ -11,7 +11,7 @@ public class FireBall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine("Disapear");
     }
 
     // Update is called once per frame
@@ -29,5 +29,10 @@ public class FireBall : MonoBehaviour
             enemy.LoseLive(damage);
         }
     }
+    private IEnumerator Disapear()
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
 
+    }
 }

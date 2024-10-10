@@ -33,7 +33,7 @@ public class CamControl : MonoBehaviour
     {
         if (followPlayer)
         {
-            transform.position = new Vector3(player.transform.position.x,player.transform.position.y +3,-10);
+            transform.position = new Vector3(player.transform.position.x,player.transform.position.y +2,-10);
             //cam.transform.position.y = player.transform.position.y;
         }
 
@@ -44,14 +44,19 @@ public class CamControl : MonoBehaviour
 
     }
 
-    public void FollowPlayer()
+    public void FollowPlayer(bool follow)
     {
-        followPlayer = true;
+        followPlayer = follow;
     }
 
     public void UnFollowPlayer()
     {
         followPlayer = false;
+    }
+
+    public void SetCamPosition(Vector3 newCamPosition)
+    {
+        transform.position = newCamPosition;
     }
 
 }

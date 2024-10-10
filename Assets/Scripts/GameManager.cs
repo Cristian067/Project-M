@@ -45,16 +45,18 @@ public class GameManager : MonoBehaviour
     {
         lives -= damage;
 
-        if (lives < 0)
+        if (lives <= 0)
         {
             Destroy(player);
         }
+        UiManager.instance.RefreshLives(lives);
 
     }
 
     public void HealLive(int heal)
     {
         lives += heal;
+        UiManager.instance.RefreshLives(lives);
     }
 
 

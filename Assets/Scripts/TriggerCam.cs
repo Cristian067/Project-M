@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class TriggerCam : MonoBehaviour
 {
+    [SerializeField] private bool isFollow;
+
+    [SerializeField] private Vector3 newCamPosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +24,11 @@ public class TriggerCam : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            CamControl.Instance.FollowPlayer();
+            CamControl.Instance.FollowPlayer(isFollow);
+        }
+        if (!isFollow)
+        {
+            CamControl.Instance.SetCamPosition(newCamPosition);
         }
         
     }
