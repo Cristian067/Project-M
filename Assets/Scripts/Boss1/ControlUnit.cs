@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class ControlUnit : MonoBehaviour
 {
     private Dash dash;
     private Jump jump;
+    private Stats stats;
 
     private Rigidbody2D rb;
 
@@ -18,18 +21,22 @@ public class ControlUnit : MonoBehaviour
     private bool isOnGround;
     public LayerMask layerToJump;
 
+    private GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
 
         dash = GetComponent<Dash>();
         jump = GetComponent<Jump>();
+        stats = GetComponent<Stats>();
         rb = GetComponent<Rigidbody2D>();
 
         //StartCoroutine(SelfCooldown());
 
         //dash.Use(rb, 1200);
 
+        player = FindAnyObjectByType<PlayerMovement>().gameObject;
     }
 
     // Update is called once per frame
@@ -68,8 +75,14 @@ public class ControlUnit : MonoBehaviour
             }
             if (actions[random] == "dashdown" && !isOnGround)
             {
-                dash.Use(rb, 1200,true);
-                StartCoroutine(SelfCooldown());
+                RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0,-0.55f,0), Vector2.down, 3.2f);
+                //Debug.Log(hit);
+                if (!hit)
+                {
+                    dash.Use(rb, 1200, true);
+                    StartCoroutine(SelfCooldown());
+                }
+                
             }
             if (actions[random] == "backjump" && isOnGround)
             {
@@ -94,9 +107,35 @@ public class ControlUnit : MonoBehaviour
                     jump.Use(rb, new Vector2(-3, 0), 300);
                     StartCoroutine(SelfCooldown());
                 }
-
             }
         }
+
+
+        
+
+        Vector3 targetPoint = player.transform.position - transform.position;
+
+        
+
+        if(targetPoint.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0,180,0);
+        }
+        if(targetPoint.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        //transform.right = targetPoint;
+        //transform.rotation = Quaternion.Euler(0,transform.right.y,0);
+
+        //Debug.Log(transform.right);
+
+        //transform.rotation = Quaternion.Euler(transform.rotation.x,targetPoint.y ,transform.rotation.z);
+
+        //Quaternion targetRotation = Quaternion.LookRotation(-targetPoint);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
+        
+
 
 
         if (transform.rotation.eulerAngles.y == 180)

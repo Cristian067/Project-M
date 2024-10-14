@@ -19,15 +19,37 @@ public class Attack : MonoBehaviour
     {
         Rigidbody2D collisionRb = collision.GetComponent<Rigidbody2D>();
         
-        if (collision.gameObject.tag == "Enemy")
+        if(gameObject.transform.parent.gameObject.tag == "Player")
         {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            enemy.LoseLive(GameManager.Instance.GetPlayerDamage());
-            collisionRb.velocity = Vector3.zero;
-            collisionRb.AddForce((collision.transform.position - transform.position).normalized * 4000);
+            if (collision.gameObject.tag == "Enemy")
+            {
+                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                enemy.LoseLive(GameManager.Instance.GetPlayerDamage());
+                collisionRb.velocity = Vector3.zero;
+                collisionRb.AddForce((collision.transform.position - transform.position).normalized * 4000);
+            }
+
+            if (collision.gameObject.tag == "Boss")
+            {
+                Stats stats = collision.gameObject.GetComponent<Stats>();
+                stats.LoseLive(GameManager.Instance.GetPlayerDamage());
+                collisionRb.velocity = Vector3.zero;
+                collisionRb.AddForce((collision.transform.position - transform.position).normalized * 1000);
+            }
+
+            PlayerMovement playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovement>();
+
+            if (playerMovement.GetDirectionLook() == "down")
+            {
+                Rigidbody2D playerRb = gameObject.transform.parent.gameObject.GetComponent<Rigidbody2D>();
+                playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
+                playerRb.AddForce(transform.up * 420);
+            }
         }
 
-        if(gameObject.transform.parent.gameObject.tag == "Enemy" && collision.gameObject.tag == "Player")
+        
+
+        if(collision.gameObject.tag == "Player")
         {
             //Debug.Log("hit");
             GameManager.Instance.LoseLive(1);

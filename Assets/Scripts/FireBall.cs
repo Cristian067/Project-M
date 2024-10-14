@@ -28,6 +28,11 @@ public class FireBall : MonoBehaviour
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             enemy.LoseLive(damage);
         }
+        if (collision.gameObject.tag == "Boss")
+        {
+            Stats stats = collision.gameObject.GetComponent<Stats>();
+            stats.LoseLive(damage);
+        }
     }
     private IEnumerator Disapear()
     {

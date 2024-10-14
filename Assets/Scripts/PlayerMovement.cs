@@ -10,6 +10,10 @@ using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    
+
+
     private Rigidbody2D rb;
     //[SerializeField]private Camera cam;
 
@@ -110,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Usar gancho
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !inHook)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !inHook && GameManager.Instance.UsableHabilities("hook"))
         {
             Debug.DrawLine(transform.position, mousePos, Color.green);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, hookDistance,layerToHit);
@@ -360,4 +364,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+    public string GetDirectionLook()
+    {
+        return lookDirection;
+    }
+
 }

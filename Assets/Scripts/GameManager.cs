@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject player;
 
+
+    [SerializeField] private bool haveHook;
+
     private void Awake()
     {
         if (Instance == null)
@@ -76,5 +79,16 @@ public class GameManager : MonoBehaviour
     public void RechargeFuel(int moreFuel)
     {
         fuel += moreFuel;
+    }
+
+    public bool UsableHabilities(string hability)
+    {
+        if(hability == "hook")
+        {
+            return haveHook;
+        }
+
+        return false;
+
     }
 }
