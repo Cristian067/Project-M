@@ -16,7 +16,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject player;
 
 
+    [SerializeField] private bool haveMelee;
     [SerializeField] private bool haveHook;
+    [SerializeField] private bool haveFireball;
+    [SerializeField] private bool haveDobleJump;
 
     private void Awake()
     {
@@ -81,14 +84,48 @@ public class GameManager : MonoBehaviour
         fuel += moreFuel;
     }
 
-    public bool UsableHabilities(string hability)
+    public bool GetHabilities(string hability)
     {
-        if(hability == "hook")
+        if (hability == "basic")
+        {
+            return haveMelee;
+        }
+        if (hability == "hook")
         {
             return haveHook;
         }
+        if (hability == "fireball")
+        {
+            return haveFireball;
+        }
+        if (hability == "doblejump")
+        {
+            return haveDobleJump;
+        }
 
         return false;
+
+    }
+    public void SetHabilities(string hability)
+    {
+        if (hability == "basic")
+        {
+            haveMelee = true;
+        }
+        if (hability == "hook")
+        {
+            haveHook = true;
+        }
+        if (hability == "fireball")
+        {
+            haveFireball = true;
+        }
+        if (hability == "doblejump")
+        {
+            haveDobleJump = true;
+        }
+
+        
 
     }
 }

@@ -1,19 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GetHability : MonoBehaviour
 {
 
-    private enum test
+    
+    public enum habilities
     {
+        BasicAtq,
         Hook,
-        Fireball
+        Fireball,
+        DobleJump
     }
 
+    public habilities hability;
+
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         
     }
 
@@ -25,11 +33,31 @@ public class GetHability : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        audioSource.Play();
+
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Ahora tienes el gancho :D");
-            Destroy(gameObject);
+            if (hability == habilities.BasicAtq)
+            {
+                GameManager.Instance.SetHabilities("basic");
+            }
+            if (hability == habilities.Hook)
+            {
+                GameManager.Instance.SetHabilities("hook");
+            }
+            if (hability == habilities.Fireball)
+            {
+                GameManager.Instance.SetHabilities("fireball");
+            }
+            if (hability == habilities.DobleJump)
+            {
+                GameManager.Instance.SetHabilities("doblejump");
+            }
         }
+
+        Destroy(gameObject);
     }
+
+
 
 }

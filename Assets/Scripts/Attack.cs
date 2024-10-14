@@ -27,6 +27,14 @@ public class Attack : MonoBehaviour
                 enemy.LoseLive(GameManager.Instance.GetPlayerDamage());
                 collisionRb.velocity = Vector3.zero;
                 collisionRb.AddForce((collision.transform.position - transform.position).normalized * 4000);
+                PlayerMovement playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovement>();
+
+                if (playerMovement.GetDirectionLook() == "down")
+                {
+                    Rigidbody2D playerRb = gameObject.transform.parent.gameObject.GetComponent<Rigidbody2D>();
+                    playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
+                    playerRb.AddForce((-transform.right) * 420);
+                }
             }
 
             if (collision.gameObject.tag == "Boss")
@@ -35,16 +43,17 @@ public class Attack : MonoBehaviour
                 stats.LoseLive(GameManager.Instance.GetPlayerDamage());
                 collisionRb.velocity = Vector3.zero;
                 collisionRb.AddForce((collision.transform.position - transform.position).normalized * 1000);
+                PlayerMovement playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovement>();
+
+                if (playerMovement.GetDirectionLook() == "down")
+                {
+                    Rigidbody2D playerRb = gameObject.transform.parent.gameObject.GetComponent<Rigidbody2D>();
+                    playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
+                    playerRb.AddForce((-transform.right) * 420);
+                }
             }
 
-            PlayerMovement playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovement>();
-
-            if (playerMovement.GetDirectionLook() == "down")
-            {
-                Rigidbody2D playerRb = gameObject.transform.parent.gameObject.GetComponent<Rigidbody2D>();
-                playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
-                playerRb.AddForce(transform.up * 420);
-            }
+            
         }
 
         

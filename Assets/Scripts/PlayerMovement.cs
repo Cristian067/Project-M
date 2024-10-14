@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
                 
                 Jump();
             }
-            else if(extraJumps > 0 && extraJumps <= maxJumps)
+            else if(extraJumps > 0 && extraJumps <= maxJumps && GameManager.Instance.GetHabilities("doblejump"))
             {
                 extraJumps--;
                 Jump();
@@ -108,13 +108,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Atacar
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !attackInCooldown)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !attackInCooldown && GameManager.Instance.GetHabilities("basic"))
         {
             Attack();
         }
 
         //Usar gancho
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !inHook && GameManager.Instance.UsableHabilities("hook"))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && !inHook && GameManager.Instance.GetHabilities("hook"))
         {
             Debug.DrawLine(transform.position, mousePos, Color.green);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, hookDistance,layerToHit);
@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Usar Bola de fuego
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKeyDown("e") && GameManager.Instance.GetHabilities("fireball"))
         {
             Firevall();
         }
