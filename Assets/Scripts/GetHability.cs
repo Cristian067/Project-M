@@ -55,7 +55,7 @@ public class GetHability : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
 
