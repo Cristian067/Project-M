@@ -9,52 +9,69 @@ public class GetHability : MonoBehaviour
     
     public enum habilities
     {
-        BasicAtq,
-        Hook,
-        Fireball,
-        DobleJump
+        basic,
+        hook,
+        fireball,
+        doblejump
     }
 
     public habilities hability;
 
     private AudioSource audioSource;
+
+    [SerializeField]private bool isTaken;
     // Start is called before the first frame update
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        if (GameManager.Instance.GetHabilities(hability.ToString()))
+        {
+            isTaken = true;
+        }
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!audioSource.isPlaying && isTaken)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         audioSource.Play();
+        CircleCollider2D circleCollider = GetComponent<CircleCollider2D>();
+        circleCollider.enabled = false;
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.enabled = false;
+
 
         if (collision.gameObject.tag == "Player")
         {
-            if (hability == habilities.BasicAtq)
+            if (hability == habilities.basic)
             {
-                GameManager.Instance.SetHabilities("basic");
+                GameManager.Instance.SetHabilities(hability.ToString());
             }
-            if (hability == habilities.Hook)
+            if (hability == habilities.hook)
             {
-                GameManager.Instance.SetHabilities("hook");
+                GameManager.Instance.SetHabilities(hability.ToString());
             }
-            if (hability == habilities.Fireball)
+            if (hability == habilities.fireball)
             {
-                GameManager.Instance.SetHabilities("fireball");
+                GameManager.Instance.SetHabilities(hability.ToString());
             }
-            if (hability == habilities.DobleJump)
+            if (hability == habilities.doblejump)
             {
-                GameManager.Instance.SetHabilities("doblejump");
+                GameManager.Instance.SetHabilities(hability.ToString());
             }
         }
 
+        isTaken = true;
+        
         //Destroy(gameObject);
     }
 

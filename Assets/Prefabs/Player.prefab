@@ -208,7 +208,7 @@ MonoBehaviour:
   inHook: 0
   isOnGround: 0
   maxSpeed: 5
-  maxTotalSpeed: 8
+  maxTotalSpeed: 10
   hookDistance: 12
   hookForce: 16
   attack: {fileID: 8595484723746548853, guid: e1b126fa5e380144a8f2f2bb8abaa312, type: 3}

@@ -11,8 +11,8 @@ using static UnityEditor.Searcher.SearcherWindow.Alignment;
 public class PlayerMovement : MonoBehaviour
 {
 
-    
 
+    
 
     private Rigidbody2D rb;
     //[SerializeField]private Camera cam;
@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         if (hitGround1 || hitGround2)
         {
             isOnGround = true;
-            inHookSpeed = 0;
+            //inHookSpeed = 0;
             extraJumps = 1;
         }
         else if(!hitGround1 || !hitGround2)
@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         if (!inHook )
         {
             rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x,0f,20f * Time.deltaTime), rb.velocity.y); 
-            inHookSpeed = Mathf.MoveTowards(inHookSpeed,0f,25f * Time.deltaTime); 
+            inHookSpeed = Mathf.MoveTowards(inHookSpeed,0f,15f * Time.deltaTime); 
             //currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, 15f * Time.deltaTime);
 
         }
@@ -183,17 +183,20 @@ public class PlayerMovement : MonoBehaviour
                 currentSpeed = -maxSpeed;
             }
         }
-
+        
         if (rb.velocity.x > maxTotalSpeed)
         {
             rb.velocity = new Vector2(maxTotalSpeed,rb.velocity.y);
-            inHookSpeed = maxTotalSpeed;
+            inHookSpeed = maxTotalSpeed - maxSpeed;
         }
         if (rb.velocity.x < -maxTotalSpeed)
         {
             rb.velocity = new Vector2(-maxTotalSpeed, rb.velocity.y);
-            inHookSpeed = -maxTotalSpeed;
+
+            inHookSpeed = -maxTotalSpeed + maxSpeed;
         }
+        
+        Debug.Log($"{currentSpeed} hook: {inHookSpeed}. Total {rb.velocity.x}");
 
         rb.velocity = new Vector2(currentSpeed + inHookSpeed, rb.velocity.y);
 
@@ -215,7 +218,7 @@ public class PlayerMovement : MonoBehaviour
         inHook = true;
         rb.velocity = new Vector2(rb.velocity.x,0);
         rb.AddForce((hit.collider.transform.position - transform.position ).normalized* (hookForce), ForceMode2D.Impulse);
-        //inHookSpeed = rb.velocity.x;
+        //inHookSpeed = (hit.collider.transform.position.x - transform.position.x).normalized;
         Debug.Log(hit.collider.gameObject.transform.position);
         hookedPos = hit.collider.transform.position;
         isOnGround = false;

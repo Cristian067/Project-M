@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerMap : MonoBehaviour
+public class TriggerOcjectKilling : MonoBehaviour
 {
-    [SerializeField] private GameObject blockInMap;
+    [SerializeField] private GameObject[] target;
 
-    [SerializeField] private bool isActive;
+    [SerializeField] private bool[] active;
+
 
     // Start is called before the first frame update
     void Start()
@@ -20,13 +21,12 @@ public class TriggerMap : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnDestroy()
     {
-        if(collision.gameObject.tag == "Player")
+        for (int i = 0; i < target.Length; i++)
         {
-            blockInMap.SetActive(isActive);
+            target[i].SetActive(active[i]);
         }
-        
         
     }
 

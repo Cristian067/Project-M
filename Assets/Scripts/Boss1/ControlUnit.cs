@@ -9,6 +9,7 @@ public class ControlUnit : MonoBehaviour
     private Dash dash;
     private Jump jump;
     private Stats stats;
+    private SpinAttack spinAttack;
 
     private Rigidbody2D rb;
 
@@ -17,6 +18,8 @@ public class ControlUnit : MonoBehaviour
     [SerializeField] private string[] actions;
 
     [SerializeField] private bool thinking;
+
+    
 
     private bool isOnGround;
     public LayerMask layerToJump;
@@ -30,6 +33,8 @@ public class ControlUnit : MonoBehaviour
         dash = GetComponent<Dash>();
         jump = GetComponent<Jump>();
         stats = GetComponent<Stats>();
+        spinAttack = GetComponent<SpinAttack>();
+
         rb = GetComponent<Rigidbody2D>();
 
         //StartCoroutine(SelfCooldown());
@@ -65,14 +70,16 @@ public class ControlUnit : MonoBehaviour
         {
             if (actions[random] == "jump" && isOnGround)
             {
+                thinking = true;
                 jump.Use(rb, new Vector2(0,3), 400);
-                StartCoroutine(SelfCooldown());
+                StartCoroutine(SelfCooldown(1));
             }
             if (actions[random] == "dash")
             {
+                thinking = true;
                 dash.Use(rb, 1200,false);
-                StartCoroutine(SelfCooldown());
-            }
+                StartCoroutine(SelfCooldown(1));
+            }/*
             if (actions[random] == "dashdown" && !isOnGround)
             {
                 RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0,-0.55f,0), Vector2.down, 3.2f);
@@ -83,30 +90,39 @@ public class ControlUnit : MonoBehaviour
                     StartCoroutine(SelfCooldown());
                 }
                 
-            }
+            }*/
             if (actions[random] == "backjump" && isOnGround)
             {
+                thinking = true;
                 jump.Use(rb, new Vector2(2, 3), 400);
                 //jump.Use(rb, new Vector2(2, 3), 400);
-                StartCoroutine(SelfCooldown());
+                StartCoroutine(SelfCooldown(0.3f));
             }
             if (actions[random] == "wait")
             {
-                
-                StartCoroutine(SelfCooldown());
+                thinking = true;
+                StartCoroutine(SelfCooldown(1));
             }
             if (actions[random] == "stepback")
             {
                 if (lookingR == "left")
                 {
+                    thinking = true;
                     jump.Use(rb, new Vector2(3, 0), 300);
-                    StartCoroutine(SelfCooldown());
+                    StartCoroutine(SelfCooldown(0.5f));
                 }
                 else if (lookingR == "right")
                 {
+                    thinking = true;
                     jump.Use(rb, new Vector2(-3, 0), 300);
-                    StartCoroutine(SelfCooldown());
+                    StartCoroutine(SelfCooldown(0.5f));
                 }
+            }
+            if (actions[random] == "spinattack" && isOnGround)
+            {
+                thinking = true;
+                StartCoroutine(SpinAttack());
+                
             }
         }
 
@@ -150,10 +166,20 @@ public class ControlUnit : MonoBehaviour
 
     }
 
-    private IEnumerator SelfCooldown()
+    private IEnumerator SelfCooldown(float cooldown)
     {
-        thinking = true;
-        yield return new WaitForSeconds(1);
+        
+        yield return new WaitForSeconds(cooldown);
         thinking = false;
+    }
+
+    private IEnumerator SpinAttack()
+    {
+
+        jump.Use(rb, new Vector2(0, 2), 300);
+        yield return new WaitForSeconds(0.2f);
+        spinAttack.Use(rb);
+        StartCoroutine(SelfCooldown(1.4f));
+
     }
 }

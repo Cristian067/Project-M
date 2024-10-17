@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+
+    [SerializeField] private float dissapearTime;
+
+    [SerializeField] private float knockback;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,14 +31,14 @@ public class Attack : MonoBehaviour
                 Enemy enemy = collision.gameObject.GetComponent<Enemy>();
                 enemy.LoseLive(GameManager.Instance.GetPlayerDamage());
                 collisionRb.velocity = Vector3.zero;
-                collisionRb.AddForce((collision.transform.position - transform.position).normalized * 4000);
+                collisionRb.AddForce((collision.transform.position - transform.position).normalized * knockback * 4);
                 PlayerMovement playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovement>();
 
                 if (playerMovement.GetDirectionLook() == "down")
                 {
                     Rigidbody2D playerRb = gameObject.transform.parent.gameObject.GetComponent<Rigidbody2D>();
                     playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
-                    playerRb.AddForce((-transform.right) * 420);
+                    playerRb.AddForce((-transform.right) * 210);
                 }
             }
 
@@ -42,14 +47,14 @@ public class Attack : MonoBehaviour
                 Stats stats = collision.gameObject.GetComponent<Stats>();
                 stats.LoseLive(GameManager.Instance.GetPlayerDamage());
                 collisionRb.velocity = Vector3.zero;
-                collisionRb.AddForce((collision.transform.position - transform.position).normalized * 1000);
+                collisionRb.AddForce((collision.transform.position - transform.position).normalized * knockback);
                 PlayerMovement playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovement>();
 
                 if (playerMovement.GetDirectionLook() == "down")
                 {
                     Rigidbody2D playerRb = gameObject.transform.parent.gameObject.GetComponent<Rigidbody2D>();
                     playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
-                    playerRb.AddForce((-transform.right) * 420);
+                    playerRb.AddForce((-transform.right) * 210);
                 }
             }
 
@@ -63,7 +68,7 @@ public class Attack : MonoBehaviour
             //Debug.Log("hit");
             GameManager.Instance.LoseLive(1);
             collisionRb.velocity = Vector3.zero;
-            collisionRb.AddForce((collision.transform.position - transform.position).normalized * 1000);
+            collisionRb.AddForce((collision.transform.position - transform.position).normalized * knockback);
 
         }
 
@@ -76,7 +81,7 @@ public class Attack : MonoBehaviour
 
     private IEnumerator Disapear()
     {
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(dissapearTime);
         //Destroy(gameObject.transform.parent.gameObject);
         Destroy(gameObject);
     }

@@ -7,7 +7,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
+
     [SerializeField] private int lives;
+    [SerializeField] private bool invencibility;
 
     [SerializeField] private int damage;
 
@@ -46,31 +48,43 @@ public class GameManager : MonoBehaviour
         
     }
 
-
     public void LoseLive(int damage)
     {
-        lives -= damage;
-
-        if (lives <= 0)
+        if (!invencibility)
         {
-            Destroy(player);
+            lives -= damage;
+
+            if (lives <= 0)
+            {
+                Destroy(player);
+            }
+            UiManager.instance.RefreshLives(lives);
+            StartCoroutine(HitCooldown());
+
         }
-        UiManager.instance.RefreshLives(lives);
+        
 
     }
+    private IEnumerator HitCooldown()
+    {
+        if (!invencibility)
+        {
+            invencibility = true;
+            yield return new WaitForSeconds(2);
+            invencibility = false;
+        }
 
+        yield return null;
+    }
     public void HealLive(int heal)
     {
         lives += heal;
         UiManager.instance.RefreshLives(lives);
     }
-
-
     public int GetPlayerDamage()
     {
         return damage;
     }
-
     public int GetOil()
     {
         return fuel;
@@ -83,7 +97,6 @@ public class GameManager : MonoBehaviour
     {
         fuel += moreFuel;
     }
-
     public bool GetHabilities(string hability)
     {
         if (hability == "basic")
