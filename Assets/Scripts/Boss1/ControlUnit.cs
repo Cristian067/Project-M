@@ -10,6 +10,7 @@ public class ControlUnit : MonoBehaviour
     private Jump jump;
     private Stats stats;
     private SpinAttack spinAttack;
+    private BeamAttack beamAttack;
 
     private Rigidbody2D rb;
 
@@ -26,6 +27,8 @@ public class ControlUnit : MonoBehaviour
 
     private GameObject player;
 
+    private bool ultimate;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +37,7 @@ public class ControlUnit : MonoBehaviour
         jump = GetComponent<Jump>();
         stats = GetComponent<Stats>();
         spinAttack = GetComponent<SpinAttack>();
+        beamAttack = GetComponent<BeamAttack>();
 
         rb = GetComponent<Rigidbody2D>();
 
@@ -168,9 +172,12 @@ public class ControlUnit : MonoBehaviour
 
     private IEnumerator SelfCooldown(float cooldown)
     {
+        if (!ultimate)
+        {
+            yield return new WaitForSeconds(cooldown);
+            thinking = false;
+        }
         
-        yield return new WaitForSeconds(cooldown);
-        thinking = false;
     }
 
     private IEnumerator SpinAttack()
@@ -181,5 +188,12 @@ public class ControlUnit : MonoBehaviour
         spinAttack.Use(rb);
         StartCoroutine(SelfCooldown(1.4f));
 
+    }
+
+    public void BeamAttack()
+    {
+        ultimate = true;
+        thinking = true;
+        beamAttack.Use(rb, new Vector2(68,9.3f));
     }
 }

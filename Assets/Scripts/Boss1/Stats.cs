@@ -8,9 +8,12 @@ public class Stats : MonoBehaviour
 
     [SerializeField] private int damage;
 
+    private ControlUnit controlUnit;
+
     // Start is called before the first frame update
     void Start()
     {
+        controlUnit = GetComponent<ControlUnit>();
         
     }
 
@@ -25,6 +28,10 @@ public class Stats : MonoBehaviour
     public void LoseLive(int damaged)
     {
         lives -= damaged;
+        if (lives == 5)
+        {
+            controlUnit.BeamAttack();
+        }
         if (lives <= 0)
         {
             Destroy(gameObject);
