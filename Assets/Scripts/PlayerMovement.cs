@@ -196,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
             inHookSpeed = -maxTotalSpeed + maxSpeed;
         }
         
-        Debug.Log($"{currentSpeed} hook: {inHookSpeed}. Total {rb.velocity.x}");
+        //Debug.Log($"{currentSpeed} hook: {inHookSpeed}. Total {rb.velocity.x}");
 
         rb.velocity = new Vector2(currentSpeed + inHookSpeed, rb.velocity.y);
 

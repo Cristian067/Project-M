@@ -81,6 +81,10 @@ public class GameManager : MonoBehaviour
         lives += heal;
         UiManager.instance.RefreshLives(lives);
     }
+    public int GetPlayerHealth()
+    {
+        return lives;
+    }
     public int GetPlayerDamage()
     {
         return damage;
@@ -141,4 +145,9 @@ public class GameManager : MonoBehaviour
         
 
     }
+
+
+    
+
 }
+
