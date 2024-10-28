@@ -8,7 +8,7 @@ public class Save : MonoBehaviour
     static public Save Instance { get; private set; }
 
 
-    private string path = Application.dataPath + "/../saves/" + "save.json";
+    private string path = Application.dataPath + "/../saves/";
 
     private void Awake()
     {
@@ -30,13 +30,13 @@ public class Save : MonoBehaviour
 
     }
 
-    public void saveData(int lives, int fuel, int damage, string mapIn, Vector3 setPos, bool melee, bool hook, bool fireball, bool dobleJump)
+    public void saveData(int fileNum,int lives, int fuel, int damage, string mapIn, Vector3 setPos, bool melee, bool hook, bool fireball, bool dobleJump)
     {
 
         Progresion save = new Progresion
         {
             //name = playerName,
-
+            file = fileNum,
             lives = lives,
             fuel = fuel, 
             damage = damage,
@@ -49,22 +49,22 @@ public class Save : MonoBehaviour
             haveFireball = fireball,
             haveDobleJump = dobleJump
 
-    //timePlayed = setTimePlayed,
-};
+            //timePlayed = setTimePlayed,
+        };
 
 
         string jsonContent = JsonUtility.ToJson(save);
         Debug.Log(jsonContent);
-        File.WriteAllText(path, jsonContent);
+        File.WriteAllText(path + $"{fileNum}.json", jsonContent);
 
     }
 
 
-    public void LoadData()
+    public void LoadData(int fileNum)
     {
-        if (File.Exists(path))
+        if (File.Exists(path + $"{fileNum}.json"))
         {
-            string jsonContent = File.ReadAllText(path);
+            string jsonContent = File.ReadAllText(path + $"{fileNum}.json");
 
             Progresion save = JsonUtility.FromJson<Progresion>(jsonContent);
 
@@ -80,11 +80,11 @@ public class Save : MonoBehaviour
         }
     }
 
-    public void LoadDataTittleScreen()
+    public void LoadDataTittleScreen(int fileNum)
     {
-        if (File.Exists(path))
+        if (File.Exists(path + $"{fileNum}.json"))
         {
-            string jsonContent = File.ReadAllText(path);
+            string jsonContent = File.ReadAllText(path + $"{fileNum}.json");
 
             Stats save = JsonUtility.FromJson<Stats>(jsonContent);
 
@@ -100,6 +100,66 @@ public class Save : MonoBehaviour
 
         }
     }
+    public bool ExistFileData(int fileNum)
+    {
+        if (File.Exists(path + $"{fileNum}.json"))
+        {
+            return true;
+        }
+        return false;
+    }
+    public int LoadDataTittleScreenLifes(int fileNum)
+    {
+        if (File.Exists(path + $"{fileNum}.json"))
+        {
+            string jsonContent = File.ReadAllText(path + $"{fileNum}.json");
+
+            Progresion save = JsonUtility.FromJson<Progresion>(jsonContent);
+
+            return save.lives;
+        }
+        else if (!File.Exists(path))
+        {
+            return 0;
+        }
+        return 0;
+    }
+
+    public int LoadDataTittleScreenFuel(int fileNum)
+    {
+        if (File.Exists(path + $"{fileNum}.json"))
+        {
+            string jsonContent = File.ReadAllText(path + $"{fileNum}.json");
+
+            Progresion save = JsonUtility.FromJson<Progresion>(jsonContent);
+
+            return save.fuel;
+        }
+        else if (!File.Exists(path))
+        {
+            return 0;
+        }
+        return 0;
+    }
+
+    public string LoadDataTittleScreenLocation(int fileNum)
+    {
+        if (File.Exists(path + $"{fileNum}.json"))
+        {
+            string jsonContent = File.ReadAllText(path + $"{fileNum}.json");
+
+            Progresion save = JsonUtility.FromJson<Progresion>(jsonContent);
+
+            return save.map;
+        }
+        else if (!File.Exists(path))
+        {
+            return "";
+        }
+        return "";
+    }
+
+
 
 
 }

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Progresion
 {
- 
+
 
 
     //public string name = "TestPlayer";
+
+    public int file;
     public int lives;
     public int fuel;
     public int damage;

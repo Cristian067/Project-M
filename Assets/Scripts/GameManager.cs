@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
+    private int fileNum;
+
+
 
     [SerializeField] private int lives;
     [SerializeField] private bool invencibility;
@@ -146,7 +149,10 @@ public class GameManager : MonoBehaviour
 
     }
 
-
+    public int GetFileNum()
+    {
+        return fileNum;
+    }
     
 
 }
