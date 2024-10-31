@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RestoreStats : MonoBehaviour
 {
-    private bool isInteract;
+    private bool canInteract;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +14,7 @@ public class RestoreStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isInteract)
+        if (canInteract)
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
@@ -28,7 +28,7 @@ public class RestoreStats : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            isInteract = true;
+            canInteract = true;
         }
         
     }
@@ -37,7 +37,7 @@ public class RestoreStats : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            isInteract = false;
+            canInteract = false;
         }
     }
 
