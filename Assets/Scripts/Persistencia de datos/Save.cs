@@ -68,6 +68,7 @@ public class Save : MonoBehaviour
 
             Progresion save = JsonUtility.FromJson<Progresion>(jsonContent);
 
+            GameManager.Instance.GetData(save.lives,save.fuel,save.damage, save.mapPosition,save.haveMelee,save.haveHook,save.haveFireball,save.haveDobleJump);
             //if(!inTitleScreen){}
 
             //GameManager.Instance.Load(save.name, save.mapPosition, save.points, save.color, save.level, save.exp, save.initialPower, save.levelsCompleted, save.timePlayed);
@@ -77,6 +78,14 @@ public class Save : MonoBehaviour
         else
         {
             Debug.LogError("¡¡¡ EL ARCHIVO DE GUARDADO NO EXISTE !!!");
+        }
+    }
+
+    public void DeleteData(int fileNum)
+    {
+        if(File.Exists(path + $"{fileNum}.json"))
+        {
+            File.Delete(path + $"{fileNum}.json");
         }
     }
 

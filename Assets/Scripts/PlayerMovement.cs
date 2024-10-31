@@ -10,10 +10,6 @@ using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-
-    
-
     private Rigidbody2D rb;
     //[SerializeField]private Camera cam;
 
@@ -33,7 +29,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private GameObject attack;
     private bool attackInCooldown;
+    private bool fireballInCooldown;
     [SerializeField] private float attackCooldown;
+    [SerializeField] private float fireballCooldown;
 
     [SerializeField] private GameObject fireball;
 
@@ -62,114 +60,122 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Flip();
-
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            
-        horizontal = Input.GetAxis("Horizontal");
-
-        //Detectar suelo
-        RaycastHit2D hitGround1 = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.51f, 0), Vector3.down,0.1f, layerToJump);
-        RaycastHit2D hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down,0.1f, layerToJump);
-        //Debug.DrawLine(transform.position + new Vector3(0,-0.51f,0), transform.position + new Vector3(0,-0.61f,0));
-
-        if (hitGround1 || hitGround2)
-        {
-            isOnGround = true;
-            //inHookSpeed = 0;
-            extraJumps = 1;
-        }
-        else if(!hitGround1 || !hitGround2)
-        {
-            isOnGround= false;
-        }
-
-        Vector3 direction = (mousePos - transform.position).normalized;
-
-        //DrawLine(transform.position, mousePos, Color.blue);
-
-        //Saltar
-        if (Input.GetKeyDown("space"))
+        if (!GameManager.Instance.IsPaused())
         {
 
-            //transform.Translate(new Vector3(0,1,0) * jumpForce);
-            if (isOnGround)
+
+            Flip();
+
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            horizontal = Input.GetAxis("Horizontal");
+
+            //Detectar suelo
+            RaycastHit2D hitGround1 = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.51f, 0), Vector3.down, 0.1f, layerToJump);
+            RaycastHit2D hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down, 0.1f, layerToJump);
+            //Debug.DrawLine(transform.position + new Vector3(0,-0.51f,0), transform.position + new Vector3(0,-0.61f,0));
+
+            if (hitGround1 || hitGround2)
             {
-                
-                Jump();
+                isOnGround = true;
+                //inHookSpeed = 0;
+                extraJumps = 1;
             }
-            else if(extraJumps > 0 && extraJumps <= maxJumps && GameManager.Instance.GetHabilities("doblejump"))
+            else if (!hitGround1 || !hitGround2)
             {
-                extraJumps--;
-                Jump();
+                isOnGround = false;
             }
-            
 
-        }
+            Vector3 direction = (mousePos - transform.position).normalized;
 
-        //Atacar
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !attackInCooldown && GameManager.Instance.GetHabilities("basic"))
-        {
-            Attack();
-        }
+            //DrawLine(transform.position, mousePos, Color.blue);
 
-        //Usar gancho
-        if (Input.GetKeyDown(KeyCode.Mouse1) && !inHook && GameManager.Instance.GetHabilities("hook"))
-        {
-            Debug.DrawLine(transform.position, mousePos, Color.green);
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, hookDistance,layerToHit);
-            Debug.DrawLine(transform.position, mousePos, Color.red);
-            Debug.Log(hit.collider.name);
-            if (hit.collider.gameObject.tag == "Hookable")
+            //Saltar
+            if (Input.GetKeyDown("space"))
             {
+
+                //transform.Translate(new Vector3(0,1,0) * jumpForce);
+                if (isOnGround)
+                {
+
+                    Jump();
+                }
+                else if (extraJumps > 0 && extraJumps <= maxJumps && GameManager.Instance.GetHabilities("doblejump"))
+                {
+                    extraJumps--;
+                    Jump();
+                }
+
+
+            }
+
+            //Atacar
+            if (Input.GetKeyDown(KeyCode.Mouse0) && !attackInCooldown && GameManager.Instance.GetHabilities("basic"))
+            {
+                Attack();
+            }
+
+            //Usar gancho
+            if (Input.GetKeyDown(KeyCode.Mouse1) && !inHook && GameManager.Instance.GetHabilities("hook"))
+            {
+                Debug.DrawLine(transform.position, mousePos, Color.green);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, hookDistance, layerToHit);
+                Debug.DrawLine(transform.position, mousePos, Color.red);
                 Debug.Log(hit.collider.name);
-                Hook(hit, direction);
+                if (hit.collider.gameObject.tag == "Hookable")
+                {
+                    Debug.Log(hit.collider.name);
+                    Hook(hit, direction);
+                }
             }
-        }
 
-        //Usar Bola de fuego
-        if (Input.GetKeyDown("e") && GameManager.Instance.GetHabilities("fireball"))
-        {
-            Firevall();
-        }
+            //Usar Bola de fuego
+            if (Input.GetKeyDown("q") && GameManager.Instance.GetHabilities("fireball"))
+            {
+                if (!fireballInCooldown)
+                {
+                    Firevall();
+                }
+                
+            }
 
-        if (Input.GetKeyDown("s"))
-        {
-            DownActions();
-        }
-        /*
-        if(currentSpeed > speed)
-        {
-            currentSpeed= speed;
-        }
-        if (currentSpeed < -speed)
-        {
-            currentSpeed = -speed;
-        }
-        */
-        if (!inHook )
-        {
-            rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x,0f,20f * Time.deltaTime), rb.velocity.y); 
-            inHookSpeed = Mathf.MoveTowards(inHookSpeed,0f,15f * Time.deltaTime); 
-            //currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, 15f * Time.deltaTime);
+            if (Input.GetKeyDown("s"))
+            {
+                DownActions();
+            }
+            /*
+            if(currentSpeed > speed)
+            {
+                currentSpeed= speed;
+            }
+            if (currentSpeed < -speed)
+            {
+                currentSpeed = -speed;
+            }
+            */
+            if (!inHook)
+            {
+                rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 20f * Time.deltaTime), rb.velocity.y);
+                inHookSpeed = Mathf.MoveTowards(inHookSpeed, 0f, 15f * Time.deltaTime);
+                //currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, 15f * Time.deltaTime);
+
+            }
+            //new Vector2(Mathf.Lerp(minimum, maximum, 0), rb.velocity.y);
+            /*
+         if (currentSpeed != 0f)
+         {
+             rb.velocity = new Vector2(currentSpeed, rb.velocity.y);
+         }
+            */
 
         }
-           //new Vector2(Mathf.Lerp(minimum, maximum, 0), rb.velocity.y);
-           /*
-        if (currentSpeed != 0f)
-        {
-            rb.velocity = new Vector2(currentSpeed, rb.velocity.y);
-        }
-           */
-
-        
 
     }
     private void FixedUpdate()
     {
         float currentSpeed = 0;
 
-        if (Input.GetKey(KeyCode.A) && !inHook || Input.GetKey(KeyCode.D) && !inHook)
+        if (Input.GetKey(KeyCode.A)   || Input.GetKey(KeyCode.D) )
         {
             
             currentSpeed += horizontal * speed;
@@ -218,7 +224,7 @@ public class PlayerMovement : MonoBehaviour
         inHook = true;
         rb.velocity = new Vector2(rb.velocity.x,0);
         rb.AddForce((hit.collider.transform.position - transform.position ).normalized* (hookForce), ForceMode2D.Impulse);
-        //inHookSpeed = (hit.collider.transform.position.x - transform.position.x).normalized;
+        inHookSpeed = (hit.collider.transform.position.x - transform.position.x);
         Debug.Log(hit.collider.gameObject.transform.position);
         hookedPos = hit.collider.transform.position;
         isOnGround = false;
@@ -349,10 +355,16 @@ public class PlayerMovement : MonoBehaviour
         {
             Instantiate(fireball,transform.transform.transform.transform.transform.transform.transform.transform.transform.transform.position, attackRotation);
             GameManager.Instance.UseFuel(25);
+            StartCoroutine(FireballCooldown());
         }
 
     }
-
+    private IEnumerator FireballCooldown()
+    {
+        fireballInCooldown = true;
+        yield return new WaitForSeconds(fireballCooldown);
+        fireballInCooldown = false;
+    }
     private void DownActions()
     {
 

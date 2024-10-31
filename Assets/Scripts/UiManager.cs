@@ -10,6 +10,8 @@ public class UiManager : MonoBehaviour
     [SerializeField] private Slider fuelMeter;
     [SerializeField] private Slider live;
 
+    [SerializeField] private GameObject escMenu;
+
     private void Awake()
     {
         if (instance == null)
@@ -25,6 +27,7 @@ public class UiManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        escMenu.SetActive(false);
         
     }
 
@@ -41,4 +44,13 @@ public class UiManager : MonoBehaviour
         live.value = lives;
     }
 
+    public void DisplayEscMenu()
+    {
+        escMenu.SetActive(true);
+
+    }
+    public void UndisplayEscMenu()
+    {
+        escMenu.SetActive(false);
+    }
 }

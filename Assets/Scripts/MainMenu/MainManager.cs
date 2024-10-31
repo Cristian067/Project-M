@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainManager : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class MainManager : MonoBehaviour
     [SerializeField] private GameObject mainPanel;
     [SerializeField] private GameObject gameFilesPanel;
     [SerializeField] private GameObject optionsPanel;
+
+    [SerializeField] private Files file1;
+    [SerializeField] private Files file2;
+    [SerializeField] private Files file3;
 
 
     private void Awake()
@@ -46,6 +51,33 @@ public class MainManager : MonoBehaviour
         destination.active = true;
         //destination.SetActive(true);
 
+    }
+
+    public void TestButton()
+    {
+        Debug.Log("boton");
+    }
+
+    public void NewGame(int fileNum)
+    {
+        SceneManager.LoadScene(1);
+        PlayerPrefs.SetInt("actualFile",fileNum);
+        PlayerPrefs.Save();
+    }
+
+    public void Continue(int fileNum)
+    {
+        SceneManager.LoadScene(Save.Instance.LoadDataTittleScreenLocation(fileNum));
+        PlayerPrefs.SetInt("actualFile", fileNum);
+        PlayerPrefs.Save();
+    }
+
+    public void DeleteFile(int fileNum)
+    {
+        Save.Instance.DeleteData(fileNum);
+        file1.CheckFiles();
+        file2.CheckFiles();
+        file3.CheckFiles();
     }
 
 

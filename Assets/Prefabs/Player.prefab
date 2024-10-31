@@ -203,16 +203,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3adaa94e9a200549879903d557527f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  jumpForce: 420
+  speed: 6
+  jumpForce: 380
   inHook: 0
   isOnGround: 0
-  maxSpeed: 5
-  maxTotalSpeed: 10
+  maxSpeed: 7
+  maxTotalSpeed: 16
   hookDistance: 12
   hookForce: 16
   attack: {fileID: 8595484723746548853, guid: e1b126fa5e380144a8f2f2bb8abaa312, type: 3}
   attackCooldown: 0.7
+  fireballCooldown: 1.5
   fireball: {fileID: 6388315038851373263, guid: fa673291f85afec4da6ccb8c40e89dec, type: 3}
   lookDirection: right
   maxJumps: 1

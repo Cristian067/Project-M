@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,14 +10,18 @@ public class GameManager : MonoBehaviour
 
     private int fileNum;
 
+    //private Save save;
+
 
 
     [SerializeField] private int lives;
+    [SerializeField] private int maxLives;
     [SerializeField] private bool invencibility;
 
     [SerializeField] private int damage;
 
     [SerializeField] private int fuel;
+    [SerializeField] private int maxFuel;
 
     [SerializeField] private GameObject player;
 
@@ -25,6 +30,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool haveHook;
     [SerializeField] private bool haveFireball;
     [SerializeField] private bool haveDobleJump;
+
+    private bool paused;
 
     private void Awake()
     {
@@ -42,14 +49,50 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
+        fileNum = PlayerPrefs.GetInt("actualFile");
         
+        Save.Instance.LoadData(fileNum);
+
+        paused = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            
+            if(!paused)
+            {
+                
+                Pause();
+            }
+            else if (paused)
+            {
+                
+                UnPause();
+            }
+            
+        }
     }
+
+    private void Pause()
+    {
+        
+        UiManager.instance.DisplayEscMenu();
+        Time.timeScale = 0f;
+        paused = true;
+    }
+
+    private void UnPause()
+    {
+        UiManager.instance.UndisplayEscMenu();
+        Time.timeScale = 1f;
+        paused = false;
+    }
+
 
     public void LoseLive(int damage)
     {
@@ -154,6 +197,45 @@ public class GameManager : MonoBehaviour
         return fileNum;
     }
     
+    public void GetData(int _lives, int _fuel, int _damage,Vector3 pos, bool _haveMelee,bool _haveHook , bool _haveFireball,bool _haveDobleJump)
+    {
+        lives = _lives;
+        fuel = _fuel;
+        damage = _damage;
 
+        haveMelee = _haveMelee;
+        haveHook = _haveHook;
+        haveFireball = _haveFireball;
+        haveDobleJump = _haveDobleJump;
+
+        UiManager.instance.RefreshLives(lives);
+
+        SetPlayerData(pos);
+    }
+    private void SetPlayerData(Vector3 pos)
+    {
+
+        player.transform.position = pos;
+
+    }
+
+
+
+    public void GoTo(int id)
+    {
+        SceneManager.LoadScene(id);
+    }
+
+    public void FullRestore()
+    {
+        lives = maxLives;
+        fuel = maxFuel;
+        UiManager.instance.RefreshLives(lives);
+    }
+
+    public bool IsPaused()
+    {
+        return paused;
+    }
 }
 
