@@ -1,22 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
-    public static UiManager instance { get; private set; }
+    public static UiManager Instance { get; private set; }
 
     [SerializeField] private Slider fuelMeter;
     [SerializeField] private Slider live;
 
     [SerializeField] private GameObject escMenu;
 
+    [SerializeField] private GameObject dialoguePanel;
+    [SerializeField] private TextMeshProUGUI dialogueText;
+
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
@@ -52,5 +56,15 @@ public class UiManager : MonoBehaviour
     public void UndisplayEscMenu()
     {
         escMenu.SetActive(false);
+    }
+
+    public void DialogueDisplay(string msg)
+    {
+        dialoguePanel.SetActive(true);
+        dialogueText.text = msg;
+    }
+    public void DialogueUndisplay()
+    {
+        dialoguePanel.SetActive(false);
     }
 }

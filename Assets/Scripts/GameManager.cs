@@ -81,14 +81,14 @@ public class GameManager : MonoBehaviour
     private void Pause()
     {
         
-        UiManager.instance.DisplayEscMenu();
+        UiManager.Instance.DisplayEscMenu();
         Time.timeScale = 0f;
         paused = true;
     }
 
     private void UnPause()
     {
-        UiManager.instance.UndisplayEscMenu();
+        UiManager.Instance.UndisplayEscMenu();
         Time.timeScale = 1f;
         paused = false;
     }
@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
             {
                 Destroy(player);
             }
-            UiManager.instance.RefreshLives(lives);
+            UiManager.Instance.RefreshLives(lives);
             StartCoroutine(HitCooldown());
 
         }
@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
     public void HealLive(int heal)
     {
         lives += heal;
-        UiManager.instance.RefreshLives(lives);
+        UiManager.Instance.RefreshLives(lives);
     }
     public int GetPlayerHealth()
     {
@@ -208,7 +208,7 @@ public class GameManager : MonoBehaviour
         haveFireball = _haveFireball;
         haveDobleJump = _haveDobleJump;
 
-        UiManager.instance.RefreshLives(lives);
+        UiManager.Instance.RefreshLives(lives);
 
         SetPlayerData(pos);
     }
@@ -230,7 +230,7 @@ public class GameManager : MonoBehaviour
     {
         lives = maxLives;
         fuel = maxFuel;
-        UiManager.instance.RefreshLives(lives);
+        UiManager.Instance.RefreshLives(lives);
     }
 
     public bool IsPaused()

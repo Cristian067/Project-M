@@ -10,8 +10,12 @@ using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Instance { get; private set; }
+
     private Rigidbody2D rb;
     //[SerializeField]private Camera cam;
+
+    private bool interacting;
 
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
@@ -49,6 +53,19 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 hookedPos;
 
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.LogError("Hay mas de un player");
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.Instance.IsPaused())
+        if (!GameManager.Instance.IsPaused() && !interacting)
         {
 
 
@@ -174,21 +191,24 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         float currentSpeed = 0;
-
-        if (Input.GetKey(KeyCode.A)   || Input.GetKey(KeyCode.D) )
+        if (!interacting)
         {
-            
-            currentSpeed += horizontal * speed;
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+            {
 
-            if(currentSpeed > maxSpeed)
-            {
-                currentSpeed = maxSpeed;
-            }
-            if (currentSpeed < -maxSpeed)
-            {
-                currentSpeed = -maxSpeed;
+                currentSpeed += horizontal * speed;
+
+                if (currentSpeed > maxSpeed)
+                {
+                    currentSpeed = maxSpeed;
+                }
+                if (currentSpeed < -maxSpeed)
+                {
+                    currentSpeed = -maxSpeed;
+                }
             }
         }
+        
         
         if (rb.velocity.x > maxTotalSpeed)
         {
@@ -383,6 +403,15 @@ public class PlayerMovement : MonoBehaviour
     public string GetDirectionLook()
     {
         return lookDirection;
+    }
+
+    public void changeInteracting(bool condition)
+    {
+        interacting = condition;
+    }
+    public bool isInteracting()
+    {
+        return interacting;
     }
 
 }

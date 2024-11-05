@@ -22,8 +22,12 @@ public class ChangeMusic : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            musicSource.clip = newMusic;
-            musicSource.Play();
+            if (musicSource.clip != newMusic)
+            {
+                musicSource.clip = newMusic;
+                musicSource.Play();
+            }
+            
         }
     }
 
