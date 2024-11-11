@@ -88,17 +88,17 @@ public class PlayerMovement : MonoBehaviour
             horizontal = Input.GetAxis("Horizontal");
 
             //Detectar suelo
-            RaycastHit2D hitGround1 = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.51f, 0), Vector3.down, 0.1f, layerToJump);
-            RaycastHit2D hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down, 0.1f, layerToJump);
+            RaycastHit2D hitGround1 = Physics2D.Raycast(transform.position + new Vector3(0, -0.1f, 0), Vector3.down, 0.5f, layerToJump);
+            //RaycastHit2D hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down, 0.1f, layerToJump);
             //Debug.DrawLine(transform.position + new Vector3(0,-0.51f,0), transform.position + new Vector3(0,-0.61f,0));
 
-            if (hitGround1 || hitGround2)
+            if (hitGround1 )
             {
                 isOnGround = true;
                 //inHookSpeed = 0;
                 extraJumps = 1;
             }
-            else if (!hitGround1 || !hitGround2)
+            else if (!hitGround1 )
             {
                 isOnGround = false;
             }
