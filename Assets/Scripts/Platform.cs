@@ -20,28 +20,35 @@ public class Platform : MonoBehaviour
         
     }
 
-    public void Activate()
+    public void Activate(Collider2D player)
     {
-        boxC.isTrigger = true;
-        StartCoroutine("Desactivate");
+
+        Physics2D.IgnoreCollision(player, boxC);
+        //boxC.isTrigger = true;
+        StartCoroutine(Desactivate(player));
     }
 
-    private IEnumerator Desactivate()
+    private IEnumerator Desactivate(Collider2D player)
     {
-        yield return new WaitForSeconds(0.5f);
-        boxC.isTrigger = false;
+        yield return new WaitForSeconds(0.25f);
+        Physics2D.IgnoreCollision(player, boxC, false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
+    {/*
         Rigidbody2D collisionRb = collision.GetComponent<Rigidbody2D>();
         if(collisionRb.velocity.y <= 0 && collision.gameObject.tag == "Player")
         {
             boxC.isTrigger = false;
         }
+        if (collisionRb.velocity.y >= 0 && collision.gameObject.tag == "Player")
+        {
+            boxC.isTrigger = true;
+        }
+        */
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        boxC.isTrigger = true;
+     //   boxC.isTrigger = true;
     }
 }

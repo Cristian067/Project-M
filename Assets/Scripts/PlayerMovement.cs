@@ -17,41 +17,52 @@ public class PlayerMovement : MonoBehaviour
 
     private bool interacting;
 
+    [Header("Velocidad y salto")]
     [SerializeField] private float speed;
     [SerializeField] private float jumpForce;
 
+    [Header("Booleanas")]
     [SerializeField] private bool inHook;
     [SerializeField] private bool isOnGround;
 
+    [Header("Velocidades")]
     [SerializeField] private float maxSpeed;
     [SerializeField] private float maxTotalSpeed;
 
+    [Header("Gancho")]
     [SerializeField] private float hookDistance;
     [SerializeField] private float hookForce;
 
     private float inHookSpeed;
 
+    [Header("Ataque basico")]
     [SerializeField] private GameObject attack;
     private bool attackInCooldown;
-    private bool fireballInCooldown;
     [SerializeField] private float attackCooldown;
-    [SerializeField] private float fireballCooldown;
 
+    [Header("Fireball")]
     [SerializeField] private GameObject fireball;
+    [SerializeField] private float fireballCooldown;
+    private bool fireballInCooldown;
 
     [SerializeField] private string lookDirection;
 
+    [Header("Saltos")]
     [SerializeField] private int maxJumps;
     [SerializeField] private int extraJumps;
 
     //[SerializeField] private float currentSpeed;
 
+    [Header("Capas de golpe")]
     public LayerMask layerToHit;
     public LayerMask layerToJump;
 
     private float horizontal;
 
     private Vector3 hookedPos;
+
+
+    private CapsuleCollider2D cc;
 
 
     private void Awake()
@@ -70,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        cc = GetComponent<CapsuleCollider2D>();
         inHook = false;
         
     }
@@ -94,13 +106,22 @@ public class PlayerMovement : MonoBehaviour
 
             if (hitGround1 )
             {
+
                 isOnGround = true;
                 //inHookSpeed = 0;
                 extraJumps = 1;
+                //if (rb.gravityScale == 1)
+                //{
+                 //   rb.gravityScale = 6;
+                ////}
             }
             else if (!hitGround1 )
             {
                 isOnGround = false;
+                //if(rb.gravityScale != 1)
+                //{
+               //     rb.gravityScale = 1;
+                //}
             }
 
             Vector3 direction = (mousePos - transform.position).normalized;
@@ -196,6 +217,8 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
             {
 
+                
+
                 currentSpeed += horizontal * speed;
 
                 if (currentSpeed > maxSpeed)
@@ -207,6 +230,9 @@ public class PlayerMovement : MonoBehaviour
                     currentSpeed = -maxSpeed;
                 }
             }
+            
+               
+            
         }
         
         
@@ -395,7 +421,7 @@ public class PlayerMovement : MonoBehaviour
         {
             
             Platform platform = hitDown.transform.gameObject.GetComponent<Platform>();
-            platform.Activate();
+            platform.Activate(cc);
         }
 
     }

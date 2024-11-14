@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 206308491950270652}
   - component: {fileID: 4941991886325428043}
   - component: {fileID: 3913749559125713474}
+  - component: {fileID: 2402290376792863311}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -131,10 +132,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -153,7 +154,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6436931492728552864}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 33c1b8349ee358c449b42094956b03c3, type: 2}
   m_IncludeLayers:
@@ -203,18 +204,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3adaa94e9a200549879903d557527f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
-  jumpForce: 380
+  speed: 8
+  jumpForce: 450
   inHook: 0
   isOnGround: 0
-  maxSpeed: 7
+  maxSpeed: 8
   maxTotalSpeed: 16
-  hookDistance: 12
-  hookForce: 16
+  hookDistance: 9
+  hookForce: 18
   attack: {fileID: 8595484723746548853, guid: e1b126fa5e380144a8f2f2bb8abaa312, type: 3}
   attackCooldown: 0.7
-  fireballCooldown: 1.5
   fireball: {fileID: 6388315038851373263, guid: fa673291f85afec4da6ccb8c40e89dec, type: 3}
+  fireballCooldown: 1.5
   lookDirection: right
   maxJumps: 1
   extraJumps: 0
@@ -224,3 +225,38 @@ MonoBehaviour:
   layerToJump:
     serializedVersion: 2
     m_Bits: 256
+--- !u!70 &2402290376792863311
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436931492728552864}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 1}
+  m_Direction: 0

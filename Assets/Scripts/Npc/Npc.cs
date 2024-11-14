@@ -9,6 +9,7 @@ public class Npc : MonoBehaviour
    
 
     [SerializeField] private bool isInteract;
+    [SerializeField] private bool randomLines;
 
     private enum Actions
     {
@@ -29,6 +30,9 @@ public class Npc : MonoBehaviour
     [SerializeField]private Actions action;
 
     [SerializeField] private string[] talk;
+    [SerializeField] private string[] afterTalkText;
+
+    [SerializeField] private int afterTalk;
 
     [SerializeField]private int idx = 0;
         
@@ -48,7 +52,7 @@ public class Npc : MonoBehaviour
         { 
             if (action == Actions.Talk)
             {
-               if (idx < talk.Length)
+               if (idx < talk.Length && afterTalk == 0)
                 {
                     PlayerMovement.Instance.changeInteracting(true);
                     UiManager.Instance.DialogueDisplay(talk[idx]);
@@ -57,10 +61,19 @@ public class Npc : MonoBehaviour
                 else if (PlayerMovement.Instance.isInteracting())
                 {
                     idx = 0;
+                    afterTalk++;
                     PlayerMovement.Instance.changeInteracting(false);
                     UiManager.Instance.DialogueUndisplay();
 
                 }
+               else if (afterTalk < afterTalkText.Length +1)
+                {
+                    PlayerMovement.Instance.changeInteracting(true);
+                    UiManager.Instance.DialogueDisplay(afterTalkText[idx]);
+                    
+                }
+                
+
             }
 
             //Hacer shopmenu

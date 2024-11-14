@@ -42,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: background_sprite
+    uniqueID: 2606480005
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

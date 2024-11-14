@@ -8,6 +8,8 @@ public class TriggerOcjectKilling : MonoBehaviour
 
     [SerializeField] private bool[] active;
 
+   
+
 
     // Start is called before the first frame update
     void Start()

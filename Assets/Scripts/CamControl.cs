@@ -10,6 +10,8 @@ public class CamControl : MonoBehaviour
 
     [SerializeField] private bool followPlayer = false;
 
+    //[SerializeField] private Vector2[] limits;
+
     private void Awake()
     {
         if(Instance == null)
@@ -37,10 +39,14 @@ public class CamControl : MonoBehaviour
             //cam.transform.position.y = player.transform.position.y;
         }
 
-        if (transform.position.x < -1)
+        
+        if (transform.position.x < -11)
         {
-            transform.position = new Vector3(-1,transform.position.y,transform.position.z);
+            transform.position = new Vector3(-11, transform.position.y, transform.position.z);
         }
+        
+        
+        
 
     }
 
