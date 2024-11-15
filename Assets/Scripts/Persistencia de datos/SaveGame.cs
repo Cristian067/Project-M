@@ -23,11 +23,20 @@ public class SaveGame : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        canSave = true;
+        if (collision.gameObject.tag == "Player")
+        {
+            canSave = true;
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        canSave = false;
+
+        if (collision.gameObject.tag == "Player")
+        {
+            canSave = false;
+        }
+        
     }
 }
