@@ -8,14 +8,19 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementV2 : MonoBehaviour
 {
-    public static PlayerMovement Instance { get; private set; }
+    public static PlayerMovementV2 Instance { get; private set; }
 
     private Rigidbody2D rb;
     //[SerializeField]private Camera cam;
 
     private bool interacting;
+
+    [Header("Debug Check")]
+    public float velocityX;
+    public float velocityY;
+
 
     [Header("Velocidad y salto")]
     [SerializeField] private float speed;
@@ -95,6 +100,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        velocityX = rb.velocity.x;
+        velocityY = rb.velocity.y;
         if (!GameManager.Instance.IsPaused() && !interacting)
         {
             Flip();
@@ -106,28 +113,6 @@ public class PlayerMovement : MonoBehaviour
             //RaycastHit2D hitGround1 = Physics2D.Raycast(transform.position + new Vector3(0, -0.1f, 0), Vector3.down, 0.5f, whatIsGround);
             //RaycastHit2D hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down, 0.1f, layerToJump);
             //Debug.DrawLine(transform.position + new Vector3(0,-0.51f,0), transform.position + new Vector3(0,-0.61f,0));
-            /*
-            if (hitGround1 )
-            {
-
-                isOnGround = true;
-                //inHookSpeed = 0;
-                extraJumps = 1;
-                //if (rb.gravityScale == 1)
-                //{
-                 //   rb.gravityScale = 6;
-                ////}
-            }
-            else if (!hitGround1 )
-            {
-                isOnGround = false;
-                //if(rb.gravityScale != 1)
-                //{
-               //     rb.gravityScale = 1;
-                //}
-            }
-            */
-
 
             Vector3 direction = (mousePos - transform.position).normalized;
 
@@ -174,15 +159,6 @@ public class PlayerMovement : MonoBehaviour
                 DownActions();
             }
             /*
-            if(currentSpeed > speed)
-            {
-                currentSpeed= speed;
-            }
-            if (currentSpeed < -speed)
-            {
-                currentSpeed = -speed;
-            }
-            */
             if (!inHook)
             {
                 rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 20f * Time.deltaTime), rb.velocity.y);
@@ -190,12 +166,6 @@ public class PlayerMovement : MonoBehaviour
                 //currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, 15f * Time.deltaTime);
 
             }
-            //new Vector2(Mathf.Lerp(minimum, maximum, 0), rb.velocity.y);
-            /*
-         if (currentSpeed != 0f)
-         {
-             rb.velocity = new Vector2(currentSpeed, rb.velocity.y);
-         }
             */
 
             CheckIfCanJump();
@@ -204,8 +174,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        float currentSpeed = 0;
-
+        //float currentSpeed = 0;
+        /*
         if (!interacting)
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
@@ -238,7 +208,8 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log($"{currentSpeed} hook: {inHookSpeed}. Total {rb.velocity.x}");
 
         rb.velocity = new Vector2(currentSpeed + inHookSpeed, rb.velocity.y);
-
+        */
+        ApplyMovement();
         CheckSurrondings();
         /*
         if(Input.GetKey("a") && !inHook)
@@ -252,6 +223,14 @@ public class PlayerMovement : MonoBehaviour
         */
     }
 
+    private void ApplyMovement()
+    {
+        if (!inHook)
+        {
+            rb.velocity = new Vector2(speed * horizontal, rb.velocity.y);
+        }
+        
+    }
     private void CheckSurrondings()
     {
         isOnGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
@@ -259,7 +238,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckIfCanJump()
     {
-        if (isOnGround && rb.velocity.y <= 0)
+        if (isOnGround && rb.velocity.y <= 0.0001f)
         {
             remainingJumps = maxJumps;
         }
@@ -273,6 +252,7 @@ public class PlayerMovement : MonoBehaviour
             canJump = true;
         }
     }
+    
     private void Hook(RaycastHit2D hit, Vector2 direction)
     {
         inHook = true;
@@ -285,10 +265,10 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine("CooldownHook");
         //transform.Translate(hit.transform.position);
     }
-
+    
     private IEnumerator CooldownHook()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.2f);
         inHook = false;
     }
 
