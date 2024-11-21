@@ -27,9 +27,11 @@ public class PlayerMovementV2 : MonoBehaviour
     [SerializeField] private float jumpForce;
 
     [Header("Booleanas")]
-    [SerializeField] private bool inHook;
-    [SerializeField] private bool isOnGround;
-    public bool canJump;
+    private bool inHook;
+    private bool isOnGround;
+    private bool isTouchingWall;
+    private bool isWallSliding;
+    private bool canJump;
 
     [Header("Velocidades")]
     [SerializeField] private float maxSpeed;
@@ -48,30 +50,43 @@ public class PlayerMovementV2 : MonoBehaviour
 
     [Header("Fireball")]
     [SerializeField] private GameObject fireball;
-    [SerializeField] private float fireballCooldown;
     private bool fireballInCooldown;
+    [SerializeField] private float fireballCooldown;
 
     [SerializeField] private string lookDirection;
 
     [Header("Saltos")]
     [SerializeField] private int maxJumps;
-    [SerializeField] private int remainingJumps;
+    private int remainingJumps;
 
     //[SerializeField] private float currentSpeed;
 
     [Header("Capas de golpe")]
-    public LayerMask whatIsHook;
-    public LayerMask whatIsGround;
+    [SerializeField] private LayerMask whatIsHook;
+    [SerializeField] private LayerMask whatIsGround;
+
+    [Header("Ground and Wall check")]
+
+    public Transform wallCheck;
+    public float wallCheckDistance;
+    public float wallSilidingSpeed;
+    private Vector2 wallPosition;
+    public Transform groundCheck;
+    public float groundCheckRadius;
+    
 
     private float horizontal;
 
     private Vector3 hookedPos;
 
-    public Transform groundCheck;
-    public float groundCheckRadius;
+
+    private Vector3 mousePos;
 
 
-    
+
+
+
+
 
     private CapsuleCollider2D cc;
 
@@ -106,13 +121,8 @@ public class PlayerMovementV2 : MonoBehaviour
         {
             Flip();
 
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             horizontal = Input.GetAxisRaw("Horizontal");
-
-            //Detectar suelo
-            //RaycastHit2D hitGround1 = Physics2D.Raycast(transform.position + new Vector3(0, -0.1f, 0), Vector3.down, 0.5f, whatIsGround);
-            //RaycastHit2D hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down, 0.1f, layerToJump);
-            //Debug.DrawLine(transform.position + new Vector3(0,-0.51f,0), transform.position + new Vector3(0,-0.61f,0));
 
             Vector3 direction = (mousePos - transform.position).normalized;
 
@@ -127,20 +137,23 @@ public class PlayerMovementV2 : MonoBehaviour
             //Atacar
             if (Input.GetKeyDown(KeyCode.Mouse0) && !attackInCooldown && GameManager.Instance.GetHabilities("basic"))
             {
-                Attack();
+                //Attack();
             }
 
             //Usar gancho
             if (Input.GetKeyDown(KeyCode.Mouse1) && !inHook && GameManager.Instance.GetHabilities("hook"))
             {
-                Debug.DrawLine(transform.position, mousePos, Color.green);
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, hookDistance, whatIsHook);
+                
+                RaycastHit2D hitHook = Physics2D.Raycast(transform.position, direction, hookDistance, whatIsHook);
                 Debug.DrawLine(transform.position, mousePos, Color.red);
-                Debug.Log(hit.collider.name);
-                if (hit.collider.gameObject.tag == "Hookable")
-                {
-                    Debug.Log(hit.collider.name);
-                    Hook(hit, direction);
+                RaycastHit2D hitBetween = Physics2D.Raycast(transform.position, direction, hookDistance, whatIsGround);
+                Debug.Log(hitHook.collider.name);
+                
+                
+                if (hitHook)
+                {    
+                    Debug.Log(hitHook.collider.name);
+                    Hook(hitHook, direction);
                 }
             }
 
@@ -169,86 +182,94 @@ public class PlayerMovementV2 : MonoBehaviour
             */
 
             CheckIfCanJump();
+            CheckIfWallSliding();
         }
 
     }
     private void FixedUpdate()
     {
-        //float currentSpeed = 0;
-        /*
-        if (!interacting)
-        {
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-            {
-                currentSpeed += horizontal * speed;
-
-                if (currentSpeed > maxSpeed)
-                {
-                    currentSpeed = maxSpeed;
-                }
-                if (currentSpeed < -maxSpeed)
-                {
-                    currentSpeed = -maxSpeed;
-                }
-            }  
-        }
         
-        if (rb.velocity.x > maxTotalSpeed)
-        {
-            rb.velocity = new Vector2(maxTotalSpeed,rb.velocity.y);
-            inHookSpeed = maxTotalSpeed - maxSpeed;
-        }
-        if (rb.velocity.x < -maxTotalSpeed)
-        {
-            rb.velocity = new Vector2(-maxTotalSpeed, rb.velocity.y);
-
-            inHookSpeed = -maxTotalSpeed + maxSpeed;
-        }
-        
-        //Debug.Log($"{currentSpeed} hook: {inHookSpeed}. Total {rb.velocity.x}");
-
-        rb.velocity = new Vector2(currentSpeed + inHookSpeed, rb.velocity.y);
-        */
         ApplyMovement();
         CheckSurrondings();
-        /*
-        if(Input.GetKey("a") && !inHook)
+
+    }
+
+    private void CheckIfWallSliding()
+    {
+        if (isTouchingWall && !isOnGround && rb.velocity.y < 0 )
         {
-            currentSpeed += -0.5f;
+            isWallSliding = true;
         }
-        if (Input.GetKey("d") && !inHook)
+        else
         {
-            currentSpeed += 0.5f;
+            isWallSliding = false;
         }
-        */
     }
 
     private void ApplyMovement()
     {
         if (!inHook)
         {
-            rb.velocity = new Vector2(speed * horizontal, rb.velocity.y);
+            if (!isWallSliding && isOnGround)
+            {
+                rb.velocity = new Vector2(speed * horizontal, rb.velocity.y);
+            }
+
+            if (!isOnGround && !isWallSliding)
+            {
+                rb.velocity = new Vector2(rb.velocity.x + (horizontal * speed), rb.velocity.y);
+            }
         }
-        
+
+        if (rb.velocity.x > maxSpeed )
+        {
+            rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+        }
+
+        if (rb.velocity.x < -maxSpeed)
+        {
+            rb.velocity = new Vector2 (-maxSpeed, rb.velocity.y);
+        }
+
+        if (isWallSliding)
+        {
+            if (rb.velocity.y < -wallSilidingSpeed)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, -wallSilidingSpeed);
+            } 
+        }
+
+        if (!isOnGround)
+        {
+            rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 20f * Time.deltaTime), rb.velocity.y);
+        }
+
     }
     private void CheckSurrondings()
     {
         isOnGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
+
+        isTouchingWall = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround);
+
+        
+        wallPosition = Physics2D.Raycast(wallCheck.position, transform.right, wallCheckDistance, whatIsGround).point;
+        //Debug.Log(transform.position.x - wallPosition.x);
     }
 
     private void CheckIfCanJump()
     {
-        if (isOnGround && rb.velocity.y <= 0.0001f)
+        if (isOnGround && rb.velocity.y <= 0 || isWallSliding)
         {
             remainingJumps = maxJumps;
         }
-        if(remainingJumps <= 0)
+
+       
+        if(remainingJumps <= 0 || !isOnGround && !isWallSliding)
         {
             canJump = false;
         }
         else
         {
-            
             canJump = true;
         }
     }
@@ -271,7 +292,7 @@ public class PlayerMovementV2 : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         inHook = false;
     }
-
+    /*
     private void Attack()
     {
         Vector3 attackDirection = new Vector3(0,0,0);
@@ -307,7 +328,7 @@ public class PlayerMovementV2 : MonoBehaviour
         StartCoroutine("AttackCooldown");
 
     }
-
+    */
     private IEnumerator AttackCooldown()
     {
         attackInCooldown = true;
@@ -316,6 +337,8 @@ public class PlayerMovementV2 : MonoBehaviour
     }
     private void Flip()
     {
+        if (!isWallSliding)
+        {
         if (Input.GetKey("a"))
         {
             if (Input.GetKey("s") && !isOnGround)
@@ -352,16 +375,74 @@ public class PlayerMovementV2 : MonoBehaviour
         {
             lookDirection = "up";
         }
+        }
+        else
+        {
+
+        }
+    }
+
+    private void Flipv2()
+    {
+        if (!isWallSliding)
+        {
+            if (Input.GetKey("a"))
+            {
+                if (Input.GetKey("s") && !isOnGround)
+                {
+                    lookDirection = "down";
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
+                    lookDirection = "left";
+                }
+            }
+
+            if (Input.GetKey("d"))
+            {
+                if (Input.GetKey("s") && !isOnGround)
+                {
+                    lookDirection = "down";
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
+                    lookDirection = "right";
+                }
+            }
+            if (rb.velocity.x == 0f && !isOnGround)
+            {
+                if (Input.GetKey("s"))
+                {
+                    lookDirection = "down";
+                }
+            }
+            if (Input.GetKey("w"))
+            {
+                lookDirection = "up";
+            }
+        }
+        else
+        {
+
+        }
     }
 
     private void Jump()
     {
+        if (canJump && isWallSliding)
+        {
+            rb.velocity = new Vector2((transform.position.x - wallPosition.x) *10, jumpForce);
+            remainingJumps--;
+        }
 
-        if (canJump)
+        else if (canJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             remainingJumps--;
         }
+        
         
         //rb.AddForce(transform.up * jumpForce);
         //isOnGround = false;
@@ -409,11 +490,8 @@ public class PlayerMovementV2 : MonoBehaviour
     {
 
         RaycastHit2D hitDown = Physics2D.Raycast(transform.position + new Vector3(0, -0.6f, 0), Vector3.down,0.3f);
-        
-
         if(hitDown.transform.gameObject.tag == "Platform")
-        {
-            
+        { 
             Platform platform = hitDown.transform.gameObject.GetComponent<Platform>();
             platform.Activate(cc);
         }
@@ -445,6 +523,10 @@ public class PlayerMovementV2 : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+
+        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y, wallCheck.position.z));
+
+        Gizmos.DrawLine(transform.position, mousePos);
     }
 
 }
