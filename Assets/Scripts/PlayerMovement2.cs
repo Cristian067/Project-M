@@ -32,6 +32,7 @@ public class PlayerMovementV2 : MonoBehaviour
     private bool isTouchingWall;
     private bool isWallSliding;
     private bool canJump;
+    private bool hookUsed;
 
     [Header("Velocidades")]
     [SerializeField] private float maxSpeed;
@@ -219,18 +220,42 @@ public class PlayerMovementV2 : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x + (horizontal * speed), rb.velocity.y);
             }
+            if (!isOnGround && isWallSliding)
+            {
+                rb.velocity = new Vector2((speed * horizontal), rb.velocity.y);
+            }
         }
-
-        if (rb.velocity.x > maxSpeed )
+        
+        if (!hookUsed)
         {
-            rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
-        }
+            if (rb.velocity.x > maxSpeed)
+            {
+                rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+            }
 
-        if (rb.velocity.x < -maxSpeed)
+            if (rb.velocity.x < -maxSpeed)
+            {
+                rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+            }
+            if (!isOnGround)
+            {
+                rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 20f * Time.deltaTime), rb.velocity.y);
+            }
+        }
+        else if (hookUsed)
         {
-            rb.velocity = new Vector2 (-maxSpeed, rb.velocity.y);
-        }
+            if (rb.velocity.x > maxTotalSpeed)
+            {
+                rb.velocity = new Vector2(maxTotalSpeed, rb.velocity.y);
+            }
 
+            if (rb.velocity.x < -maxTotalSpeed)
+            {
+                rb.velocity = new Vector2(-maxTotalSpeed, rb.velocity.y);
+            }
+        }
+        
+        /*
         if (isWallSliding)
         {
             if (rb.velocity.y < -wallSilidingSpeed)
@@ -238,11 +263,8 @@ public class PlayerMovementV2 : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, -wallSilidingSpeed);
             } 
         }
-
-        if (!isOnGround)
-        {
-            rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 20f * Time.deltaTime), rb.velocity.y);
-        }
+        */
+        
 
     }
     private void CheckSurrondings()
@@ -261,6 +283,7 @@ public class PlayerMovementV2 : MonoBehaviour
         if (isOnGround && rb.velocity.y <= 0 || isWallSliding)
         {
             remainingJumps = maxJumps;
+            hookUsed = false;
         }
 
        
@@ -276,6 +299,7 @@ public class PlayerMovementV2 : MonoBehaviour
     
     private void Hook(RaycastHit2D hit, Vector2 direction)
     {
+        hookUsed = true;
         inHook = true;
         rb.velocity = new Vector2(rb.velocity.x,0);
         rb.AddForce((hit.collider.transform.position - transform.position ).normalized* (hookForce), ForceMode2D.Impulse);
