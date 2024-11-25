@@ -36,7 +36,7 @@ public class Npc : MonoBehaviour
 
     [SerializeField] private bool willAfterTalk;
 
-    [SerializeField]private int idx = 0;
+    private int idx = 0;
         
         
 
@@ -50,25 +50,27 @@ public class Npc : MonoBehaviour
             {
                if (idx < talk.Length && afterTalk == 0)
                 {
-                    PlayerMovement.Instance.changeInteracting(true);
+                    PlayerMovementV2.Instance.changeInteracting(true);
                     UiManager.Instance.DialogueDisplay(talk[idx]);
                     idx++;
                 }
-                else if (PlayerMovement.Instance.isInteracting())
+                else if (PlayerMovementV2.Instance.isInteracting())
                 {
                     idx = 0;
+                    
+                    
                     if(willAfterTalk)
                     {
                         afterTalk++;
                     }
                     
-                    PlayerMovement.Instance.changeInteracting(false);
+                    PlayerMovementV2.Instance.changeInteracting(false);
                     UiManager.Instance.DialogueUndisplay();
 
                 }
-               else if (afterTalk < afterTalkText.Length +1)
+               else if (willAfterTalk && afterTalk < afterTalkText.Length +1)
                 {
-                    PlayerMovement.Instance.changeInteracting(true);
+                    PlayerMovementV2.Instance.changeInteracting(true);
                     UiManager.Instance.DialogueDisplay(afterTalkText[idx]);
                     
                 }

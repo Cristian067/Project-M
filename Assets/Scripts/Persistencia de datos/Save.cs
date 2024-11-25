@@ -30,7 +30,7 @@ public class Save : MonoBehaviour
 
     }
 
-    public void saveData(int fileNum,int lives, int fuel, int damage, string mapIn, Vector3 setPos, bool melee, bool hook, bool fireball, bool dobleJump)
+    public void saveData(int fileNum,int lives, int fuel, int damage, string mapIn, Vector3 setPos, bool melee, bool hook, bool fireball, bool dobleJump, bool wallJump)
     {
 
         Progresion save = new Progresion
@@ -47,7 +47,9 @@ public class Save : MonoBehaviour
             haveMelee = melee,
             haveHook = hook,
             haveFireball = fireball,
-            haveDobleJump = dobleJump
+            haveDobleJump = dobleJump,
+            haveWallJump = wallJump
+
 
             //timePlayed = setTimePlayed,
         };
@@ -68,7 +70,7 @@ public class Save : MonoBehaviour
 
             Progresion save = JsonUtility.FromJson<Progresion>(jsonContent);
 
-            GameManager.Instance.GetData(save.lives,save.fuel,save.damage, save.mapPosition,save.haveMelee,save.haveHook,save.haveFireball,save.haveDobleJump);
+            GameManager.Instance.GetData(save.lives,save.fuel,save.damage, save.mapPosition,save.haveMelee,save.haveHook,save.haveFireball,save.haveDobleJump, save.haveWallJump);
             //if(!inTitleScreen){}
 
             //GameManager.Instance.Load(save.name, save.mapPosition, save.points, save.color, save.level, save.exp, save.initialPower, save.levelsCompleted, save.timePlayed);

@@ -34,6 +34,13 @@ public class PlayerMovementV2 : MonoBehaviour
     private bool canJump;
     private bool hookUsed;
 
+    [Header("Habilidades")]
+    private bool melee;
+    private bool hook;
+    private bool fireball;
+    private bool dobleJump;
+    private bool wallJump;
+
     [Header("Velocidades")]
     [SerializeField] private float maxSpeed;
     [SerializeField] private float maxTotalSpeed;
@@ -50,7 +57,7 @@ public class PlayerMovementV2 : MonoBehaviour
     [SerializeField] private float attackCooldown;
 
     [Header("Fireball")]
-    [SerializeField] private GameObject fireball;
+    [SerializeField] private GameObject fireballObject;
     private bool fireballInCooldown;
     [SerializeField] private float fireballCooldown;
 
@@ -110,6 +117,8 @@ public class PlayerMovementV2 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         cc = GetComponent<CapsuleCollider2D>();
         inHook = false;
+
+        StartCoroutine(CheckHabilities());
         
     }
 
@@ -136,13 +145,13 @@ public class PlayerMovementV2 : MonoBehaviour
             }
 
             //Atacar
-            if (Input.GetKeyDown(KeyCode.Mouse0) && !attackInCooldown && GameManager.Instance.GetHabilities("basic"))
+            if (Input.GetKeyDown(KeyCode.Mouse0) && !attackInCooldown && melee)
             {
                 //Attack();
             }
 
             //Usar gancho
-            if (Input.GetKeyDown(KeyCode.Mouse1) && !inHook && GameManager.Instance.GetHabilities("hook"))
+            if (Input.GetKeyDown(KeyCode.Mouse1) && !inHook && hook)
             {
                 
                 RaycastHit2D hitHook = Physics2D.Raycast(transform.position, direction, hookDistance, whatIsHook);
@@ -159,7 +168,7 @@ public class PlayerMovementV2 : MonoBehaviour
             }
 
             //Usar Bola de fuego
-            if (Input.GetKeyDown("q") && GameManager.Instance.GetHabilities("fireball"))
+            if (Input.GetKeyDown("q") && fireball)
             {
                 if (!fireballInCooldown)
                 {
@@ -197,14 +206,18 @@ public class PlayerMovementV2 : MonoBehaviour
 
     private void CheckIfWallSliding()
     {
-        if (isTouchingWall && !isOnGround && rb.velocity.y < 0 )
+        if (wallJump)
         {
-            isWallSliding = true;
+            if (isTouchingWall && !isOnGround && rb.velocity.y < 0)
+            {
+                isWallSliding = true;
+            }
+            else
+            {
+                isWallSliding = false;
+            }
         }
-        else
-        {
-            isWallSliding = false;
-        }
+        
     }
 
     private void ApplyMovement()
@@ -222,7 +235,7 @@ public class PlayerMovementV2 : MonoBehaviour
             }
             if (!isOnGround && isWallSliding)
             {
-                rb.velocity = new Vector2((speed * horizontal), rb.velocity.y);
+                rb.velocity = new Vector2((speed * horizontal)/6, rb.velocity.y);
             }
         }
         
@@ -255,15 +268,17 @@ public class PlayerMovementV2 : MonoBehaviour
             }
         }
         
-        /*
+        
         if (isWallSliding)
         {
             if (rb.velocity.y < -wallSilidingSpeed)
             {
                 rb.velocity = new Vector2(rb.velocity.x, -wallSilidingSpeed);
             } 
+
+           
         }
-        */
+        
         
 
     }
@@ -498,7 +513,7 @@ public class PlayerMovementV2 : MonoBehaviour
 
         if (GameManager.Instance.GetOil() >= 25)
         {
-            Instantiate(fireball,transform.transform.transform.transform.transform.transform.transform.transform.transform.transform.position, attackRotation);
+            Instantiate(fireballObject,transform.transform.transform.transform.transform.transform.transform.transform.transform.transform.position, attackRotation);
             GameManager.Instance.UseFuel(25);
             StartCoroutine(FireballCooldown());
         }
@@ -530,6 +545,8 @@ public class PlayerMovementV2 : MonoBehaviour
     public void changeInteracting(bool condition)
     {
         interacting = condition;
+        horizontal = 0;
+        rb.velocity = new Vector2 (0,0);
     }
     public bool isInteracting()
     {
@@ -541,6 +558,22 @@ public class PlayerMovementV2 : MonoBehaviour
 
     }
 
+
+    private IEnumerator CheckHabilities()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        melee = GameManager.Instance.GetHabilities("basic");
+        hook = GameManager.Instance.GetHabilities("hook");
+        fireball = GameManager.Instance.GetHabilities("fireball");
+        dobleJump = GameManager.Instance.GetHabilities("doblejump");
+        wallJump = GameManager.Instance.GetHabilities("walljump");
+    }
+
+    public void ForceCheckHabilities()
+    {
+        StartCoroutine(CheckHabilities());
+    }
 
 
 

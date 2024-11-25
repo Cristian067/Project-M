@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool haveHook;
     [SerializeField] private bool haveFireball;
     [SerializeField] private bool haveDobleJump;
+    [SerializeField] private bool haveWallJump;
 
     private bool paused;
 
@@ -165,6 +166,10 @@ public class GameManager : MonoBehaviour
         {
             return haveDobleJump;
         }
+        if (hability == "walljump")
+        {
+            return haveWallJump;
+        }
 
         return false;
 
@@ -187,8 +192,12 @@ public class GameManager : MonoBehaviour
         {
             haveDobleJump = true;
         }
+        if (hability == "walljump")
+        {
+            haveWallJump = true;
+        }
 
-        
+
 
     }
 
@@ -197,7 +206,7 @@ public class GameManager : MonoBehaviour
         return fileNum;
     }
     
-    public void GetData(int _lives, int _fuel, int _damage,Vector3 pos, bool _haveMelee,bool _haveHook , bool _haveFireball,bool _haveDobleJump)
+    public void GetData(int _lives, int _fuel, int _damage,Vector3 pos, bool _haveMelee,bool _haveHook , bool _haveFireball,bool _haveDobleJump, bool _haveWallJump)
     {
         lives = _lives;
         fuel = _fuel;
@@ -207,6 +216,7 @@ public class GameManager : MonoBehaviour
         haveHook = _haveHook;
         haveFireball = _haveFireball;
         haveDobleJump = _haveDobleJump;
+        haveWallJump = _haveWallJump;
 
         UiManager.Instance.RefreshLives(lives);
 

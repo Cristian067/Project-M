@@ -17,7 +17,7 @@ public class SaveGame : MonoBehaviour
     {
         if (canSave && Input.GetKeyDown(KeyCode.E))
         {
-            Save.Instance.saveData(GameManager.Instance.GetFileNum(), GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetOil(), GameManager.Instance.GetPlayerDamage(), SceneManager.GetActiveScene().name, transform.position, GameManager.Instance.GetHabilities("basic"), GameManager.Instance.GetHabilities("hook"), GameManager.Instance.GetHabilities("fireball"), GameManager.Instance.GetHabilities("doblejump"));
+            Save.Instance.saveData(GameManager.Instance.GetFileNum(), GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetOil(), GameManager.Instance.GetPlayerDamage(), SceneManager.GetActiveScene().name, transform.position, GameManager.Instance.GetHabilities("basic"), GameManager.Instance.GetHabilities("hook"), GameManager.Instance.GetHabilities("fireball"), GameManager.Instance.GetHabilities("doblejump"), GameManager.Instance.GetHabilities("walljump"));
         }
     }
 

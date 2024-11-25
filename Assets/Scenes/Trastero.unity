@@ -447,7 +447,6 @@ MonoBehaviour:
   afterTalkText: []
   afterTalk: 0
   willAfterTalk: 0
-  idx: 0
 --- !u!61 &85865942
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2805,7 +2804,6 @@ MonoBehaviour:
   afterTalkText: []
   afterTalk: 0
   willAfterTalk: 0
-  idx: 0
 --- !u!1 &552718478
 GameObject:
   m_ObjectHideFlags: 0
@@ -17349,7 +17347,6 @@ MonoBehaviour:
   afterTalkText: []
   afterTalk: 0
   willAfterTalk: 0
-  idx: 0
 --- !u!61 &953772404
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132100,7 +132097,6 @@ MonoBehaviour:
   - Que? No te he gusta? si no lo quieres devuelmelo
   afterTalk: 0
   willAfterTalk: 1
-  idx: 0
 --- !u!61 &1817350493
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132504,7 +132500,6 @@ MonoBehaviour:
   afterTalkText: []
   afterTalk: 0
   willAfterTalk: 0
-  idx: 0
 --- !u!61 &1954141117
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132829,6 +132824,7 @@ MonoBehaviour:
   haveHook: 0
   haveFireball: 0
   haveDobleJump: 0
+  haveWallJump: 0
 --- !u!4 &2047551268
 Transform:
   m_ObjectHideFlags: 0
@@ -132938,7 +132934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4607805814496460224, guid: c304a17e826002541a5bc36460539147, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.46
+      value: 7.51
       objectReference: {fileID: 0}
     - target: {fileID: 4607805814496460224, guid: c304a17e826002541a5bc36460539147, type: 3}
       propertyPath: m_LocalPosition.y

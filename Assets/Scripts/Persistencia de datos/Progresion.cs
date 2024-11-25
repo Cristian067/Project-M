@@ -21,9 +21,10 @@ public class Progresion
     public bool haveHook;
     public bool haveFireball;
     public bool haveDobleJump;
+    public bool haveWallJump;
 
 
-    
+
     //public float timePlayed;
 
 

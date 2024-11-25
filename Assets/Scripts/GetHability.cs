@@ -12,7 +12,8 @@ public class GetHability : MonoBehaviour
         basic,
         hook,
         fireball,
-        doblejump
+        doblejump,
+        walljump
     }
 
     public habilities hability;
@@ -25,21 +26,20 @@ public class GetHability : MonoBehaviour
     void Start()
     {
         //audioSource = GetComponent<AudioSource>();
-
+        /*
         if (GameManager.Instance.GetHabilities(hability.ToString()))
         {
             isTaken = true;
         }
-        
+        */
+
+        StartCoroutine(CheckHabilities());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.GetHabilities(hability.ToString()))
-        {
-            isTaken = true;
-        }
+        
         if (!audioSource.isPlaying && isTaken)
         {
             Destroy(gameObject);
@@ -55,25 +55,16 @@ public class GetHability : MonoBehaviour
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.enabled = false;
 
+        
+
 
         if (collision.gameObject.tag == "Player")
         {
-            if (hability == habilities.basic)
-            {
-                GameManager.Instance.SetHabilities(hability.ToString());
-            }
-            if (hability == habilities.hook)
-            {
-                GameManager.Instance.SetHabilities(hability.ToString());
-            }
-            if (hability == habilities.fireball)
-            {
-                GameManager.Instance.SetHabilities(hability.ToString());
-            }
-            if (hability == habilities.doblejump)
-            {
-                GameManager.Instance.SetHabilities(hability.ToString());
-            }
+            PlayerMovementV2 player = collision.gameObject.GetComponent<PlayerMovementV2>();
+            
+            GameManager.Instance.SetHabilities(hability.ToString());
+            player.ForceCheckHabilities();
+            
         }
 
         isTaken = true;
@@ -81,6 +72,14 @@ public class GetHability : MonoBehaviour
         //Destroy(gameObject);
     }
 
+    private IEnumerator CheckHabilities()
+    {
+        yield return new WaitForSeconds(0.1f);
 
+        if (GameManager.Instance.GetHabilities(hability.ToString()))
+        {
+            isTaken = true;
+        }
+    }
 
 }
