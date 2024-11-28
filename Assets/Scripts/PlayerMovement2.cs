@@ -252,7 +252,7 @@ public class PlayerMovementV2 : MonoBehaviour
             }
             if (!isOnGround)
             {
-                rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 20f * Time.deltaTime), rb.velocity.y);
+                rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 40f * Time.deltaTime), rb.velocity.y);
             }
         }
         else if (hookUsed)
@@ -576,7 +576,10 @@ public class PlayerMovementV2 : MonoBehaviour
     }
 
 
-
+    public Vector3 GetPosition()
+    {
+        return transform.position;
+    }
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
