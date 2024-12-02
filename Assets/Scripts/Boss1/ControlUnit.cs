@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
-//using Random from UnityiEngine;
+using static UnityEditor.VersionControl.Asset;
+
+
 
 public class ControlUnit : MonoBehaviour
 {
@@ -29,9 +31,15 @@ public class ControlUnit : MonoBehaviour
 
     [SerializeField] private GameObject attackGO;
 
+    [SerializeField] private float speed;
+
+
+    private Vector3 targetPoint;
+
     private enum Attacks
     {
         Wait,
+        Walk,
         Attack,
         Dash,
         jump,
@@ -52,6 +60,8 @@ public class ControlUnit : MonoBehaviour
     private bool ultimate;
 
     private int idx;
+    private bool walking;
+
 
     // Start is called before the first frame update
     void Start()
@@ -71,7 +81,7 @@ public class ControlUnit : MonoBehaviour
 
         //dash.Use(rb, 1200);
 
-        player = FindAnyObjectByType<PlayerMovement>().gameObject;
+        player = FindAnyObjectByType<PlayerMovementV2>().gameObject;
     }
 
     // Update is called once per frame
@@ -79,19 +89,28 @@ public class ControlUnit : MonoBehaviour
     {
         CheckSurrondings();
 
-        Vector3 targetPoint = player.transform.position - transform.position;
+        targetPoint = player.transform.position - transform.position;
 
         if (!thinking)
         {
-
-        
-
             switch (attack)
             {
                 case Attacks.Wait:
                     StartCoroutine(Wait(3));
                     Next();
                     break;
+
+                case Attacks.Walk:
+                    if (isOnGround)
+                    {
+                        //walking = true;
+                        WaitAfterWalk();
+                        Debug.Log(Attacks.Walk);
+                        Next();
+                    }
+                    
+                    break;
+
                 case Attacks.Attack:
                     Debug.Log(Attacks.Attack);
 
@@ -108,16 +127,19 @@ public class ControlUnit : MonoBehaviour
                     if (isOnGround)
                     {
                         Debug.Log(Attacks.jump);
-                        Jump(new Vector2(0, 1));
+                        Jump(new Vector2(0, 1), true);
                         Next();
                     }
                     break;
 
                 case Attacks.Backjump:
-                    Debug.Log(Attacks.Backjump);
-
-                    Jump(new Vector2(-1, 1));
-                    Next();
+                    if (isOnGround)
+                    {
+                        Debug.Log(Attacks.Backjump);
+                        Jump(new Vector2(-targetPoint.normalized.x,1), false);
+                        Next();
+                    }
+                    
                     break;
                 case Attacks.StepBack:
                     Debug.Log(Attacks.StepBack);
@@ -129,23 +151,7 @@ public class ControlUnit : MonoBehaviour
                     break;
             }
         }
-        /*
-        //Detectar suelo
-        RaycastHit2D hitGround1 = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.51f, 0), Vector3.down, 0.1f, whatIsGround);
-        RaycastHit2D hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down, 0.1f, whatIsGround);
-        //Debug.DrawLine(transform.position + new Vector3(0,-0.51f,0), transform.position + new Vector3(0,-0.61f,0));
-
-        if (hitGround1 || hitGround2)
-        {
-            isOnGround = true;
-            
-        }
-        else if (!hitGround1 || !hitGround2)
-        {
-            isOnGround = false;
-        }
         
-        */
         rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 20f * Time.deltaTime), rb.velocity.y);
         int random = UnityEngine.Random.Range(0, actions.Length);
         /*
@@ -214,10 +220,6 @@ public class ControlUnit : MonoBehaviour
         
         */
 
-        
-
-        
-
         if(targetPoint.x < 0)
         {
             transform.rotation = Quaternion.Euler(0,180,0);
@@ -226,18 +228,6 @@ public class ControlUnit : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        //transform.right = targetPoint;
-        //transform.rotation = Quaternion.Euler(0,transform.right.y,0);
-
-        //Debug.Log(transform.right);
-
-        //transform.rotation = Quaternion.Euler(transform.rotation.x,targetPoint.y ,transform.rotation.z);
-
-        //Quaternion targetRotation = Quaternion.LookRotation(-targetPoint);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
-        
-
-
 
         if (transform.rotation.eulerAngles.y == 180)
         {
@@ -247,11 +237,30 @@ public class ControlUnit : MonoBehaviour
         {
             lookingR = "right";
         }
+
         
 
     }
 
+    private void FixedUpdate()
+    {
+        if (walking)
+        {
 
+            Walk();
+
+        }
+    }
+
+
+    private IEnumerator WaitAfterWalk()
+    {
+        float idxn = UnityEngine.Random.Range(0f, 1f);
+
+        yield return new WaitForSeconds(idxn);
+        StopWalk();
+
+    }
     private IEnumerator Wait(float seconds)
     {
         thinking = true;
@@ -259,6 +268,33 @@ public class ControlUnit : MonoBehaviour
         thinking = false;
     }
 
+    private void Walk()
+    {
+        thinking = true;
+        Vector2 moveToPos = FindTarget();
+        MoveTo(moveToPos); 
+    }
+
+    private void MoveTo(Vector2 posToMove)
+    {
+        Vector2 pos = new Vector2(transform.position.x, transform.position.y);
+        Vector2 goTo = posToMove - pos;
+        rb.velocity = new Vector2(goTo.normalized.x * speed, rb.velocity.y); //new Vector2((goTo.normalized) *speed, transform.position.y);
+
+    }
+    private void StopWalk()
+    {
+        walking = false;
+        Debug.Log(walking);
+        rb.velocity = Vector2.zero;
+        Wait(1);
+    }
+
+    private Vector2 FindTarget()
+    {
+        return PlayerMovementV2.Instance.GetPosition();
+        
+    }
     private void Attack()
     {
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -284,10 +320,14 @@ public class ControlUnit : MonoBehaviour
         
         attackInv.transform.localScale = new Vector3(2, 0.7f, 0);
     }
-    private void Jump(Vector2 direction)
+    private void Jump(Vector2 direction, bool wait)
     {
         rb.velocity = new Vector2(direction.x * jumpForce, direction.y * jumpForce);
-        StartCoroutine(StayInAir());
+        if (wait)
+        {
+            StartCoroutine(StayInAir());
+        }
+        
     }
 
     private IEnumerator StayInAir()
