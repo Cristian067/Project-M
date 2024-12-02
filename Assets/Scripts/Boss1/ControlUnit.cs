@@ -104,7 +104,7 @@ public class ControlUnit : MonoBehaviour
                     if (isOnGround)
                     {
                         //walking = true;
-                        WaitAfterWalk();
+                        //WaitAfterWalk();
                         Debug.Log(Attacks.Walk);
                         Next();
                     }
