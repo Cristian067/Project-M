@@ -25,7 +25,7 @@ public class TriggerDialogue : MonoBehaviour
 
             if (idx < talk.Length)
             {
-                PlayerMovementV2.Instance.changeInteracting(true);
+                PlayerMovementV2.Instance.ChangeInteracting(true);
                 UiManager.Instance.DialogueDisplay(talk[idx]);
                 idx++;
             }
@@ -33,7 +33,7 @@ public class TriggerDialogue : MonoBehaviour
             {
                 idx = 0;
 
-                PlayerMovementV2.Instance.changeInteracting(false);
+                PlayerMovementV2.Instance.ChangeInteracting(false);
                 UiManager.Instance.DialogueUndisplay();
                 this.gameObject.SetActive(false);
 
@@ -46,7 +46,7 @@ public class TriggerDialogue : MonoBehaviour
     {
         if (idx < talk.Length)
         {
-            PlayerMovementV2.Instance.changeInteracting(true);
+            PlayerMovementV2.Instance.ChangeInteracting(true);
             UiManager.Instance.DialogueDisplay(talk[idx]);
             idx++;
         }

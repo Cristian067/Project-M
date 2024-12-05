@@ -22,7 +22,7 @@ public class ControlUnit : MonoBehaviour
 
     [SerializeField] private float jumpForce;
 
-    [SerializeField] private string[] actions;
+    
 
     [SerializeField] private bool thinking;
 
@@ -113,112 +113,55 @@ public class ControlUnit : MonoBehaviour
 
                 case Attacks.Attack:
                     Debug.Log(Attacks.Attack);
-
+                    //StartCoroutine(Wait(1));
                     Attack();
-                    Next();
+                    //Next();
                     break;
 
                 case Attacks.Dash:
                     Debug.Log(Attacks.Dash);
-                    Next();
+                    //StartCoroutine(Wait(1));
+                    Dash(30);
+                    //Next();
                     break;
 
                 case Attacks.jump:
                     if (isOnGround)
                     {
+                        //StartCoroutine(Wait(1.5f));
                         Debug.Log(Attacks.jump);
                         Jump(new Vector2(0, 1), true);
-                        Next();
+                        //Next();
                     }
                     break;
 
                 case Attacks.Backjump:
                     if (isOnGround)
                     {
+                        //StartCoroutine(Wait(1.5f));
                         Debug.Log(Attacks.Backjump);
                         Jump(new Vector2(-targetPoint.normalized.x,1), false);
-                        Next();
+                        //Next();
                     }
                     
                     break;
                 case Attacks.StepBack:
                     Debug.Log(Attacks.StepBack);
-                    Next();
+                    //StartCoroutine(Wait(1.5f));
+                    //Next();
                     break;
                 case Attacks.SpinAttack:
                     Debug.Log(Attacks.SpinAttack);
-                    Next();
+                    
                     break;
             }
+            StartCoroutine(Wait(2f));
+            Next();
         }
+
         
+
         rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 20f * Time.deltaTime), rb.velocity.y);
-        int random = UnityEngine.Random.Range(0, actions.Length);
-        /*
-        if (!thinking)
-        {
-            if (actions[random] == "jump" && isOnGround)
-            {
-                thinking = true;
-                jump.Use(rb, new Vector2(0,3), 400);
-                StartCoroutine(SelfCooldown(1));
-            }
-            if (actions[random] == "dash")
-            {
-                thinking = true;
-                dash.Use(rb, 1200,false);
-                StartCoroutine(SelfCooldown(1));
-            }
-            if (actions[random] == "dashdown" && !isOnGround)
-            {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0,-0.55f,0), Vector2.down, 3.2f);
-                //Debug.Log(hit);
-                if (!hit)
-                {
-                    dash.Use(rb, 1200, true);
-                    StartCoroutine(SelfCooldown(0));
-                }
-                
-            }
-            if (actions[random] == "backjump" && isOnGround)
-            {
-                thinking = true;
-                jump.Use(rb, new Vector2(2, 3), 400);
-                //jump.Use(rb, new Vector2(2, 3), 400);
-                StartCoroutine(SelfCooldown(0.3f));
-            }
-            if (actions[random] == "wait")
-            {
-                thinking = true;
-                StartCoroutine(SelfCooldown(1));
-            }
-            if (actions[random] == "stepback")
-            {
-                if (lookingR == "left")
-                {
-                    thinking = true;
-                    jump.Use(rb, new Vector2(3, 0), 300);
-                    StartCoroutine(SelfCooldown(0.5f));
-                }
-                else if (lookingR == "right")
-                {
-                    thinking = true;
-                    jump.Use(rb, new Vector2(-3, 0), 300);
-                    StartCoroutine(SelfCooldown(0.5f));
-                }
-            }
-            if (actions[random] == "spinattack" && isOnGround)
-            {
-                thinking = true;
-                StartCoroutine(SpinAttack());
-                
-            }
-            
-        }
-
-
-        
-        */
 
         if(targetPoint.x < 0)
         {
@@ -264,6 +207,7 @@ public class ControlUnit : MonoBehaviour
     private IEnumerator Wait(float seconds)
     {
         thinking = true;
+        Debug.Log(thinking);
         yield return new WaitForSeconds(seconds);
         thinking = false;
     }
@@ -307,14 +251,14 @@ public class ControlUnit : MonoBehaviour
             rb.velocity = Vector3.zero;
             
 
-            attackInv.transform.localPosition = new Vector3(2.5f, 0, 0); //= Instantiate(attack, transform.position - new Vector3(-5,0,0), Quaternion.identity);
+            //attackInv.transform.localPosition = new Vector3(2.5f, 0, 0); //= Instantiate(attack, transform.position - new Vector3(-5,0,0), Quaternion.identity);
 
         }
         else if (transform.rotation.y == 0)
         {
             rb.velocity = Vector3.zero;
             
-            attackInv.transform.localPosition = new Vector3(2.5f, 0, 0);
+            //attackInv.transform.localPosition = new Vector3(2.5f, 0, 0);
             //attackInv = Instantiate(attack, transform.position - new Vector3(5, 0, 0), Quaternion.identity);
         }
         
@@ -335,11 +279,28 @@ public class ControlUnit : MonoBehaviour
         StartCoroutine(Wait(1));
         yield return new WaitForSeconds(0.2f);
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.3f);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
     }
 
+    private void Dash(float force)
+    {
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        Vector2 dir = PlayerMovementV2.Instance.GetPosition() - transform.position;
+
+        rb.velocity = new Vector2(dir.normalized.x,0) * force;
+        StartCoroutine(ForceStop(0.3f));
+        
+    
+    }
+
+    private IEnumerator ForceStop(float time)
+    {
+        yield return new WaitForSeconds(time);
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
     private void Next()
     {
         idx = UnityEngine.Random.Range(0, Enum.GetValues(typeof(Attacks)).Length);
@@ -385,4 +346,21 @@ public class ControlUnit : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
 
     }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            if (!GameManager.Instance.GetInvencibility())
+            {
+                Vector3 dir = collision.transform.position - transform.position;
+
+                PlayerMovementV2.Instance.Damaged(1, dir);
+            }
+            
+        }
+    }
+
+
 }

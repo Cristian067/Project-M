@@ -90,7 +90,7 @@ public class PlayerMovementV2 : MonoBehaviour
 
     private Vector3 mousePos;
 
-
+    private bool knockback;
 
 
 
@@ -147,25 +147,30 @@ public class PlayerMovementV2 : MonoBehaviour
             //Atacar
             if (Input.GetKeyDown(KeyCode.Mouse0) && !attackInCooldown && melee)
             {
-                //Attack();
+                Attack();
             }
 
-            //Usar gancho
-            if (Input.GetKeyDown(KeyCode.Mouse1) && !inHook && hook)
+            try
             {
-                
-                RaycastHit2D hitHook = Physics2D.Raycast(transform.position, direction, hookDistance, whatIsHook);
-                Debug.DrawLine(transform.position, mousePos, Color.red);
-                RaycastHit2D hitBetween = Physics2D.Raycast(transform.position, direction, hookDistance, whatIsGround);
-                Debug.Log(hitHook.collider.name);
-                
-                
-                if (hitHook)
-                {    
+                //Usar gancho
+                if (Input.GetKeyDown(KeyCode.Mouse1) && !inHook && hook)
+                {
+
+                    RaycastHit2D hitHook = Physics2D.Raycast(transform.position, direction, hookDistance, whatIsHook);
+                    Debug.DrawLine(transform.position, mousePos, Color.red);
+                    RaycastHit2D hitBetween = Physics2D.Raycast(transform.position, direction, hookDistance, whatIsGround);
                     Debug.Log(hitHook.collider.name);
-                    Hook(hitHook, direction);
+
+
+                    if (hitHook)
+                    {
+                        Debug.Log(hitHook.collider.name);
+                        Hook(hitHook, direction);
+                    }
                 }
             }
+            catch { Debug.Log("Gancho no ganchado"); }
+            
 
             //Usar Bola de fuego
             if (Input.GetKeyDown("q") && fireball)
@@ -177,10 +182,13 @@ public class PlayerMovementV2 : MonoBehaviour
                 
             }
 
-            if (Input.GetKeyDown("s"))
+            try
             {
-                DownActions();
-            }
+                if (Input.GetKeyDown("s"))
+                {
+                    DownActions();
+                }
+            } catch { Debug.Log(""); }
             /*
             if (!inHook)
             {
@@ -203,6 +211,43 @@ public class PlayerMovementV2 : MonoBehaviour
         CheckSurrondings();
 
     }
+    private void Attack()
+    {
+        Vector3 attackDirection = new Vector3(0, 0, 0);
+        Vector3 offset = new Vector3(0, 0, 0);
+        Quaternion attackRotation = Quaternion.identity;
+
+        if (lookDirection == "left")
+        {
+            //attackDirection = new Vector3(-1f,0,0);
+            offset = new Vector3(-1f, 0, 0);
+            attackRotation = transform.rotation;
+        }
+        else if (lookDirection == "right")
+        {
+            //attackDirection = new Vector3(1f,0,0);
+            offset = new Vector3(1f, 0, 0);
+            attackRotation = transform.rotation;
+        }
+        else if (lookDirection == "up")
+        {
+            attackDirection = new Vector3(0f, 0, 0);
+            offset = new Vector3(0f, 1, 0);
+            attackRotation = Quaternion.Euler(0, 0, -90);
+        }
+        else if (lookDirection == "down")
+        {
+            attackDirection = new Vector3(0f, 0, 0);
+            offset = new Vector3(0f, -1, 0);
+            attackRotation = Quaternion.Euler(0, 0, -90);
+        }
+
+        Instantiate(attack, transform.position + attackDirection + offset, attackRotation, this.transform);
+        StartCoroutine("AttackCooldown");
+
+    }
+
+
 
     private void CheckIfWallSliding()
     {
@@ -222,6 +267,10 @@ public class PlayerMovementV2 : MonoBehaviour
 
     private void ApplyMovement()
     {
+        if (!knockback)
+        {
+
+        
         if (!inHook)
         {
             if (!isWallSliding && isOnGround)
@@ -278,8 +327,10 @@ public class PlayerMovementV2 : MonoBehaviour
 
            
         }
-        
-        
+
+        }
+
+
 
     }
     private void CheckSurrondings()
@@ -542,7 +593,7 @@ public class PlayerMovementV2 : MonoBehaviour
         return lookDirection;
     }
 
-    public void changeInteracting(bool condition)
+    public void ChangeInteracting(bool condition)
     {
         interacting = condition;
         horizontal = 0;
@@ -573,6 +624,24 @@ public class PlayerMovementV2 : MonoBehaviour
     public void ForceCheckHabilities()
     {
         StartCoroutine(CheckHabilities());
+    }
+
+    public void Damaged(int damage, Vector3 knockbackDir)
+    {
+        GameManager.Instance.LoseLive(damage);
+
+        Debug.Log(knockbackDir.normalized);
+        rb.velocity = (new Vector3(0f,0.5f,0) + knockbackDir.normalized) * 20;
+
+        StartCoroutine(KnockbackTime());
+
+    }
+
+    private IEnumerator KnockbackTime()
+    {
+        knockback = true;
+        yield return new WaitForSeconds(0.5f);
+        knockback = false;
     }
 
 

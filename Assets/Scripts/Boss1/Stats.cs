@@ -28,10 +28,13 @@ public class Stats : MonoBehaviour
     public void LoseLive(int damaged)
     {
         lives -= damaged;
+        //TODO: hacer beamattack
+        /*
         if (lives == 5)
         {
             controlUnit.BeamAttack();
         }
+        */
         if (lives <= 0)
         {
             Destroy(gameObject);

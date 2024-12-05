@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 404652442284318594}
   - component: {fileID: 3131254242236685753}
   - component: {fileID: 4678433360426684426}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.2383, y: -1.73, z: 0}
-  m_LocalScale: {x: 1.1435, y: 0.2526, z: 1}
+  m_LocalScale: {x: 1.1435, y: 0.34, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

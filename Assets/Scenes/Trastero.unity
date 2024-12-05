@@ -130309,17 +130309,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 20
-  actions:
-  - jump
-  - dash
-  - backjump
-  - wait
-  - stepback
-  - spinattack
   thinking: 0
   groundCheck: {fileID: 2099808014}
   groundCheckRadius: 0.45
-  attackGO: {fileID: 8595484723746548853, guid: e1b126fa5e380144a8f2f2bb8abaa312, type: 3}
+  attackGO: {fileID: 4677349465374618472, guid: 4337c1eef4d8ccd438be05a1af59b3d1, type: 3}
   speed: 5
   whatIsGround:
     serializedVersion: 2
@@ -130348,7 +130341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84565caf3a2ed35498850408370a72e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 15
+  lives: 10
   damage: 0
 --- !u!114 &1446899811
 MonoBehaviour:
@@ -130395,7 +130388,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -133367,6 +133360,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 274111319494551631, guid: ab48aa2ddedc1bd4cbb0da73e8acf911, type: 3}
+      propertyPath: attack
+      value: 
+      objectReference: {fileID: 8595484723746548853, guid: e1b126fa5e380144a8f2f2bb8abaa312, type: 3}
+    - target: {fileID: 274111319494551631, guid: ab48aa2ddedc1bd4cbb0da73e8acf911, type: 3}
+      propertyPath: fireballObject
+      value: 
+      objectReference: {fileID: 6388315038851373263, guid: fa673291f85afec4da6ccb8c40e89dec, type: 3}
     - target: {fileID: 3913749559125713474, guid: ab48aa2ddedc1bd4cbb0da73e8acf911, type: 3}
       propertyPath: cam
       value: 

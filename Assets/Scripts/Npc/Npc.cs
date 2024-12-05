@@ -50,7 +50,7 @@ public class Npc : MonoBehaviour
             {
                if (idx < talk.Length && afterTalk == 0)
                 {
-                    PlayerMovementV2.Instance.changeInteracting(true);
+                    PlayerMovementV2.Instance.ChangeInteracting(true);
                     UiManager.Instance.DialogueDisplay(talk[idx]);
                     idx++;
                 }
@@ -64,13 +64,13 @@ public class Npc : MonoBehaviour
                         afterTalk++;
                     }
                     
-                    PlayerMovementV2.Instance.changeInteracting(false);
+                    PlayerMovementV2.Instance.ChangeInteracting(false);
                     UiManager.Instance.DialogueUndisplay();
 
                 }
                else if (willAfterTalk && afterTalk < afterTalkText.Length +1)
                 {
-                    PlayerMovementV2.Instance.changeInteracting(true);
+                    PlayerMovementV2.Instance.ChangeInteracting(true);
                     UiManager.Instance.DialogueDisplay(afterTalkText[idx]);
                     
                 }

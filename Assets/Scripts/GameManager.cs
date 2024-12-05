@@ -123,6 +123,10 @@ public class GameManager : MonoBehaviour
 
         yield return null;
     }
+    public bool GetInvencibility()
+    {
+        return invencibility;
+    }
     public void HealLive(int heal)
     {
         lives += heal;

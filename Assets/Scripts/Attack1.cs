@@ -2,23 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour
+public class AttackV2 : MonoBehaviour
 {
 
     [SerializeField] private float dissapearTime;
 
     [SerializeField] private float knockback;
 
+    private SpriteRenderer sr;
+
+
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
     void Start()
     {
-        StartCoroutine("Disapear");
+        StartCoroutine(Desactivate());
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    private void Attack()
+    {
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -81,7 +93,7 @@ public class Attack : MonoBehaviour
         
     }
 
-    private IEnumerator Disapear()
+    private IEnumerator Desactivate()
     {
         yield return new WaitForSeconds(dissapearTime);
         //Destroy(gameObject.transform.parent.gameObject);
