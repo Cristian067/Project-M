@@ -39,7 +39,7 @@ public class EnemyV2 : MonoBehaviour
 
     [SerializeField] private float attackLenght;
 
-    public LayerMask layerToJump;
+    public LayerMask whatIsGround;
 
     private Rigidbody2D rb;
 
@@ -79,8 +79,10 @@ public class EnemyV2 : MonoBehaviour
         switch (currentState){
             case States.Roaming:
                 MoveTo(roamPos);
+
+                RaycastHit2D hitWall = Physics2D.Raycast(transform.position + new Vector3(0f, 0, 0), transform.right, 1f, whatIsGround);
                 float reachedPositionDistance = 1f;
-                if (Vector2.Distance(transform.position, roamPos) < reachedPositionDistance)
+                if (Vector2.Distance(transform.position, roamPos) < reachedPositionDistance || hitWall)
                 {
                     roamPos.x = GetRoamingPos();
                 }
@@ -105,8 +107,8 @@ public class EnemyV2 : MonoBehaviour
         
         
 
-         hitGround1 = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.51f, 0), Vector3.down, 0.1f, layerToJump);
-        hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down, 0.1f, layerToJump);
+         hitGround1 = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.51f, 0), Vector3.down, 0.1f, whatIsGround);
+        hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down, 0.1f, whatIsGround);
         //Debug.DrawLine(transform.position + new Vector3(0,-0.51f,0), transform.position + new Vector3(0,-0.61f,0));
 
         if (hitGround1 || hitGround2)
@@ -134,7 +136,7 @@ public class EnemyV2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RaycastHit2D hitWall = Physics2D.Raycast(transform.position, transform.right, 0.8f, layerToJump);
+        RaycastHit2D hitWall = Physics2D.Raycast(transform.position, transform.right, 0.8f, whatIsGround);
         if (hitWall)
         {
             //Debug.Log(hitWall.collider.gameObject.name);
@@ -150,15 +152,7 @@ public class EnemyV2 : MonoBehaviour
 
         }
 
-        if (!hitGround1 || !hitGround2)
-        {
-
-            if (isOnGround)
-            {
-                Jump();
-            }
-            
-        }
+        
 
         if (_distance != new Vector2(0, 0))
         {

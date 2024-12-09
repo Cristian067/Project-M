@@ -27,6 +27,7 @@ public class PlayerMovementV2 : MonoBehaviour
     [SerializeField] private float jumpForce;
 
     [Header("Booleanas")]
+    private bool isDead;
     private bool inHook;
     private bool isOnGround;
     private bool isTouchingWall;
@@ -83,6 +84,7 @@ public class PlayerMovementV2 : MonoBehaviour
     public float groundCheckRadius;
     
 
+
     private float horizontal;
 
     private Vector3 hookedPos;
@@ -92,7 +94,7 @@ public class PlayerMovementV2 : MonoBehaviour
 
     private bool knockback;
 
-
+    private Animator animator;
 
 
 
@@ -109,13 +111,15 @@ public class PlayerMovementV2 : MonoBehaviour
         {
             Debug.LogError("Hay mas de un player");
         }
+        rb = GetComponent<Rigidbody2D>();
+        cc = GetComponent<CapsuleCollider2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        cc = GetComponent<CapsuleCollider2D>();
+        
         inHook = false;
 
         StartCoroutine(CheckHabilities());
@@ -177,7 +181,7 @@ public class PlayerMovementV2 : MonoBehaviour
             {
                 if (!fireballInCooldown)
                 {
-                    Firevall();
+                    Fireball();
                 }
                 
             }
@@ -201,6 +205,10 @@ public class PlayerMovementV2 : MonoBehaviour
 
             CheckIfCanJump();
             CheckIfWallSliding();
+        }
+        if (isDead)
+        {
+            cc.enabled = false;
         }
 
     }
@@ -246,8 +254,6 @@ public class PlayerMovementV2 : MonoBehaviour
         StartCoroutine("AttackCooldown");
 
     }
-
-
 
     private void CheckIfWallSliding()
     {
@@ -353,7 +359,7 @@ public class PlayerMovementV2 : MonoBehaviour
         }
 
        
-        if(remainingJumps <= 0 || !isOnGround && !isWallSliding)
+        if(remainingJumps <= 0 && !isOnGround && !isWallSliding)
         {
             canJump = false;
         }
@@ -539,7 +545,7 @@ public class PlayerMovementV2 : MonoBehaviour
     }
 
 
-    private void Firevall()
+    private void Fireball()
     {
         Quaternion attackRotation = Quaternion.identity;
 
@@ -609,6 +615,15 @@ public class PlayerMovementV2 : MonoBehaviour
 
     }
 
+    public void SetAnimationBool(string animName, bool activation)
+    {
+        animator.SetBool(animName, activation);
+    }
+    public void SetBools(string boolName, bool activation)
+    {
+
+    }
+
 
     private IEnumerator CheckHabilities()
     {
@@ -619,6 +634,11 @@ public class PlayerMovementV2 : MonoBehaviour
         fireball = GameManager.Instance.GetHabilities("fireball");
         dobleJump = GameManager.Instance.GetHabilities("doblejump");
         wallJump = GameManager.Instance.GetHabilities("walljump");
+
+        if (dobleJump)
+        {
+            maxJumps = 2;
+        }
     }
 
     public void ForceCheckHabilities()
@@ -628,12 +648,15 @@ public class PlayerMovementV2 : MonoBehaviour
 
     public void Damaged(int damage, Vector3 knockbackDir)
     {
+
         GameManager.Instance.LoseLive(damage);
+        animator.SetTrigger("isDamaged");
 
         Debug.Log(knockbackDir.normalized);
         rb.velocity = (new Vector3(0f,0.5f,0) + knockbackDir.normalized) * 20;
 
         StartCoroutine(KnockbackTime());
+        //animator.ResetTrigger("isDamaged");
 
     }
 

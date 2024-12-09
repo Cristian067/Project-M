@@ -10,11 +10,10 @@ using static UnityEditor.VersionControl.Asset;
 
 public class ControlUnit : MonoBehaviour
 {
-    private Dash dash;
-    private Jump jump;
+    [SerializeField] private bool thinking;
+
     private Stats stats;
     private SpinAttack spinAttack;
-    private BeamAttack beamAttack;
 
     private Rigidbody2D rb;
 
@@ -22,17 +21,12 @@ public class ControlUnit : MonoBehaviour
 
     [SerializeField] private float jumpForce;
 
-    
-
-    [SerializeField] private bool thinking;
-
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius;
 
     [SerializeField] private GameObject attackGO;
 
     [SerializeField] private float speed;
-
 
     private Vector3 targetPoint;
 
@@ -67,19 +61,12 @@ public class ControlUnit : MonoBehaviour
     void Start()
     {
 
-        dash = GetComponent<Dash>();
-        jump = GetComponent<Jump>();
         stats = GetComponent<Stats>();
         spinAttack = GetComponent<SpinAttack>();
-        beamAttack = GetComponent<BeamAttack>();
 
         rb = GetComponent<Rigidbody2D>();
 
         attack = Attacks.Wait;
-
-        //StartCoroutine(SelfCooldown());
-
-        //dash.Use(rb, 1200);
 
         player = FindAnyObjectByType<PlayerMovementV2>().gameObject;
     }
@@ -318,6 +305,7 @@ public class ControlUnit : MonoBehaviour
         
     }
 
+    /*
     private IEnumerator SpinAttack()
     {
 
@@ -327,14 +315,7 @@ public class ControlUnit : MonoBehaviour
         StartCoroutine(SelfCooldown(1.4f));
 
     }
-
-    public void BeamAttack()
-    {
-        ultimate = true;
-        thinking = true;
-        beamAttack.Use(rb, new Vector2(68,9.3f));
-    }
-
+    */
     private void CheckSurrondings()
     {
         isOnGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);

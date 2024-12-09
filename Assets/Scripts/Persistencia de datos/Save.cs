@@ -16,7 +16,7 @@ public class Save : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    private bool inTitleScreen = true;
+    //private bool inTitleScreen = true;
     void Start()
     {
 

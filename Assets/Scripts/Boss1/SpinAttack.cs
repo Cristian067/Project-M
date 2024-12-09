@@ -7,21 +7,6 @@ public class SpinAttack : MonoBehaviour
 
     [SerializeField] private GameObject attack;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-        
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
     public void Use(Rigidbody2D rb)
     {
         StartCoroutine(StayInAir(rb));
@@ -31,17 +16,12 @@ public class SpinAttack : MonoBehaviour
         //Debug.Log(transform.rotation.eulerAngles.y);
         if (transform.rotation.eulerAngles.y == 180)
         {
-
             rb.velocity = Vector3.zero;
-            
-
             //spin.transform.localPosition = new Vector3(2.5f, 0, 0); //= Instantiate(attack, transform.position - new Vector3(-5,0,0), Quaternion.identity);
-
         }
         else if (transform.rotation.y == 0)
         {
             rb.velocity = Vector3.zero;
-            
             //spin.transform.localPosition = new Vector3(2.5f, 0, 0);
             //attackInv = Instantiate(attack, transform.position - new Vector3(5, 0, 0), Quaternion.identity);
         }
@@ -53,6 +33,5 @@ public class SpinAttack : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         yield return new WaitForSeconds(1.2f);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
     }
 }

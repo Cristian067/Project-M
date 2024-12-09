@@ -13,25 +13,34 @@ public class GameManager : MonoBehaviour
     //private Save save;
 
 
-
+    // Vida
     [SerializeField] private int lives;
     [SerializeField] private int maxLives;
     [SerializeField] private bool invencibility;
 
+    //Daño a hacer
     [SerializeField] private int damage;
 
+    //El "mana" 
     [SerializeField] private int fuel;
     [SerializeField] private int maxFuel;
 
+
+    //Referencia del jugador para colocarse en el punto donde se guardo
     [SerializeField] private GameObject player;
 
 
+    //Los trozos de almas que se consiguen
+    [SerializeField] private int souls;
+
+    //Mirar y guardar las habilidades
     [SerializeField] private bool haveMelee;
     [SerializeField] private bool haveHook;
     [SerializeField] private bool haveFireball;
     [SerializeField] private bool haveDobleJump;
     [SerializeField] private bool haveWallJump;
 
+    //pausa?
     private bool paused;
 
     private void Awake()
@@ -82,14 +91,14 @@ public class GameManager : MonoBehaviour
     private void Pause()
     {
         
-        UiManager.Instance.DisplayEscMenu();
+        UiManager.Instance.ShowEscMenu();
         Time.timeScale = 0f;
         paused = true;
     }
 
     private void UnPause()
     {
-        UiManager.Instance.UndisplayEscMenu();
+        UiManager.Instance.HideEscMenu();
         Time.timeScale = 1f;
         paused = false;
     }
@@ -103,7 +112,10 @@ public class GameManager : MonoBehaviour
 
             if (lives <= 0)
             {
-                Destroy(player);
+                PlayerMovementV2.Instance.ChangeInteracting(true);
+                PlayerMovementV2.Instance.SetAnimationBool("isDead", true);
+                PlayerMovementV2.Instance.SetBools("isDead", true);
+                UiManager.Instance.ShowGameOverPanel();
             }
             UiManager.Instance.RefreshLives(lives);
             StartCoroutine(HitCooldown());
@@ -239,6 +251,11 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(id);
     }
+    public void Retry()
+    {
+        //Debug.Log(SceneManager.GetActiveScene().buildIndex);
+        GoTo(SceneManager.GetActiveScene().buildIndex);
+    }
 
     public void FullRestore()
     {
@@ -251,5 +268,15 @@ public class GameManager : MonoBehaviour
     {
         return paused;
     }
+
+    public void GetASoul()
+    {
+        souls++;
+    }
+    public int GetSouls()
+    {
+        return souls;
+    }
+
 }
 

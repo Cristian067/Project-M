@@ -45,10 +45,10 @@ public class MainManager : MonoBehaviour
     public void GoTo(GameObject destination)
     {
         mainPanel.SetActive(false);
-        gameFilesPanel.active = false;
+        gameFilesPanel.SetActive(false);
         optionsPanel.SetActive(false);
 
-        destination.active = true;
+        destination.SetActive(true);
         //destination.SetActive(true);
 
     }
@@ -78,6 +78,11 @@ public class MainManager : MonoBehaviour
         file1.CheckFiles();
         file2.CheckFiles();
         file3.CheckFiles();
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 
 

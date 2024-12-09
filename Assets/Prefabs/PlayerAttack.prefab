@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5615496094935369309}
   - component: {fileID: 404652442284318594}
-  - component: {fileID: 3131254242236685753}
   - component: {fileID: 4678433360426684426}
+  - component: {fileID: 3128167727551978679}
   m_Layer: 9
   m_Name: PlayerAttack
   m_TagString: Untagged
@@ -86,20 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3131254242236685753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8595484723746548853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13667ecb799f6784dba33459e4593171, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dissapearTime: 0.05
-  knockback: 1000
 --- !u!61 &4678433360426684426
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145,3 +131,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3128167727551978679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8595484723746548853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c61fbff88686545b6eb71276b39fb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dissapearTime: 0.05
+  knockback: 300

@@ -12,9 +12,12 @@ public class UiManager : MonoBehaviour
     [SerializeField] private Slider live;
 
     [SerializeField] private GameObject escMenu;
+    [SerializeField] private GameObject[] escPanels;
 
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
+
+    [SerializeField] private GameObject GOPanel;
 
     private void Awake()
     {
@@ -32,6 +35,7 @@ public class UiManager : MonoBehaviour
     void Start()
     {
         escMenu.SetActive(false);
+        GOPanel.SetActive(false);
         
     }
 
@@ -48,23 +52,41 @@ public class UiManager : MonoBehaviour
         live.value = lives;
     }
 
-    public void DisplayEscMenu()
+    public void ShowEscMenu()
     {
         escMenu.SetActive(true);
 
     }
-    public void UndisplayEscMenu()
+    public void HideEscMenu()
     {
         escMenu.SetActive(false);
     }
 
-    public void DialogueDisplay(string msg)
+    public void ChangeManuPanel(int panel)
+    {
+        for(int i = 0; i < escPanels.Length; i++)
+        {
+            escPanels[i].SetActive(false);
+        }
+        escPanels[panel].SetActive(true);
+    }
+
+    public void ShowDialogue(string msg)
     {
         dialoguePanel.SetActive(true);
         dialogueText.text = msg;
     }
-    public void DialogueUndisplay()
+    public void HideDialogue()
     {
         dialoguePanel.SetActive(false);
+    }
+
+    public void ShowGameOverPanel()
+    {
+        GOPanel.SetActive(true);
+    }
+    public void HideGameOverPanel()
+    {
+        GOPanel.SetActive(false);
     }
 }

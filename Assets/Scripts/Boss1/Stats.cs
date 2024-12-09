@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class Stats : MonoBehaviour
 {
+    [SerializeField]private bool isAlive;
+
+    [SerializeField] private string livingName;
+
     [SerializeField] private int lives;
 
     [SerializeField] private int damage;
@@ -11,19 +16,32 @@ public class Stats : MonoBehaviour
     private ControlUnit controlUnit;
 
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         controlUnit = GetComponent<ControlUnit>();
-        
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void Start()
     {
+        if(PlayerPrefs.GetInt(livingName + "_isDead_" + GameManager.Instance.GetFileNum()) == 1)
+        {
+            isAlive = false;
+        }
+        
+        if (!isAlive)
+        {
+            Destroy(gameObject);
+        }
         
     }
 
-
+    private void KillNpc()
+    {
+        PlayerPrefs.SetInt(livingName + "_isDead_" + GameManager.Instance.GetFileNum(), 1);
+                
+    }
 
     public void LoseLive(int damaged)
     {
@@ -37,6 +55,7 @@ public class Stats : MonoBehaviour
         */
         if (lives <= 0)
         {
+            KillNpc();
             Destroy(gameObject);
         }
     }
@@ -44,6 +63,10 @@ public class Stats : MonoBehaviour
     public int GetDamage()
     {
         return damage;
+    }
+    public bool IsAlive()
+    {
+        return isAlive;
     }
 
 }

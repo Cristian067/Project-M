@@ -48,18 +48,20 @@ public class GetHability : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        audioSource.clip = clip;
-        audioSource.Play();
-        CircleCollider2D circleCollider = GetComponent<CircleCollider2D>();
-        circleCollider.enabled = false;
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.enabled = false;
+        
 
         
 
 
         if (collision.gameObject.tag == "Player")
         {
+            audioSource.clip = clip;
+            audioSource.Play();
+            CircleCollider2D circleCollider = GetComponent<CircleCollider2D>();
+            circleCollider.enabled = false;
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.enabled = false;
+
             PlayerMovementV2 player = collision.gameObject.GetComponent<PlayerMovementV2>();
             
             GameManager.Instance.SetHabilities(hability.ToString());
