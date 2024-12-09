@@ -66,10 +66,12 @@ public class GetHability : MonoBehaviour
             
             GameManager.Instance.SetHabilities(hability.ToString());
             player.ForceCheckHabilities();
-            
+
+            isTaken = true;
+
         }
 
-        isTaken = true;
+        
         
         //Destroy(gameObject);
     }

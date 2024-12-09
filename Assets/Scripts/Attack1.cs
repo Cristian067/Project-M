@@ -61,7 +61,9 @@ public class AttackV2 : MonoBehaviour
                 Stats stats = collision.gameObject.GetComponent<Stats>();
                 stats.LoseLive(GameManager.Instance.GetPlayerDamage());
                 collisionRb.velocity = Vector3.zero;
-                collisionRb.velocity = ((collision.transform.position - transform.position).normalized * knockback);
+                //TODO: Arreglar el porque el enemigo sale disparado hacia arriba en de de un poco atras
+                
+                //collisionRb.velocity = ((collision.transform.position - transform.position).normalized * knockback * 20);
                 PlayerMovementV2 playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovementV2>();
 
                 if (playerMovement.GetDirectionLook() == "down")
