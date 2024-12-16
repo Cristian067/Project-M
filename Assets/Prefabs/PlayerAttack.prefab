@@ -144,4 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dissapearTime: 0.05
-  knockback: 300
+  knockback: 1500

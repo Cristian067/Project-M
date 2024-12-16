@@ -6,22 +6,16 @@ using UnityEngine;
 public class Stats : MonoBehaviour
 {
     [SerializeField]private bool isAlive;
-
     [SerializeField] private string livingName;
-
     [SerializeField] private int lives;
-
     [SerializeField] private int damage;
 
     private ControlUnit controlUnit;
-
-    // Start is called before the first frame update
 
     private void Awake()
     {
         controlUnit = GetComponent<ControlUnit>();
     }
-
 
     void Start()
     {

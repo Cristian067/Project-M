@@ -33,7 +33,6 @@ public class Npc : MonoBehaviour
     [SerializeField] private string[] afterTalkText;
 
     [SerializeField] private int afterTalk;
-
     [SerializeField] private bool willAfterTalk;
 
     private int idx = 0;
@@ -58,28 +57,22 @@ public class Npc : MonoBehaviour
                 {
                     idx = 0;
                     
-                    
                     if(willAfterTalk)
                     {
                         afterTalk++;
                     }
-                    
                     PlayerMovementV2.Instance.ChangeInteracting(false);
                     UiManager.Instance.HideDialogue();
-
                 }
                else if (willAfterTalk && afterTalk < afterTalkText.Length +1)
                 {
                     PlayerMovementV2.Instance.ChangeInteracting(true);
                     UiManager.Instance.ShowDialogue(afterTalkText[idx]);
-                    
                 }
                 
 
             }
-
             //Hacer shopmenu
-
         }
     }
 
@@ -89,7 +82,6 @@ public class Npc : MonoBehaviour
         {
             canInteract = true;
         }
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)

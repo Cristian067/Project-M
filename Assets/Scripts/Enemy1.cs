@@ -22,6 +22,7 @@ public class EnemyV2 : MonoBehaviour
     [SerializeField] private int lives;
 
     [SerializeField] private GameObject attack;
+    [SerializeField] private float attackLenght;
 
     [SerializeField] private string lookDirection;
 
@@ -34,18 +35,15 @@ public class EnemyV2 : MonoBehaviour
     [SerializeField] private Vector2 _distance;
 
     [SerializeField] private float jumpForce;
-
-    [SerializeField] private bool isOnGround;
-
-    [SerializeField] private float attackLenght;
-
-    public LayerMask whatIsGround;
+    private bool isOnGround;
 
     private Rigidbody2D rb;
 
     private bool thinking;
 
+    private bool knockback;
 
+    public LayerMask whatIsGround;
 
     private RaycastHit2D hitGround1;
 
@@ -76,31 +74,7 @@ public class EnemyV2 : MonoBehaviour
         }
 
         
-        switch (currentState){
-            case States.Roaming:
-                MoveTo(roamPos);
-
-                RaycastHit2D hitWall = Physics2D.Raycast(transform.position + new Vector3(0f, 0, 0), transform.right, 1f, whatIsGround);
-                float reachedPositionDistance = 1f;
-                if (Vector2.Distance(transform.position, roamPos) < reachedPositionDistance || hitWall)
-                {
-                    roamPos.x = GetRoamingPos();
-                }
-                FindTarget();
-                break;
-
-            case States.Chase:
-                MoveTo(PlayerMovementV2.Instance.GetPosition());
-
-                float stopChasingDistance = 8f;
-                if (Vector2.Distance(transform.position, PlayerMovementV2.Instance.GetPosition()) > stopChasingDistance)
-                {
-                    currentState = States.Roaming;
-                }
-                break;
-
-
-        }
+        
         
         
 
@@ -152,7 +126,35 @@ public class EnemyV2 : MonoBehaviour
 
         }
 
-        
+        switch (currentState)
+        {
+            case States.Roaming:
+                MoveTo(roamPos);
+
+                RaycastHit2D hitWall2 = Physics2D.Raycast(transform.position + new Vector3(0f, 0, 0), transform.right, 1f, whatIsGround);
+                float reachedPositionDistance = 1f;
+                if (Vector2.Distance(transform.position, roamPos) < reachedPositionDistance || hitWall2)
+                {
+                    roamPos.x = GetRoamingPos();
+                }
+                FindTarget();
+                break;
+
+            case States.Chase:
+                if (!knockback)
+                {
+                    MoveTo(PlayerMovementV2.Instance.GetPosition());
+                }
+
+                float stopChasingDistance = 8f;
+                if (Vector2.Distance(transform.position, PlayerMovementV2.Instance.GetPosition()) > stopChasingDistance)
+                {
+                    currentState = States.Roaming;
+                }
+                break;
+
+
+        }
 
         if (_distance != new Vector2(0, 0))
         {
@@ -179,7 +181,25 @@ public class EnemyV2 : MonoBehaviour
     {
         lives -= damage;
     }
+    public void Damaged(int damage, Vector3 knockbackDir)
+    {
 
+        LoseLive(damage);
+        //animator.SetTrigger("isDamaged");
+
+        Debug.Log(knockbackDir.normalized);
+        rb.velocity = (new Vector3(0f, 0.5f, 0) + knockbackDir.normalized) * 10;
+
+        StartCoroutine(KnockbackTime());
+        //animator.ResetTrigger("isDamaged");
+
+    }
+    private IEnumerator KnockbackTime()
+    {
+        knockback = true;
+        yield return new WaitForSeconds(0.5f);
+        knockback = false;
+    }
     private void MoveTo(Vector2 posToMove)
     {
         Vector2 pos = new Vector2(transform.position.x, transform.position.y);

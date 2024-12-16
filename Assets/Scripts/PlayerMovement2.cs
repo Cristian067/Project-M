@@ -10,7 +10,6 @@ public class PlayerMovementV2 : MonoBehaviour
     public static PlayerMovementV2 Instance { get; private set; }
 
     private Rigidbody2D rb;
-    //[SerializeField]private Camera cam;
 
     private bool interacting;
 
@@ -65,8 +64,6 @@ public class PlayerMovementV2 : MonoBehaviour
     [SerializeField] private int maxJumps;
     private int remainingJumps;
 
-    //[SerializeField] private float currentSpeed;
-
     [Header("Capas de golpe")]
     [SerializeField] private LayerMask whatIsHook;
     [SerializeField] private LayerMask whatIsGround;
@@ -80,12 +77,9 @@ public class PlayerMovementV2 : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckRadius;
     
-
-
     private float horizontal;
 
     private Vector3 hookedPos;
-
 
     private Vector3 mousePos;
 
@@ -93,10 +87,7 @@ public class PlayerMovementV2 : MonoBehaviour
 
     private Animator animator;
 
-
-
     private CapsuleCollider2D cc;
-
 
     private void Awake()
     {
@@ -116,11 +107,8 @@ public class PlayerMovementV2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         inHook = false;
-
-        StartCoroutine(CheckHabilities());
-        
+        CheckHabilities();
     }
 
     // Update is called once per frame
@@ -151,17 +139,15 @@ public class PlayerMovementV2 : MonoBehaviour
                 Attack();
             }
 
+            //Usar gancho
             try
             {
-                //Usar gancho
                 if (Input.GetKeyDown(KeyCode.Mouse1) && !inHook && hook)
                 {
-
                     RaycastHit2D hitHook = Physics2D.Raycast(transform.position, direction, hookDistance, whatIsHook);
                     Debug.DrawLine(transform.position, mousePos, Color.red);
                     RaycastHit2D hitBetween = Physics2D.Raycast(transform.position, direction, hookDistance, whatIsGround);
                     Debug.Log(hitHook.collider.name);
-
 
                     if (hitHook)
                     {
@@ -171,7 +157,6 @@ public class PlayerMovementV2 : MonoBehaviour
                 }
             }
             catch { Debug.Log("Gancho no ganchado"); }
-            
 
             //Usar Bola de fuego
             if (Input.GetKeyDown("q") && fireball)
@@ -180,29 +165,34 @@ public class PlayerMovementV2 : MonoBehaviour
                 {
                     Fireball();
                 }
-                
             }
 
+            //Usar acciones hacia abajo
             try
             {
                 if (Input.GetKeyDown("s"))
                 {
                     DownActions();
                 }
-            } catch { Debug.Log(""); }
+            } 
+            catch 
+            { 
+                Debug.Log(""); 
+            }
+
             /*
             if (!inHook)
             {
                 rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 20f * Time.deltaTime), rb.velocity.y);
                 inHookSpeed = Mathf.MoveTowards(inHookSpeed, 0f, 15f * Time.deltaTime);
                 //currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, 15f * Time.deltaTime);
-
             }
             */
 
             CheckIfCanJump();
             CheckIfWallSliding();
         }
+
         if (isDead)
         {
             cc.enabled = false;
@@ -211,10 +201,8 @@ public class PlayerMovementV2 : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
         ApplyMovement();
         CheckSurrondings();
-
     }
     private void Attack()
     {
@@ -248,8 +236,7 @@ public class PlayerMovementV2 : MonoBehaviour
         }
 
         Instantiate(attack, transform.position + attackDirection + offset, attackRotation, this.transform);
-        StartCoroutine("AttackCooldown");
-
+        StartCoroutine(AttackCooldown());
     }
 
     private void CheckIfWallSliding()
@@ -272,64 +259,62 @@ public class PlayerMovementV2 : MonoBehaviour
     {
         if (!knockback)
         {
+            if (!inHook)
+            {
+                if (!isWallSliding && isOnGround)
+                {
+                    rb.velocity = new Vector2(speed * horizontal, rb.velocity.y);
+                }
 
+                if (!isOnGround && !isWallSliding)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x + (horizontal * speed), rb.velocity.y);
+                }
+                if (!isOnGround && isWallSliding)
+                {
+                    rb.velocity = new Vector2((speed * horizontal)/6, rb.velocity.y);
+                }
+            }
         
-        if (!inHook)
-        {
-            if (!isWallSliding && isOnGround)
+            if (!hookUsed)
             {
-                rb.velocity = new Vector2(speed * horizontal, rb.velocity.y);
-            }
+                if (rb.velocity.x > maxSpeed)
+                {
+                    rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
+                }
 
-            if (!isOnGround && !isWallSliding)
-            {
-                rb.velocity = new Vector2(rb.velocity.x + (horizontal * speed), rb.velocity.y);
-            }
-            if (!isOnGround && isWallSliding)
-            {
-                rb.velocity = new Vector2((speed * horizontal)/6, rb.velocity.y);
-            }
-        }
-        
-        if (!hookUsed)
-        {
-            if (rb.velocity.x > maxSpeed)
-            {
-                rb.velocity = new Vector2(maxSpeed, rb.velocity.y);
-            }
-
-            if (rb.velocity.x < -maxSpeed)
-            {
-                rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
-            }
-            if (!isOnGround)
-            {
-                rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 40f * Time.deltaTime), rb.velocity.y);
-            }
-        }
-        else if (hookUsed)
-        {
-            if (rb.velocity.x > maxTotalSpeed)
-            {
-                rb.velocity = new Vector2(maxTotalSpeed, rb.velocity.y);
+                if (rb.velocity.x < -maxSpeed)
+                {
+                    rb.velocity = new Vector2(-maxSpeed, rb.velocity.y);
+                }
+                if (!isOnGround)
+                {
+                    rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 40f * Time.deltaTime), rb.velocity.y);
+                }
             }
 
-            if (rb.velocity.x < -maxTotalSpeed)
+            else if (hookUsed)
             {
-                rb.velocity = new Vector2(-maxTotalSpeed, rb.velocity.y);
+                if (rb.velocity.x > maxTotalSpeed)
+                {
+                    rb.velocity = new Vector2(maxTotalSpeed, rb.velocity.y);
+                }
+
+                if (rb.velocity.x < -maxTotalSpeed)
+                {
+                    rb.velocity = new Vector2(-maxTotalSpeed, rb.velocity.y);
+                }
             }
-        }
         
-        
-        if (isWallSliding)
-        {
-            if (rb.velocity.y < -wallSilidingSpeed)
+            if (isWallSliding)
             {
-                rb.velocity = new Vector2(rb.velocity.x, -wallSilidingSpeed);
-            } 
+                if (rb.velocity.y < -wallSilidingSpeed)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, -wallSilidingSpeed);
+                } 
 
            
-        }
+            }
 
         }
 
@@ -354,9 +339,13 @@ public class PlayerMovementV2 : MonoBehaviour
             remainingJumps = maxJumps;
             hookUsed = false;
         }
-
-       
-        if(remainingJumps <= 0 && !isOnGround && !isWallSliding)
+        /*
+        if(!isOnGround || GameManager.Instance.GetHabilities("doblejump"))
+        {
+            canJump = true;
+        }
+        */
+        if(remainingJumps <= 0 || !isOnGround && !isWallSliding && !GameManager.Instance.GetHabilities("doblejump"))
         {
             canJump = false;
         }
@@ -376,7 +365,7 @@ public class PlayerMovementV2 : MonoBehaviour
         Debug.Log(hit.collider.gameObject.transform.position);
         hookedPos = hit.collider.transform.position;
         isOnGround = false;
-        StartCoroutine("CooldownHook");
+        StartCoroutine(CooldownHook());
         //transform.Translate(hit.transform.position);
     }
     
@@ -416,10 +405,8 @@ public class PlayerMovementV2 : MonoBehaviour
             offset = new Vector3(0f, -1, 0);
             attackRotation = Quaternion.Euler(0,0,-90);
         }
-        
         Instantiate(attack, transform.position + attackDirection + offset, attackRotation, this.transform);
         StartCoroutine("AttackCooldown");
-
     }
     */
     private IEnumerator AttackCooldown()
@@ -444,7 +431,6 @@ public class PlayerMovementV2 : MonoBehaviour
                 lookDirection = "left";
             }
         }
-
         if (Input.GetKey("d"))
         {
             if (Input.GetKey("s") && !isOnGround)
@@ -535,13 +521,7 @@ public class PlayerMovementV2 : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             remainingJumps--;
         }
-        
-        
-        //rb.AddForce(transform.up * jumpForce);
-        //isOnGround = false;
     }
-
-
     private void Fireball()
     {
         Quaternion attackRotation = Quaternion.identity;
@@ -581,14 +561,12 @@ public class PlayerMovementV2 : MonoBehaviour
     }
     private void DownActions()
     {
-
         RaycastHit2D hitDown = Physics2D.Raycast(transform.position + new Vector3(0, -0.6f, 0), Vector3.down,0.3f);
         if(hitDown.transform.gameObject.tag == "Platform")
         { 
             Platform platform = hitDown.transform.gameObject.GetComponent<Platform>();
             platform.Activate(cc);
         }
-
     }
 
     public string GetDirectionLook()
@@ -620,11 +598,14 @@ public class PlayerMovementV2 : MonoBehaviour
     {
 
     }
-
-
-    private IEnumerator CheckHabilities()
+    public void KillPlayer()
     {
-        yield return new WaitForSeconds(0.1f);
+        isDead = true;
+    }
+
+
+    public void CheckHabilities()
+    {
 
         melee = GameManager.Instance.GetHabilities("basic");
         hook = GameManager.Instance.GetHabilities("hook");
@@ -638,23 +619,20 @@ public class PlayerMovementV2 : MonoBehaviour
         }
     }
 
-    public void ForceCheckHabilities()
-    {
-        StartCoroutine(CheckHabilities());
-    }
+    
 
     public void Damaged(int damage, Vector3 knockbackDir)
     {
+        
+            GameManager.Instance.LoseLive(damage);
+            animator.SetTrigger("isDamaged");
 
-        GameManager.Instance.LoseLive(damage);
-        animator.SetTrigger("isDamaged");
+            //Debug.Log(knockbackDir.normalized);
+            rb.velocity = (new Vector3(0f, 0.5f, 0) + knockbackDir.normalized) * 20;
 
-        Debug.Log(knockbackDir.normalized);
-        rb.velocity = (new Vector3(0f,0.5f,0) + knockbackDir.normalized) * 20;
-
-        StartCoroutine(KnockbackTime());
-        //animator.ResetTrigger("isDamaged");
-
+            StartCoroutine(KnockbackTime());
+            //animator.ResetTrigger("isDamaged");
+        
     }
 
     private IEnumerator KnockbackTime()
@@ -663,7 +641,6 @@ public class PlayerMovementV2 : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         knockback = false;
     }
-
 
     public Vector3 GetPosition()
     {

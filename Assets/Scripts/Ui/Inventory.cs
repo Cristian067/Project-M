@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-
     private int souls;
 
     //Las imagenes donde van a estar los trozos de almas
@@ -14,8 +13,6 @@ public class Inventory : MonoBehaviour
     //Los toggles donde van a estar las marcas con los objetos. //TODO: Hacer que no se vea hasta conseguir el objecto y hacer que el inventario se vea mas bonito
     [SerializeField] private Toggle[] habilitiesCheck;
 
-
-    
     //Mirar cuantos trozos de almas tienes
     private void CheckSouls()
     {

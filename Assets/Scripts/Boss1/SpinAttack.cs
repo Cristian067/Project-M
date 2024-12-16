@@ -25,7 +25,6 @@ public class SpinAttack : MonoBehaviour
             //spin.transform.localPosition = new Vector3(2.5f, 0, 0);
             //attackInv = Instantiate(attack, transform.position - new Vector3(5, 0, 0), Quaternion.identity);
         }
-        
     }
     private IEnumerator StayInAir(Rigidbody2D rb)
     {

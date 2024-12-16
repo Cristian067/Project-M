@@ -8,7 +8,10 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
 
-    private int fileNum;
+    private int fileNum = 1;
+
+    private float timePlayed;
+    private float totalTimePlayed;
 
     //private Save save;
 
@@ -59,6 +62,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         Time.timeScale = 1;
         fileNum = PlayerPrefs.GetInt("actualFile");
         
@@ -71,6 +75,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        timePlayed = Time.time;
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             
@@ -114,7 +120,7 @@ public class GameManager : MonoBehaviour
             {
                 PlayerMovementV2.Instance.ChangeInteracting(true);
                 PlayerMovementV2.Instance.SetAnimationBool("isDead", true);
-                PlayerMovementV2.Instance.SetBools("isDead", true);
+                PlayerMovementV2.Instance.KillPlayer();
                 UiManager.Instance.ShowGameOverPanel();
             }
             UiManager.Instance.RefreshLives(lives);
@@ -221,10 +227,20 @@ public class GameManager : MonoBehaviour
     {
         return fileNum;
     }
+    public float GetTimePlayed()
+    {
+        return timePlayed + totalTimePlayed;
+    }
     
-    public void GetData(int _lives, int _fuel, int _damage,Vector3 pos, bool _haveMelee,bool _haveHook , bool _haveFireball,bool _haveDobleJump, bool _haveWallJump)
+    /*
+    public void SetTimePlayed(float time)
+    {
+        timePlayed = time;
+    }*/
+    public void GetData(int _souls, int _lives, int _fuel, int _damage,Vector3 pos, bool _haveMelee,bool _haveHook , bool _haveFireball,bool _haveDobleJump, bool _haveWallJump, float _timePlayed)
     {
         lives = _lives;
+        souls = _souls;
         fuel = _fuel;
         damage = _damage;
 
@@ -233,6 +249,8 @@ public class GameManager : MonoBehaviour
         haveFireball = _haveFireball;
         haveDobleJump = _haveDobleJump;
         haveWallJump = _haveWallJump;
+        totalTimePlayed = _timePlayed;
+        
 
         UiManager.Instance.RefreshLives(lives);
 
@@ -272,6 +290,10 @@ public class GameManager : MonoBehaviour
     public void GetASoul()
     {
         souls++;
+    }
+    public void ChangeSouls(int _souls)
+    {
+        souls = _souls;
     }
     public int GetSouls()
     {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TriggerSave : MonoBehaviour
 {
@@ -16,8 +17,8 @@ public class TriggerSave : MonoBehaviour
         stats = GetComponent<Stats>();
     }
 
-
-    public void saveData(int fileNum, int lives, int fuel, int damage, string mapIn, Vector3 setPos, bool melee, bool hook, bool fireball, bool dobleJump, bool wallJump)
+    /*
+    public void saveData(int fileNum, int lives, int fuel, int damage, string mapIn, Vector3 setPos, bool melee, bool hook, bool fireball, bool dobleJump, bool wallJump, float setTimePlayed)
     {
 
         Progresion save = new Progresion
@@ -35,10 +36,11 @@ public class TriggerSave : MonoBehaviour
             haveHook = hook,
             haveFireball = fireball,
             haveDobleJump = dobleJump,
-            haveWallJump = wallJump
+            haveWallJump = wallJump,
 
+            
 
-            //timePlayed = setTimePlayed,
+            timePlayed = setTimePlayed,
         };
 
 
@@ -55,16 +57,21 @@ public class TriggerSave : MonoBehaviour
 
             Progresion save = JsonUtility.FromJson<Progresion>(jsonContent);
 
-            saveData(fileNum,save.lives, save.fuel, save.damage,save.map, PlayerMovementV2.Instance.GetPosition(), save.haveMelee, save.haveHook, save.haveFireball, save.haveDobleJump, save.haveWallJump);
+            saveData(fileNum,save.lives, save.fuel, save.damage,save.map, PlayerMovementV2.Instance.GetPosition(), save.haveMelee, save.haveHook, save.haveFireball, save.haveDobleJump, save.haveWallJump, save.timePlayed);
             
         }
     }
-
+    */
     private void OnDestroy()
     {
         if (stats.IsAlive())
         {
-            Save(GameManager.Instance.GetFileNum());
+            Save.Instance.saveData(GameManager.Instance.GetFileNum(), GameManager.Instance.GetSouls(), GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetOil(), GameManager.Instance.GetPlayerDamage(), SceneManager.GetActiveScene().name, transform.position, GameManager.Instance.GetHabilities("basic"), GameManager.Instance.GetHabilities("hook"), GameManager.Instance.GetHabilities("fireball"), GameManager.Instance.GetHabilities("doblejump"), GameManager.Instance.GetHabilities("walljump"), GameManager.Instance.GetTimePlayed());
+
+            for (int i = 0; i < InfoObjects.objects.Count; i++)
+            {
+                PlayerPrefs.SetInt(InfoObjects.objects[i] + "_" + GameManager.Instance.GetFileNum(), InfoObjects.dead[i]);
+            }
         }
         
     }

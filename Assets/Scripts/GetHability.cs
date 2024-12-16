@@ -65,7 +65,7 @@ public class GetHability : MonoBehaviour
             PlayerMovementV2 player = collision.gameObject.GetComponent<PlayerMovementV2>();
             
             GameManager.Instance.SetHabilities(hability.ToString());
-            player.ForceCheckHabilities();
+            player.CheckHabilities();
 
             isTaken = true;
 

@@ -41,11 +41,13 @@ public class AttackV2 : MonoBehaviour
             if (collision.gameObject.tag == "Enemy")
             {
                 EnemyV2 enemy = collision.gameObject.GetComponent<EnemyV2>();
-                enemy.LoseLive(GameManager.Instance.GetPlayerDamage());
+                //enemy.LoseLive(GameManager.Instance.GetPlayerDamage());
                 collisionRb.velocity = Vector3.zero;
                 //TODO: Arreglar el porque el enemigo sale disparado hacia arriba en de de un poco atras
                 //Debug.Log((collision.transform.position - transform.position).normalized * knockback * 4);
-                //collisionRb.velocity = ((collision.transform.position - transform.position).normalized * knockback * 20);
+                //collisionRb.velocity = new Vector2((collision.transform.position - transform.position).normalized.x * knockback * 200,3);
+                Vector3 dir = (collision.transform.position - PlayerMovementV2.Instance.GetPosition());
+                enemy.Damaged(GameManager.Instance.GetPlayerDamage(), dir);
                 PlayerMovementV2 playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovementV2>();
 
                 if (playerMovement.GetDirectionLook() == "down")
@@ -59,11 +61,14 @@ public class AttackV2 : MonoBehaviour
             if (collision.gameObject.tag == "Boss")
             {
                 Stats stats = collision.gameObject.GetComponent<Stats>();
-                stats.LoseLive(GameManager.Instance.GetPlayerDamage());
+                ControlUnit cu = collision.gameObject.GetComponent<ControlUnit>();
+                //stats.LoseLive(GameManager.Instance.GetPlayerDamage());
                 collisionRb.velocity = Vector3.zero;
                 //TODO: Arreglar el porque el enemigo sale disparado hacia arriba en de de un poco atras
-                
+
                 //collisionRb.velocity = ((collision.transform.position - transform.position).normalized * knockback * 20);
+                Vector3 dir = (collision.transform.position - PlayerMovementV2.Instance.GetPosition());
+                cu.Damaged(GameManager.Instance.GetPlayerDamage(), dir);
                 PlayerMovementV2 playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovementV2>();
 
                 if (playerMovement.GetDirectionLook() == "down")

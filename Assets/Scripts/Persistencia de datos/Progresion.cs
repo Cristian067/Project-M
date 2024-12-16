@@ -10,6 +10,7 @@ public class Progresion
     //public string name = "TestPlayer";
 
     public int file;
+    public int souls;
     public int lives;
     public int fuel;
     public int damage;
@@ -22,12 +23,13 @@ public class Progresion
     public bool haveFireball;
     public bool haveDobleJump;
     public bool haveWallJump;
+    /*
+    public List<string> objectsKilledName = new List<string>();
+    public List<int> objectsKilled = new List<int>();
+    */
+    public float timePlayed;
 
-
-
-    //public float timePlayed;
-
-
+    
 
 
 

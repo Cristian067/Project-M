@@ -12,15 +12,9 @@ public class ChangeAudioValues : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         audioSource = GetComponent<AudioSource>();
-
-
         audioSource.volume = PlayerPrefs.GetFloat($"volume_{gameObject.name}");
         slider.value = audioSource.volume;
-
-        
-        
     }
 
     // Update is called once per frame

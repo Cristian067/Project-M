@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MainManager : MonoBehaviour
 {
-
     public static MainManager Instance { get; private set; }
-
 
     [SerializeField] private GameObject mainPanel;
     [SerializeField] private GameObject gameFilesPanel;
@@ -16,7 +15,6 @@ public class MainManager : MonoBehaviour
     [SerializeField] private Files file1;
     [SerializeField] private Files file2;
     [SerializeField] private Files file3;
-
 
     private void Awake()
     {
@@ -30,24 +28,13 @@ public class MainManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
+    
     public void GoTo(GameObject destination)
     {
         mainPanel.SetActive(false);
         gameFilesPanel.SetActive(false);
         optionsPanel.SetActive(false);
-
         destination.SetActive(true);
         //destination.SetActive(true);
 

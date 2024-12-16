@@ -40,7 +40,15 @@ public class ControlUnit : MonoBehaviour
 
     }
 
+    private enum Fases
+    {
+        Fase1,
+        Fase2
+
+    }
+
     private Attacks attack;
+    private Fases currentFase;
     
 
     private bool isOnGround;
@@ -52,6 +60,7 @@ public class ControlUnit : MonoBehaviour
 
     private int idx;
     private bool walking;
+    private bool knockback;
 
 
     // Start is called before the first frame update
@@ -75,71 +84,79 @@ public class ControlUnit : MonoBehaviour
 
         targetPoint = player.transform.position - transform.position;
 
-        if (!thinking)
+        if (!thinking && !knockback)
         {
-            switch (attack)
+            switch (currentFase)
             {
-                case Attacks.Wait:
-                    StartCoroutine(Wait(3));
-                    Next();
-                    break;
-
-                case Attacks.Walk:
-                    if (isOnGround)
+                case Fases.Fase1:
+                    switch (attack)
                     {
-                        //walking = true;
-                        //WaitAfterWalk();
-                        Debug.Log(Attacks.Walk);
-                        Next();
+                        case Attacks.Wait:
+                            StartCoroutine(Wait(3));
+                            Next();
+                            break;
+
+                        case Attacks.Walk:
+                            if (isOnGround)
+                            {
+                                //walking = true;
+                                //WaitAfterWalk();
+                                Debug.Log(Attacks.Walk);
+                                Next();
+                            }
+
+                            break;
+
+                        case Attacks.Attack:
+                            Debug.Log(Attacks.Attack);
+                            //StartCoroutine(Wait(1));
+                            Attack();
+                            //Next();
+                            break;
+
+                        case Attacks.Dash:
+                            Debug.Log(Attacks.Dash);
+                            //StartCoroutine(Wait(1));
+                            Dash(30);
+                            //Next();
+                            break;
+
+                        case Attacks.jump:
+                            if (isOnGround)
+                            {
+                                //StartCoroutine(Wait(1.5f));
+                                Debug.Log(Attacks.jump);
+                                Jump(new Vector2(0, 1), true);
+                                //Next();
+                            }
+                            break;
+
+                        case Attacks.Backjump:
+                            if (isOnGround)
+                            {
+                                //StartCoroutine(Wait(1.5f));
+                                Debug.Log(Attacks.Backjump);
+                                Jump(new Vector2(-targetPoint.normalized.x, 1), false);
+                                //Next();
+                            }
+
+                            break;
+                        case Attacks.StepBack:
+                            Debug.Log(Attacks.StepBack);
+                            //StartCoroutine(Wait(1.5f));
+                            //Next();
+                            break;
+                        case Attacks.SpinAttack:
+                            Debug.Log(Attacks.SpinAttack);
+
+                            break;
                     }
-                    
-                    break;
-
-                case Attacks.Attack:
-                    Debug.Log(Attacks.Attack);
-                    //StartCoroutine(Wait(1));
-                    Attack();
-                    //Next();
-                    break;
-
-                case Attacks.Dash:
-                    Debug.Log(Attacks.Dash);
-                    //StartCoroutine(Wait(1));
-                    Dash(30);
-                    //Next();
-                    break;
-
-                case Attacks.jump:
-                    if (isOnGround)
-                    {
-                        //StartCoroutine(Wait(1.5f));
-                        Debug.Log(Attacks.jump);
-                        Jump(new Vector2(0, 1), true);
-                        //Next();
-                    }
-                    break;
-
-                case Attacks.Backjump:
-                    if (isOnGround)
-                    {
-                        //StartCoroutine(Wait(1.5f));
-                        Debug.Log(Attacks.Backjump);
-                        Jump(new Vector2(-targetPoint.normalized.x,1), false);
-                        //Next();
-                    }
-                    
-                    break;
-                case Attacks.StepBack:
-                    Debug.Log(Attacks.StepBack);
-                    //StartCoroutine(Wait(1.5f));
-                    //Next();
-                    break;
-                case Attacks.SpinAttack:
-                    Debug.Log(Attacks.SpinAttack);
-                    
+                    break; 
+                case Fases.Fase2:
                     break;
             }
-            StartCoroutine(Wait(2f));
+            
+            StartCoroutine(Wait(1f));
             Next();
         }
 
@@ -306,7 +323,7 @@ public class ControlUnit : MonoBehaviour
     private IEnumerator SpinAttack()
     {
 
-        jump.Use(rb, new Vector2(0, 2), 300);
+        Jump(new Vector2(0, 2), 0.5);
         yield return new WaitForSeconds(0.2f);
         spinAttack.Use(rb);
         StartCoroutine(SelfCooldown(1.4f));
@@ -319,6 +336,26 @@ public class ControlUnit : MonoBehaviour
 
     }
 
+    public void Damaged(int damage, Vector3 knockbackDir)
+    {
+
+        stats.LoseLive(damage);
+        //animator.SetTrigger("isDamaged");
+
+        Debug.Log(knockbackDir.normalized);
+        rb.velocity = (new Vector3(0f, 0.5f, 0) + knockbackDir.normalized) * 10;
+
+        StartCoroutine(KnockbackTime());
+        //animator.ResetTrigger("isDamaged");
+
+    }
+
+    private IEnumerator KnockbackTime()
+    {
+        knockback = true;
+        yield return new WaitForSeconds(0.5f);
+        knockback = false;
+    }
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
