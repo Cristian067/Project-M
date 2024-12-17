@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Event1 : MonoBehaviour
@@ -26,17 +27,11 @@ public class Event1 : MonoBehaviour
 
     [SerializeField] private WhatToDo whatWillDo;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //public List<Cutscene> cutscene;
+    public MonoBehaviour[] scripts;
+    [SerializeField] private float time;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+ 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -44,7 +39,11 @@ public class Event1 : MonoBehaviour
         //Debug.Log(layerToInteract.ToString());
         if ((layerToInteract & 1 << collision.gameObject.layer) == 1 << collision.gameObject.layer) //if(collision.gameObject.layer.CompareTo(layerToInteract) << 0 )
         {
-            Debug.Log(name);
+            for (int i = 0; i < scripts.Length; i++)
+            {
+                scripts[i].Invoke("Use",0);
+            }
         }
+
     }
 }
