@@ -50,6 +50,7 @@ public class Npc : MonoBehaviour
                if (idx < talk.Length && afterTalk == 0)
                 {
                     PlayerMovementV2.Instance.ChangeInteracting(true);
+                    PlayerMovementV2.Instance.ForceStop();
                     UiManager.Instance.ShowDialogue(talk[idx]);
                     idx++;
                 }

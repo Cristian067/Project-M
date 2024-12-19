@@ -201,7 +201,11 @@ public class PlayerMovementV2 : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        ApplyMovement();
+        if (!GameManager.Instance.IsPaused() && !interacting)
+        {
+            ApplyMovement();
+        }
+            
         CheckSurrondings();
     }
     private void Attack()
@@ -578,7 +582,11 @@ public class PlayerMovementV2 : MonoBehaviour
     {
         interacting = condition;
         horizontal = 0;
-        rb.velocity = new Vector2 (0,0);
+        //rb.velocity = new Vector2 (0,0);
+    }
+    public void ForceStop()
+    {
+        rb.velocity = Vector2.zero;
     }
     public bool isInteracting()
     {
