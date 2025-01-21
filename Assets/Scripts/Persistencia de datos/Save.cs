@@ -14,22 +14,6 @@ public class Save : MonoBehaviour
     {
         Instance = this;
     }
-
-    // Start is called before the first frame update
-    //private bool inTitleScreen = true;
-    void Start()
-    {
-
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void saveData(int fileNum,int souls,int lives, int fuel, int damage, string mapIn, Vector3 setPos, bool melee, bool hook, bool fireball, bool dobleJump, bool wallJump, float setTimePlayed)
     {
 

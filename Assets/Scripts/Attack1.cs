@@ -23,11 +23,6 @@ public class AttackV2 : MonoBehaviour
         StartCoroutine(Desactivate());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void Attack()
     {
 

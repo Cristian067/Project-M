@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class GetHability : MonoBehaviour
 {
-
-    
     public enum habilities
     {
         basic,
@@ -48,10 +46,6 @@ public class GetHability : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-
-        
-
 
         if (collision.gameObject.tag == "Player")
         {
@@ -70,9 +64,6 @@ public class GetHability : MonoBehaviour
             isTaken = true;
 
         }
-
-        
-        
         //Destroy(gameObject);
     }
 

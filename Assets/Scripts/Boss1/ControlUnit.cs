@@ -40,15 +40,15 @@ public class ControlUnit : MonoBehaviour
 
     }
 
-    private enum Fases
+    private enum Phases
     {
-        Fase1,
-        Fase2
+        Phase1,
+        Phase2
 
     }
 
     private Attacks attack;
-    private Fases currentFase;
+    private Phases currentFase;
     
 
     private bool isOnGround;
@@ -88,7 +88,7 @@ public class ControlUnit : MonoBehaviour
         {
             switch (currentFase)
             {
-                case Fases.Fase1:
+                case Phases.Phase1:
                     switch (attack)
                     {
                         case Attacks.Wait:
@@ -152,7 +152,7 @@ public class ControlUnit : MonoBehaviour
                             break;
                     }
                     break; 
-                case Fases.Fase2:
+                case Phases.Phase2:
                     break;
             }
             

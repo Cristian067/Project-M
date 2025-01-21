@@ -23,9 +23,9 @@ public class ChangeAudioValues : MonoBehaviour
         
     }
 
-    public void ChangeVolumen(float volumen)
+    public void ChangeVolumen(float volume)
     {
-        audioSource.volume = volumen;
-        PlayerPrefs.SetFloat($"volume_{gameObject.name}",volumen);
+        audioSource.volume = volume;
+        PlayerPrefs.SetFloat($"volume_{gameObject.name}",volume);
     }
 }
