@@ -10,6 +10,7 @@ public class ItemSO : ScriptableObject
 {
 
     public Sprite image;
+    //public int id;
     //public string itemName;
     public string description;
     public int amount;

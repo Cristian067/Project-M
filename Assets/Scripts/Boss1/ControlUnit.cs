@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class ControlUnit : MonoBehaviour
 {
+    
     [SerializeField] private bool thinking;
 
     private Stats stats;

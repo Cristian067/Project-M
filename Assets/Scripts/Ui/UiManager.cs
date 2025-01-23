@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,10 @@ public class UiManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
 
     [SerializeField] private GameObject GOPanel;
+
+    [SerializeField] private GameObject InfoPanel;
+    [SerializeField] private TextMeshProUGUI InfoNameText;
+    [SerializeField] private TextMeshProUGUI InfoDescriptionText;
 
     private void Awake()
     {
@@ -69,6 +74,18 @@ public class UiManager : MonoBehaviour
             escPanels[i].SetActive(false);
         }
         escPanels[panel].SetActive(true);
+    }
+    public void ShowItemInfo(string itemName, string description)
+    {
+        InfoPanel.SetActive(true);
+        InfoNameText.text = itemName;
+        InfoDescriptionText.text = description;
+    }
+    public void HideItemInfo()
+    {
+        InfoPanel.SetActive(false);
+        InfoNameText.text = "";
+        InfoDescriptionText.text = "";
     }
 
     public void ShowDialogue(string msg)

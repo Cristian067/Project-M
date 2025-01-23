@@ -62,18 +62,16 @@ public class TriggerSave : MonoBehaviour
         }
     }
     */
-    private void OnDestroy()
-    {
-        if (stats.IsAlive())
-        {
-            Save.Instance.saveData(GameManager.Instance.GetFileNum(), GameManager.Instance.GetSouls(), GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetOil(), GameManager.Instance.GetPlayerDamage(), SceneManager.GetActiveScene().name, transform.position, GameManager.Instance.GetHabilities("basic"), GameManager.Instance.GetHabilities("hook"), GameManager.Instance.GetHabilities("fireball"), GameManager.Instance.GetHabilities("doblejump"), GameManager.Instance.GetHabilities("walljump"), GameManager.Instance.GetTimePlayed());
 
-            for (int i = 0; i < InfoObjects.objects.Count; i++)
-            {
-                PlayerPrefs.SetInt(InfoObjects.objects[i] + "_" + GameManager.Instance.GetFileNum(), InfoObjects.dead[i]);
-            }
+    public void Use()
+    {
+        Save.Instance.saveData(GameManager.Instance.GetFileNum(), GameManager.Instance.GetSouls(), GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetOil(), GameManager.Instance.GetPlayerDamage(), SceneManager.GetActiveScene().name, transform.position, GameManager.Instance.GetHabilities("basic"), GameManager.Instance.GetHabilities("hook"), GameManager.Instance.GetHabilities("fireball"), GameManager.Instance.GetHabilities("doblejump"), GameManager.Instance.GetHabilities("walljump"), GameManager.Instance.GetTimePlayed(), Inventory.Instance.GetItemsForSave(false), Inventory.Instance.GetItemsForSave(true));
+
+        for (int i = 0; i < InfoObjects.objects.Count; i++)
+        {
+            PlayerPrefs.SetInt(InfoObjects.objects[i] + "_" + GameManager.Instance.GetFileNum(), InfoObjects.dead[i]);
         }
-        
     }
+    
 
 }

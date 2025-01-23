@@ -29,6 +29,11 @@ public class Progresion
     */
     public float timePlayed;
 
+    public List<ItemSO> items;
+    public List<ItemSO> specialItems;
+
+    public List<int> itemsID;
+    public List<int> bossesKilledID;
     
 
 

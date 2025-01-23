@@ -7,6 +7,8 @@ public class GetItem : MonoBehaviour
 {
     [SerializeField] private ItemSO item;
 
+    [SerializeField] private int id;
+
     [SerializeField] private bool isSpecialItem;
 
     [SerializeField] private AudioSource audioSource;
@@ -16,6 +18,16 @@ public class GetItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //id = item.id;
+        /*
+        List<ItemSO> itemsInInventory = Inventory.Instance.GetItemsForSave(true);
+
+        itemsInInventory.Contains(item)*/
+        if(Save.Instance.LoadItemData(GameManager.Instance.GetFileNum()).Contains(id))
+        {
+            Destroy(gameObject);
+        }
+            
         //audioSource = GetComponent<AudioSource>();
         /*
         if (GameManager.Instance.GetHabilities(hability.ToString()))
@@ -44,14 +56,15 @@ public class GetItem : MonoBehaviour
         {
             audioSource.clip = clip;
             audioSource.Play();
-            CircleCollider2D circleCollider = GetComponent<CircleCollider2D>();
-            circleCollider.enabled = false;
+            BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
+            boxCollider.enabled = false;
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.enabled = false;
 
             PlayerMovementV2 player = collision.gameObject.GetComponent<PlayerMovementV2>();
 
             Inventory.Instance.GetItem(item, isSpecialItem);
+            Save.Instance.AddTempData("Item", id);
             player.CheckHabilities();
 
             isTaken = true;

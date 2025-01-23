@@ -63,6 +63,8 @@ public class Inventory : MonoBehaviour
             GameObject container = Instantiate(itemSlot);
             container.name = items[i].name;
             container.transform.parent = itemContainer.transform;
+            ItemSlot slotInfo = container.GetComponent<ItemSlot>();
+            slotInfo.GetInfo(items[i]);
             Image itemImage = container.GetComponent<Image>();
             itemImage.sprite = items[i].image;
         }
@@ -71,6 +73,8 @@ public class Inventory : MonoBehaviour
             GameObject container = Instantiate(itemSlot);
             container.name = specialItems[i].name;
             container.transform.parent = specialItemContainer.transform;
+            ItemSlot slotInfo = container.GetComponent<ItemSlot>();
+            slotInfo.GetInfo(specialItems[i]);
             Image itemImage = container.GetComponent<Image>();
             itemImage.sprite = specialItems[i].image;
         }
@@ -100,6 +104,20 @@ public class Inventory : MonoBehaviour
         }
 
     }
+
+    public List<ItemSO> GetItemsForSave(bool special)
+    {
+        if (special)
+        {
+            return specialItems;
+        }
+        else
+        {
+            return items;
+        }
+        
+    }
+
     //Que mire las cosas del inventario cada vez que se active el panel
     private void OnEnable()
     {

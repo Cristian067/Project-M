@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEditor;
 
 public class Save : MonoBehaviour
 {
     static public Save Instance { get; private set; }
 
+    private List<int> tempItemId = new List<int>();
+    private List<int> tempBossId = new List<int>();
 
     private string path = Application.dataPath + "/../saves/";
 
@@ -14,11 +17,17 @@ public class Save : MonoBehaviour
     {
         Instance = this;
     }
-    public void saveData(int fileNum,int souls,int lives, int fuel, int damage, string mapIn, Vector3 setPos, bool melee, bool hook, bool fireball, bool dobleJump, bool wallJump, float setTimePlayed)
+    public void saveData(int fileNum,int souls,int lives, int fuel, int damage, string mapIn, Vector3 setPos, bool melee, bool hook, bool fireball, bool dobleJump, bool wallJump, float setTimePlayed, List<ItemSO> _items, List<ItemSO> _specialItems /*List<int> itemId*/)
     {
 
-
-
+        if (!File.Exists(path))
+        {
+            AssetDatabase.CreateFolder("../", "saves");
+        }
+        if (!File.Exists(path +"bosses/"))
+        {
+            AssetDatabase.CreateFolder("../saves/", "bosses");
+        }
         Progresion save = new Progresion
         {
             //name = playerName,
@@ -39,6 +48,11 @@ public class Save : MonoBehaviour
 
             timePlayed = setTimePlayed,
 
+            items = _items,
+            specialItems = _specialItems,
+            
+            itemsID = tempItemId,
+            bossesKilledID = tempBossId,
 
             
         };
@@ -48,9 +62,49 @@ public class Save : MonoBehaviour
         Debug.Log(jsonContent);
         File.WriteAllText(path + $"{fileNum}.json", jsonContent);
 
+
+
     }
 
 
+    public void AddTempData(string dataType, int tempNumber)
+    {
+        if(dataType == "Item")
+        {
+            tempItemId.Add(tempNumber);
+        }
+
+        if(dataType == "Boss")
+        {
+            tempBossId.Add(tempNumber);
+        }
+
+    }
+    public List<int> LoadItemData(int fileNum)
+    {
+        if (File.Exists(path + $"{fileNum}.json"))
+        {
+            string jsonContent = File.ReadAllText(path + $"{fileNum}.json");
+            Progresion save = JsonUtility.FromJson<Progresion>(jsonContent);
+            return save.itemsID;
+        }
+        return null;
+
+    }
+    public List<int> LoadBossData(int fileNum)
+    {
+        if (File.Exists(path + $"{fileNum}.json"))
+        {
+            string jsonContent = File.ReadAllText(path + $"{fileNum}.json");
+            Progresion save = JsonUtility.FromJson<Progresion>(jsonContent);
+            return save.bossesKilledID;
+        }
+        return null;
+    }
+    public void SaveItemData()
+    {
+
+    }
     public void LoadData(int fileNum)
     {
         if (File.Exists(path + $"{fileNum}.json"))
@@ -60,6 +114,21 @@ public class Save : MonoBehaviour
             Progresion save = JsonUtility.FromJson<Progresion>(jsonContent);
 
             GameManager.Instance.GetData(save.souls,save.lives,save.fuel,save.damage, save.mapPosition,save.haveMelee,save.haveHook,save.haveFireball,save.haveDobleJump, save.haveWallJump, save.timePlayed);
+
+            for (int i = 0; i < save.specialItems.Count; i++)
+            {
+                Inventory.Instance.GetItem(save.specialItems[i], save.specialItems[i].specialItem);
+            }
+            
+            foreach (int i in save.itemsID)
+            {
+                AddTempData("Item", i);
+            }
+
+            for (int i = 0; i < save.items.Count; i++)
+            {
+                Inventory.Instance.GetItem(save.items[i], save.items[i].specialItem);
+            }
             //if(!inTitleScreen){}
 
             //GameManager.Instance.Load(save.name, save.mapPosition, save.points, save.color, save.level, save.exp, save.initialPower, save.levelsCompleted, save.timePlayed);

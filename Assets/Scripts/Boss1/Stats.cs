@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Stats : MonoBehaviour
 {
-    [SerializeField]private bool isAlive;
+    [SerializeField] private int id;
+    [SerializeField] private bool isAlive;
     [SerializeField] private string livingName;
     [SerializeField] private int lives;
     [SerializeField] private int damage;
@@ -19,7 +20,7 @@ public class Stats : MonoBehaviour
 
     void Start()
     {
-        if(PlayerPrefs.GetInt(livingName + "_isDead_" + GameManager.Instance.GetFileNum()) == 1)
+        if(Save.Instance.LoadBossData(GameManager.Instance.GetFileNum()).Contains(id))
         {
             isAlive = false;
         }
@@ -33,7 +34,7 @@ public class Stats : MonoBehaviour
 
     private void KillNpc()
     {
-        PlayerPrefs.SetInt(livingName + "_isDead_" + GameManager.Instance.GetFileNum(), 1);
+        Save.Instance.AddTempData("Boss",id);
                 
     }
 

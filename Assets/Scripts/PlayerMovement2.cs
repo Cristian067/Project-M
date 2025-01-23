@@ -614,12 +614,40 @@ public class PlayerMovementV2 : MonoBehaviour
 
     public void CheckHabilities()
     {
-
+        /*
         melee = GameManager.Instance.GetHabilities("basic");
         hook = GameManager.Instance.GetHabilities("hook");
         fireball = GameManager.Instance.GetHabilities("fireball");
         dobleJump = GameManager.Instance.GetHabilities("doblejump");
         wallJump = GameManager.Instance.GetHabilities("walljump");
+        */
+
+        List<ItemSO> specialItems = Inventory.Instance.GetItemsForSave(true);
+
+        foreach (ItemSO item in specialItems)
+        {
+            if (item.habilityToGive == ItemSO.Hability.Melee)
+            {
+                melee = true;
+            }
+            if (item.habilityToGive == ItemSO.Hability.Hook)
+            {
+                hook = true;
+            }
+            if (item.habilityToGive == ItemSO.Hability.Fireball)
+            {
+                fireball = true;
+            }
+            if (item.habilityToGive == ItemSO.Hability.DobleJump)
+            {
+                dobleJump = true;
+            }
+            if (item.habilityToGive == ItemSO.Hability.Walljump)
+            {
+                wallJump = true;
+            }
+
+        }
 
         if (dobleJump)
         {

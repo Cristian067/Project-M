@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29488ef9bbbc2e345b5c878e0c65821e, type: 3}
+  m_Name: Pedernal
+  m_EditorClassIdentifier: 
+  image: {fileID: -1117653198, guid: 41a2956bb5ed8054abd2eed8151c482c, type: 3}
+  description: Un trozo de un pedernal. Si se combinase con suficiente aceite o algo
+    inflamable seguramente pueda servir de ayuda
+  amount: 0
+  specialItem: 1
+  ifSpecialItem: 
+  habilityToGive: 2
