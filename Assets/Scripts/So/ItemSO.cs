@@ -13,6 +13,7 @@ public class ItemSO : ScriptableObject
     //public int id;
     //public string itemName;
     public string description;
+    public bool stackable;
     public int amount;
 
     public bool specialItem;
