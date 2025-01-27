@@ -73,14 +73,6 @@ public class EnemyV2 : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
-        
-        
-        
-
-        
-        
-
          hitGround1 = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.51f, 0), Vector3.down, 0.1f, whatIsGround);
         hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down, 0.1f, whatIsGround);
         //Debug.DrawLine(transform.position + new Vector3(0,-0.51f,0), transform.position + new Vector3(0,-0.61f,0));
@@ -94,10 +86,7 @@ public class EnemyV2 : MonoBehaviour
             isOnGround = false;
         }
 
-        
-
         Debug.DrawLine(transform.position + new Vector3(0.5f,0,0), transform.position + transform.right, Color.blue);
-
 
         rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 15f * Time.deltaTime), rb.velocity.y);
 

@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
@@ -57,6 +60,7 @@ public class Inventory : MonoBehaviour
 
     private void CheckItems()
     {
+        items = items.OrderByDescending(ch => ch).ToList();
         for (int i = 0;i < items.Count;i++)
         {
             
@@ -64,7 +68,9 @@ public class Inventory : MonoBehaviour
             container.name = items[i].name;
             container.transform.parent = itemContainer.transform;
             ItemSlot slotInfo = container.GetComponent<ItemSlot>();
-            slotInfo.GetInfo(items[i]);
+            //
+            //Debug.Log(items[i].name);
+            slotInfo.GetInfo(items[i], items[i].stackable,0);
             Image itemImage = container.GetComponent<Image>();
             itemImage.sprite = items[i].image;
         }
@@ -74,7 +80,7 @@ public class Inventory : MonoBehaviour
             container.name = specialItems[i].name;
             container.transform.parent = specialItemContainer.transform;
             ItemSlot slotInfo = container.GetComponent<ItemSlot>();
-            slotInfo.GetInfo(specialItems[i]);
+            slotInfo.GetInfo(specialItems[i], false,0);
             Image itemImage = container.GetComponent<Image>();
             itemImage.sprite = specialItems[i].image;
         }

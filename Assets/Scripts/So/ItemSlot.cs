@@ -11,6 +11,7 @@ public class ItemSlot : MonoBehaviour, IDeselectHandler
 
     [SerializeField] private int id;
     [SerializeField] private string itemName;
+    [SerializeField] private int amount;
     [SerializeField] private string description;
 
 
@@ -24,9 +25,13 @@ public class ItemSlot : MonoBehaviour, IDeselectHandler
     }
 
 
-    public void GetInfo(ItemSO _item)
+    public void GetInfo(ItemSO _item, bool stackable, int _amount)
     {
         item = _item;
+        if (stackable)
+        {
+            amount = _amount;
+        }
     }
 
     public void ShowInfo()

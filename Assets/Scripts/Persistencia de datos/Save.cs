@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEditor;
+using System.Linq;
+using Unity.VisualScripting;
 
 public class Save : MonoBehaviour
 {
@@ -19,6 +21,8 @@ public class Save : MonoBehaviour
     }
     public void saveData(int fileNum,int souls,int lives, int fuel, int damage, string mapIn, Vector3 setPos, bool melee, bool hook, bool fireball, bool dobleJump, bool wallJump, float setTimePlayed, List<ItemSO> _items, List<ItemSO> _specialItems /*List<int> itemId*/)
     {
+        string[] specialItemsStringArray;
+        List<string> specialItemsStringList = new List<string>();
 
         if (!File.Exists(path))
         {
@@ -28,6 +32,14 @@ public class Save : MonoBehaviour
         {
             AssetDatabase.CreateFolder("../saves/", "bosses");
         }
+
+        foreach (ItemSO i in _specialItems)
+        {
+            specialItemsStringList.Add(i.name);
+        }
+        specialItemsStringArray = specialItemsStringList.ToArray();
+        
+
         Progresion save = new Progresion
         {
             //name = playerName,
@@ -49,7 +61,7 @@ public class Save : MonoBehaviour
             timePlayed = setTimePlayed,
 
             items = _items,
-            specialItems = _specialItems,
+            specialItems = specialItemsStringArray,
             
             itemsID = tempItemId,
             bossesKilledID = tempBossId,
@@ -114,12 +126,26 @@ public class Save : MonoBehaviour
             Progresion save = JsonUtility.FromJson<Progresion>(jsonContent);
 
             GameManager.Instance.GetData(save.souls,save.lives,save.fuel,save.damage, save.mapPosition,save.haveMelee,save.haveHook,save.haveFireball,save.haveDobleJump, save.haveWallJump, save.timePlayed);
-
-            for (int i = 0; i < save.specialItems.Count; i++)
+            /*
+            for (int i = 0; i < save.specialItems.Length; i++)
             {
-                Inventory.Instance.GetItem(save.specialItems[i], save.specialItems[i].specialItem);
+                //save.specialItems[i];
+                Debug.Log(ObjectsList.items[i].name);
+                ObjectsList.items.ToList().Contains(save.specialItems[i].ConvertTo<ItemSO>());
+                //Debug.Log(save.specialItems[i].ConvertTo<ItemSO>());
+                //Inventory.Instance.GetItem(save.specialItems[i].ConvertTo<ItemSO>(), save.specialItems[i].ConvertTo<ItemSO>().specialItem);
+            }*/
+            foreach(ItemSO item in ObjectsList.Instance.items)
+            {
+                for (int i = 0;i < save.specialItems.Length; i++)
+                {
+                    if (item.name == save.specialItems[i])
+                    {
+                        Inventory.Instance.GetItem(item, item.specialItem);
+                    }
+                }
             }
-            
+
             foreach (int i in save.itemsID)
             {
                 AddTempData("Item", i);

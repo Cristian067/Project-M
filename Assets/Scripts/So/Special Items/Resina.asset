@@ -15,6 +15,7 @@ MonoBehaviour:
   image: {fileID: -892892906, guid: 41a2956bb5ed8054abd2eed8151c482c, type: 3}
   description: Pegotes de resina. Esta resina es bastante pegajosa, tanto como para
     quedarse pegado en las paredes.
+  stackable: 0
   amount: 0
   specialItem: 1
   ifSpecialItem: 

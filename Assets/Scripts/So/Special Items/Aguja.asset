@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Aguja
   m_EditorClassIdentifier: 
   image: {fileID: 648109390, guid: 41a2956bb5ed8054abd2eed8151c482c, type: 3}
-  id: 1
   description: 'Una aguja medio oxidada, se puede notar que se ha estado mucho tiempo
     sin usar. Su unica funcion en este momento es '
-  amount: 1
+  stackable: 0
+  amount: 0
   specialItem: 1
   ifSpecialItem: 
   habilityToGive: 0
