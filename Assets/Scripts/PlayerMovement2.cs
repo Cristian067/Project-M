@@ -142,6 +142,7 @@ public class PlayerMovementV2 : MonoBehaviour
             //Usar gancho
             try
             {
+                /*
                 if (Input.GetKeyDown(KeyCode.Mouse1) && !inHook && hook)
                 {
                     RaycastHit2D hitHook = Physics2D.Raycast(transform.position, direction, hookDistance, whatIsHook);
@@ -152,9 +153,9 @@ public class PlayerMovementV2 : MonoBehaviour
                     if (hitHook)
                     {
                         Debug.Log(hitHook.collider.name);
-                        Hook(hitHook, direction);
+                        Hook(direction);
                     }
-                }
+                }*/
             }
             catch { Debug.Log("Gancho no ganchado"); }
 
@@ -359,15 +360,21 @@ public class PlayerMovementV2 : MonoBehaviour
         }
     }
     
-    private void Hook(RaycastHit2D hit, Vector2 direction)
+    public void Hook(Vector2 destiny)
     {
         hookUsed = true;
         inHook = true;
         rb.velocity = new Vector2(rb.velocity.x,0);
+        /*
         rb.AddForce((hit.collider.transform.position - transform.position ).normalized* (hookForce), ForceMode2D.Impulse);
         inHookSpeed = (hit.collider.transform.position.x - transform.position.x);
         Debug.Log(hit.collider.gameObject.transform.position);
         hookedPos = hit.collider.transform.position;
+        */
+        rb.AddForce((new Vector3(destiny.x, destiny.y,0) - transform.position).normalized * (hookForce), ForceMode2D.Impulse);
+        inHookSpeed = (destiny.x - transform.position.x);
+        
+        hookedPos = new Vector3(destiny.x, destiny.y, 0);
         isOnGround = false;
         StartCoroutine(CooldownHook());
         //transform.Translate(hit.transform.position);
@@ -655,6 +662,30 @@ public class PlayerMovementV2 : MonoBehaviour
         }
     }
 
+    public bool HaveHability(string whatHab)
+    {
+        if (whatHab == "melee")
+        {
+            return melee;
+        }
+        if (whatHab == "hook")
+        {
+            return hook;
+        }
+        if (whatHab == "fireball")
+        {
+            return fireball;
+        }
+        if (whatHab == "walljump")
+        {
+            return wallJump;
+        }
+        if (whatHab == "doblejump")
+        {
+            return dobleJump;
+        }
+        return false;
+    }
     
 
     public void Damaged(int damage, Vector3 knockbackDir)

@@ -22,7 +22,8 @@ public class Soul : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GameManager.Instance.GetASoul();
-            PlayerPrefs.SetInt(name + "_" + GameManager.Instance.GetFileNum(), 1);
+            
+            //PlayerPrefs.SetInt(name + "_" + GameManager.Instance.GetFileNum(), 1);
             Destroy(gameObject);
         }
     }

@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
+
 
 public class Inventory : MonoBehaviour
 {
@@ -25,6 +27,9 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private List<ItemSO> items;
     [SerializeField] private List<ItemSO> specialItems;
+
+    private ItemSO previousItem;
+    private GameObject container;
 
     private void Awake()
     {
@@ -60,19 +65,32 @@ public class Inventory : MonoBehaviour
 
     private void CheckItems()
     {
-        items = items.OrderByDescending(ch => ch).ToList();
+        
+        items = items.OrderByDescending(x => x.name).ToList();
+        
+
         for (int i = 0;i < items.Count;i++)
         {
+
+            if (items[i] == previousItem)
+            {
+                ItemSlot info = container.GetComponent<ItemSlot>();
+                info.AddAmount();
+            }
+            else
+            {
+                container = Instantiate(itemSlot);
+                container.name = items[i].name;
+                container.transform.parent = itemContainer.transform;
+                ItemSlot slotInfo = container.GetComponent<ItemSlot>();
+                //
+                //Debug.Log(items[i].name);
+                slotInfo.GetInfo(items[i], items[i].stackable, 0);
+                Image itemImage = container.GetComponent<Image>();
+                itemImage.sprite = items[i].image;
+                previousItem = slotInfo.item;
+            }
             
-            GameObject container = Instantiate(itemSlot);
-            container.name = items[i].name;
-            container.transform.parent = itemContainer.transform;
-            ItemSlot slotInfo = container.GetComponent<ItemSlot>();
-            //
-            //Debug.Log(items[i].name);
-            slotInfo.GetInfo(items[i], items[i].stackable,0);
-            Image itemImage = container.GetComponent<Image>();
-            itemImage.sprite = items[i].image;
         }
         for (int i = 0;i<specialItems.Count;i++)
         {
@@ -121,8 +139,9 @@ public class Inventory : MonoBehaviour
         {
             return items;
         }
-        
     }
+
+    
 
     //Que mire las cosas del inventario cada vez que se active el panel
     private void OnEnable()
