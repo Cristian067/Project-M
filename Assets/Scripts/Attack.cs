@@ -32,7 +32,7 @@ public class Attack : MonoBehaviour
                 enemy.LoseLive(GameManager.Instance.GetPlayerDamage());
                 collisionRb.velocity = Vector3.zero;
                 collisionRb.AddForce((collision.transform.position - transform.position).normalized * knockback * 4);
-                PlayerMovementV2 playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovementV2>();
+                PlayerMovement playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovement>();
 
                 if (playerMovement.GetDirectionLook() == "down")
                 {
@@ -48,7 +48,7 @@ public class Attack : MonoBehaviour
                 stats.LoseLive(GameManager.Instance.GetPlayerDamage());
                 collisionRb.velocity = Vector3.zero;
                 collisionRb.AddForce((collision.transform.position - transform.position).normalized * knockback);
-                PlayerMovementV2 playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovementV2>();
+                PlayerMovement playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovement>();
 
                 if (playerMovement.GetDirectionLook() == "down")
                 {
@@ -70,7 +70,7 @@ public class Attack : MonoBehaviour
             collisionRb.velocity = Vector3.zero;
             //collisionRb.AddForce(
             Vector3 dir = (collision.transform.position - transform.position);
-            PlayerMovementV2.Instance.Damaged(1, dir);
+            PlayerMovement.Instance.Damaged(1, dir);
 
         }
 

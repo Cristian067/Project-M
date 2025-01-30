@@ -41,9 +41,9 @@ public class AttackV2 : MonoBehaviour
                 //TODO: Arreglar el porque el enemigo sale disparado hacia arriba en de de un poco atras
                 //Debug.Log((collision.transform.position - transform.position).normalized * knockback * 4);
                 //collisionRb.velocity = new Vector2((collision.transform.position - transform.position).normalized.x * knockback * 200,3);
-                Vector3 dir = (collision.transform.position - PlayerMovementV2.Instance.GetPosition());
+                Vector3 dir = (collision.transform.position - PlayerMovement.Instance.GetPosition());
                 enemy.Damaged(GameManager.Instance.GetPlayerDamage(), dir);
-                PlayerMovementV2 playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovementV2>();
+                PlayerMovement playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovement>();
 
                 if (playerMovement.GetDirectionLook() == "down")
                 {
@@ -62,9 +62,9 @@ public class AttackV2 : MonoBehaviour
                 //TODO: Arreglar el porque el enemigo sale disparado hacia arriba en de de un poco atras
 
                 //collisionRb.velocity = ((collision.transform.position - transform.position).normalized * knockback * 20);
-                Vector3 dir = (collision.transform.position - PlayerMovementV2.Instance.GetPosition());
+                Vector3 dir = (collision.transform.position - PlayerMovement.Instance.GetPosition());
                 cu.Damaged(GameManager.Instance.GetPlayerDamage(), dir);
-                PlayerMovementV2 playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovementV2>();
+                PlayerMovement playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovement>();
 
                 if (playerMovement.GetDirectionLook() == "down")
                 {
@@ -86,7 +86,7 @@ public class AttackV2 : MonoBehaviour
             collisionRb.velocity = Vector3.zero;
             //collisionRb.AddForce(
             Vector3 dir = (collision.transform.position - transform.position);
-            PlayerMovementV2.Instance.Damaged(1, dir);
+            PlayerMovement.Instance.Damaged(1, dir);
 
         }
 

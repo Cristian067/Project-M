@@ -75,7 +75,7 @@ public class ControlUnit : MonoBehaviour
 
         attack = Attacks.Wait;
 
-        player = FindAnyObjectByType<PlayerMovementV2>().gameObject;
+        player = FindAnyObjectByType<PlayerMovement>().gameObject;
     }
 
     // Update is called once per frame
@@ -238,7 +238,7 @@ public class ControlUnit : MonoBehaviour
 
     private Vector2 FindTarget()
     {
-        return PlayerMovementV2.Instance.GetPosition();
+        return PlayerMovement.Instance.GetPosition();
         
     }
     private void Attack()
@@ -289,7 +289,7 @@ public class ControlUnit : MonoBehaviour
     private void Dash(float force)
     {
         rb.constraints = RigidbodyConstraints2D.FreezePositionY;
-        Vector2 dir = PlayerMovementV2.Instance.GetPosition() - transform.position;
+        Vector2 dir = PlayerMovement.Instance.GetPosition() - transform.position;
 
         rb.velocity = new Vector2(dir.normalized.x,0) * force;
         StartCoroutine(ForceStop(0.3f));
@@ -372,7 +372,7 @@ public class ControlUnit : MonoBehaviour
             {
                 Vector3 dir = collision.transform.position - transform.position;
 
-                PlayerMovementV2.Instance.Damaged(1, dir);
+                PlayerMovement.Instance.Damaged(1, dir);
             }
             
         }

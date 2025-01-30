@@ -7,6 +7,9 @@ public class Hook : MonoBehaviour
 
     private bool canHook;
 
+    [SerializeField] private LayerMask whatGround;
+    [SerializeField] private CircleCollider2D cc;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +19,23 @@ public class Hook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        cc = GetComponent<CircleCollider2D>();
+        
+
         if (canHook && Input.GetKeyDown(KeyCode.Mouse1))
         {
-            PlayerMovementV2.Instance.Hook(transform.position);
+            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, PlayerMovement.Instance.GetPosition() - transform.position, cc.radius / 4, whatGround);
+            //Debug.Log(hit2D.collider.gameObject.name);
+            Debug.DrawRay(transform.position, PlayerMovement.Instance.GetPosition() - transform.position);
+            if (hit2D)
+            {
+                return;
+            }
+            else
+            {
+                PlayerMovement.Instance.Hook(transform.position);
+            }
+            
         }
     }
 
@@ -28,10 +45,18 @@ public class Hook : MonoBehaviour
         {
             //PlayerMovementV2 player = collision.gameObject.GetComponent<PlayerMovementV2>();
 
-            if (PlayerMovementV2.Instance.HaveHability("hook"))
+            if (PlayerMovement.Instance.HaveHability("hook"))
             {
-                //Debug.Log("hook");
+                
+
+                
+                
+                
                 canHook = true;
+                
+                //if (PlayerMovement.Instance.GetPosition() )
+                //Debug.Log("hook");
+                
             }
             
             
@@ -48,7 +73,13 @@ public class Hook : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        //Gizmos.DrawLine(transform.position, PlayerMovementV2.Instance.GetPosition());
+        if (canHook)
+        {
+            Gizmos.DrawLine(transform.position, PlayerMovement.Instance.GetPosition()  );
+            
+        }
+        //Gizmos.DrawSphere(transform.position,cc.radius/4);
+        
     }
 
 }

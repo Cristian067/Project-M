@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlayerMovementV2 : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    public static PlayerMovementV2 Instance { get; private set; }
+    public static PlayerMovement Instance { get; private set; }
 
     private Rigidbody2D rb;
 
@@ -251,6 +251,7 @@ public class PlayerMovementV2 : MonoBehaviour
             if (isTouchingWall && !isOnGround && rb.velocity.y < 0)
             {
                 isWallSliding = true;
+
             }
             else
             {
@@ -339,20 +340,28 @@ public class PlayerMovementV2 : MonoBehaviour
 
     private void CheckIfCanJump()
     {
-        if (isOnGround && rb.velocity.y <= 0 || isWallSliding)
+        if (isOnGround && rb.velocity.y <= 0)
         {
             remainingJumps = maxJumps;
             hookUsed = false;
         }
-        /*
-        if(!isOnGround || GameManager.Instance.GetHabilities("doblejump"))
+        if (isWallSliding)
         {
-            canJump = true;
+            remainingJumps = 1;
+            hookUsed = false;
         }
-        */
-        if(remainingJumps <= 0 || !isOnGround && !isWallSliding && !GameManager.Instance.GetHabilities("doblejump"))
+        
+        if (remainingJumps <= 0 || !isOnGround && !isWallSliding)
         {
-            canJump = false;
+            if (dobleJump && remainingJumps > 0)
+            {
+                remainingJumps = 1;
+                canJump = true;
+            }
+            else
+            {
+                canJump = false;
+            }
         }
         else
         {

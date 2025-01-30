@@ -132,11 +132,11 @@ public class EnemyV2 : MonoBehaviour
             case States.Chase:
                 if (!knockback)
                 {
-                    MoveTo(PlayerMovementV2.Instance.GetPosition());
+                    MoveTo(PlayerMovement.Instance.GetPosition());
                 }
 
                 float stopChasingDistance = 8f;
-                if (Vector2.Distance(transform.position, PlayerMovementV2.Instance.GetPosition()) > stopChasingDistance)
+                if (Vector2.Distance(transform.position, PlayerMovement.Instance.GetPosition()) > stopChasingDistance)
                 {
                     currentState = States.Roaming;
                 }
@@ -288,7 +288,7 @@ public class EnemyV2 : MonoBehaviour
     private void FindTarget()
     {
         float targetRange = 5f;
-        if(Vector3.Distance(transform.position,PlayerMovementV2.Instance.GetPosition()) < targetRange)
+        if(Vector3.Distance(transform.position,PlayerMovement.Instance.GetPosition()) < targetRange)
         {
             currentState = States.Chase;
         }

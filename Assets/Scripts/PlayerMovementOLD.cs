@@ -7,9 +7,10 @@ using System.Reflection;
 using UnityEngine;
 
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementOLD
+    : MonoBehaviour
 {
-    public static PlayerMovement Instance { get; private set; }
+    public static PlayerMovementOLD Instance { get; private set; }
 
     private Rigidbody2D rb;
     //[SerializeField]private Camera cam;

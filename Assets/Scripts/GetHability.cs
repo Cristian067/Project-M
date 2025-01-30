@@ -56,7 +56,7 @@ public class GetHability : MonoBehaviour
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
             spriteRenderer.enabled = false;
 
-            PlayerMovementV2 player = collision.gameObject.GetComponent<PlayerMovementV2>();
+            PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             
             GameManager.Instance.SetHabilities(hability.ToString());
             player.CheckHabilities();

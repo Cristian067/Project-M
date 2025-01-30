@@ -118,9 +118,9 @@ public class GameManager : MonoBehaviour
 
             if (lives <= 0)
             {
-                PlayerMovementV2.Instance.ChangeInteracting(true);
-                PlayerMovementV2.Instance.SetAnimationBool("isDead", true);
-                PlayerMovementV2.Instance.KillPlayer();
+                PlayerMovement.Instance.ChangeInteracting(true);
+                PlayerMovement.Instance.SetAnimationBool("isDead", true);
+                PlayerMovement.Instance.KillPlayer();
                 UiManager.Instance.ShowGameOverPanel();
             }
             UiManager.Instance.RefreshLives(lives);

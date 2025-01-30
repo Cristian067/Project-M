@@ -78,7 +78,7 @@ public class GetItem : MonoBehaviour
 
         Inventory.Instance.GetItem(item, isSpecialItem);
         Save.Instance.AddTempData("Item", id);
-        PlayerMovementV2.Instance.CheckHabilities();
+        PlayerMovement.Instance.CheckHabilities();
 
         isTaken = true;
     }

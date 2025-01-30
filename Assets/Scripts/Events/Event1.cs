@@ -13,7 +13,7 @@ public class Event1 : MonoBehaviour
     [SerializeField] private LayerMask layerToInteract;
     //[SerializeField] private Layer;
 
-    [SerializeField] private PlayerMovementV2 playerMov;
+    [SerializeField] private PlayerMovement playerMov;
 
     private int idx;
     private bool isInProcess;
@@ -45,8 +45,8 @@ public class Event1 : MonoBehaviour
             //PlayerMovementV2.Instance.ChangeInteracting(true);
             if(!isInProcess)
             {
-                PlayerMovementV2.Instance.ChangeInteracting(true);
-                PlayerMovementV2.Instance.ForceStop();
+                PlayerMovement.Instance.ChangeInteracting(true);
+                PlayerMovement.Instance.ForceStop();
                 isInProcess = true;
                 Next();
             }
@@ -63,7 +63,7 @@ public class Event1 : MonoBehaviour
             idx++;
             if (idx >= scripts.Length)
             {
-                PlayerMovementV2.Instance.ChangeInteracting(false);
+                PlayerMovement.Instance.ChangeInteracting(false);
                 alreadyUsed = true;
                 isInProcess = false;
             }
