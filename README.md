@@ -4,7 +4,7 @@
 <summary>Visuales</summary>
 <br>
     <ul>
-        <li>- [ ] Dibujar los sprites del personaje principal( personaje jugable</li>
+        <li>- [ ] Dibujar los sprites del personaje principal(personaje jugable)</li>
         <li>- [ ] Dibujar Los enemigos</li>
         <li>- [ ] Dibujar los tilesets del escenario</li>
         <li>- [x] Dibujar sprites de objetos para el gancho</li>
