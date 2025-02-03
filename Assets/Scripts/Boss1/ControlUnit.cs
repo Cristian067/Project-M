@@ -23,6 +23,7 @@ public class ControlUnit : MonoBehaviour
     [SerializeField] private float groundCheckRadius;
 
     [SerializeField] private GameObject attackGO;
+    [SerializeField] private GameObject spinGO;
 
     [SerializeField] private float speed;
 
@@ -94,7 +95,7 @@ public class ControlUnit : MonoBehaviour
                     {
                         case Attacks.Wait:
                             StartCoroutine(Wait(3));
-                            Next();
+                            //Next();
                             break;
 
                         case Attacks.Walk:
@@ -103,7 +104,7 @@ public class ControlUnit : MonoBehaviour
                                 //walking = true;
                                 //WaitAfterWalk();
                                 Debug.Log(Attacks.Walk);
-                                Next();
+                                //Next();
                             }
 
                             break;
@@ -143,17 +144,18 @@ public class ControlUnit : MonoBehaviour
 
                             break;
                         case Attacks.StepBack:
-                            Debug.Log(Attacks.StepBack);
-                            //StartCoroutine(Wait(1.5f));
+                            Dash(-20);
                             //Next();
                             break;
                         case Attacks.SpinAttack:
                             Debug.Log(Attacks.SpinAttack);
+                            SpinAttack();
 
                             break;
                     }
                     break; 
                 case Phases.Phase2:
+
                     break;
             }
             
@@ -196,8 +198,6 @@ public class ControlUnit : MonoBehaviour
 
         }
     }
-
-
     private IEnumerator WaitAfterWalk()
     {
         float idxn = UnityEngine.Random.Range(0f, 1f);
@@ -209,18 +209,16 @@ public class ControlUnit : MonoBehaviour
     private IEnumerator Wait(float seconds)
     {
         thinking = true;
-        Debug.Log(thinking);
+        //Debug.Log(thinking);
         yield return new WaitForSeconds(seconds);
         thinking = false;
     }
-
     private void Walk()
     {
         thinking = true;
         Vector2 moveToPos = FindTarget();
         MoveTo(moveToPos); 
     }
-
     private void MoveTo(Vector2 posToMove)
     {
         Vector2 pos = new Vector2(transform.position.x, transform.position.y);
@@ -235,7 +233,6 @@ public class ControlUnit : MonoBehaviour
         rb.velocity = Vector2.zero;
         Wait(1);
     }
-
     private Vector2 FindTarget()
     {
         return PlayerMovement.Instance.GetPosition();
@@ -275,7 +272,6 @@ public class ControlUnit : MonoBehaviour
         }
         
     }
-
     private IEnumerator StayInAir()
     {
         StartCoroutine(Wait(1));
@@ -285,7 +281,6 @@ public class ControlUnit : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
     }
-
     private void Dash(float force)
     {
         rb.constraints = RigidbodyConstraints2D.FreezePositionY;
@@ -296,7 +291,6 @@ public class ControlUnit : MonoBehaviour
         
     
     }
-
     private IEnumerator ForceStop(float time)
     {
         yield return new WaitForSeconds(time);
@@ -309,7 +303,6 @@ public class ControlUnit : MonoBehaviour
 
         attack = (Attacks)idx;
     }
-
     private IEnumerator SelfCooldown(float cooldown)
     {
         if (!ultimate)
@@ -319,51 +312,68 @@ public class ControlUnit : MonoBehaviour
         }
         
     }
-
-    /*
-    private IEnumerator SpinAttack()
-    {
-
-        Jump(new Vector2(0, 2), 0.5);
-        yield return new WaitForSeconds(0.2f);
-        spinAttack.Use(rb);
-        StartCoroutine(SelfCooldown(1.4f));
-
-    }
-    */
     private void CheckSurrondings()
     {
         isOnGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
 
     }
-
     public void Damaged(int damage, Vector3 knockbackDir)
     {
 
         stats.LoseLive(damage);
         //animator.SetTrigger("isDamaged");
 
-        Debug.Log(knockbackDir.normalized);
+        //Debug.Log(knockbackDir.normalized);
         rb.velocity = (new Vector3(0f, 0.5f, 0) + knockbackDir.normalized) * 10;
 
         StartCoroutine(KnockbackTime());
         //animator.ResetTrigger("isDamaged");
 
     }
-
     private IEnumerator KnockbackTime()
     {
         knockback = true;
         yield return new WaitForSeconds(0.5f);
         knockback = false;
     }
+    private void SpinAttack()
+    {
+        Jump(new Vector2(0, 1), true);
+        //StartCoroutine(StayInAir());
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        GameObject spin = Instantiate(spinGO, transform.position, Quaternion.identity);
+        spin.transform.parent = transform;
+        //spin.transform.parent = transform;
+        //Debug.Log(transform.rotation.eulerAngles.y);
+        if (transform.rotation.eulerAngles.y == 180)
+        {
+            rb.velocity = Vector3.zero;
+            //spin.transform.localPosition = new Vector3(2.5f, 0, 0); //= Instantiate(attack, transform.position - new Vector3(-5,0,0), Quaternion.identity);
+        }
+        else if (transform.rotation.y == 0)
+        {
+            rb.velocity = Vector3.zero;
+            //spin.transform.localPosition = new Vector3(2.5f, 0, 0);
+            //attackInv = Instantiate(attack, transform.position - new Vector3(5, 0, 0), Quaternion.identity);
+        }
+    }
+
+    // Segunda fase -------------------------------------------------------------------------------------
+
+    private void EnterPhase()
+    {
+
+    }
+    private void FirstAttack()
+    {
+
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
 
     }
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")

@@ -10,6 +10,8 @@ public class Hook : MonoBehaviour
     [SerializeField] private LayerMask whatGround;
     [SerializeField] private CircleCollider2D cc;
 
+    [SerializeField]private static int hooksInRange;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,7 @@ public class Hook : MonoBehaviour
 
         if (canHook && Input.GetKeyDown(KeyCode.Mouse1))
         {
-            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, PlayerMovement.Instance.GetPosition() - transform.position, cc.radius / 4, whatGround);
+            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, PlayerMovement.Instance.GetPosition() - transform.position, cc.radius /5, whatGround);
             //Debug.Log(hit2D.collider.gameObject.name);
             Debug.DrawRay(transform.position, PlayerMovement.Instance.GetPosition() - transform.position);
             if (hit2D)
@@ -33,9 +35,64 @@ public class Hook : MonoBehaviour
             }
             else
             {
-                PlayerMovement.Instance.Hook(transform.position);
+                if(hooksInRange > 1)
+                {
+                    if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Up && PlayerMovement.Instance.GetPosition().y - transform.position.y < 0)
+                    {
+                        PlayerMovement.Instance.Hook(transform.position);
+                    }
+                    if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Down && PlayerMovement.Instance.GetPosition().y - transform.position.y > 0)
+                    {
+                        PlayerMovement.Instance.Hook(transform.position);
+                    }
+                    if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Left && PlayerMovement.Instance.GetPosition().x - transform.position.x > 0)
+                    {
+                        PlayerMovement.Instance.Hook(transform.position);
+                    }
+                    if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Right && PlayerMovement.Instance.GetPosition().x - transform.position.x < 0)
+                    {
+                        PlayerMovement.Instance.Hook(transform.position);
+                    }
+                }
+                else
+                {
+                    PlayerMovement.Instance.Hook(transform.position);
+                }
+                //Debug.Log(PlayerMovement.Instance.GetPosition().y - transform.position.y);
+                
+
             }
             
+        }
+
+        SetVisuals();
+    }
+
+
+    private void SetVisuals()
+    {
+        if (hooksInRange > 1)
+        {
+            if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Up && PlayerMovement.Instance.GetPosition().y - transform.position.y < 0)
+            {
+                //PlayerMovement.Instance.Hook(transform.position);
+            }
+            if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Down && PlayerMovement.Instance.GetPosition().y - transform.position.y > 0)
+            {
+                //PlayerMovement.Instance.Hook(transform.position);
+            }
+            if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Left && PlayerMovement.Instance.GetPosition().x - transform.position.x > 0)
+            {
+                //PlayerMovement.Instance.Hook(transform.position);
+            }
+            if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Right && PlayerMovement.Instance.GetPosition().x - transform.position.x < 0)
+            {
+               // PlayerMovement.Instance.Hook(transform.position);
+            }
+        }
+        else
+        {
+            //PlayerMovement.Instance.Hook(transform.position);
         }
     }
 
@@ -45,18 +102,12 @@ public class Hook : MonoBehaviour
         {
             //PlayerMovementV2 player = collision.gameObject.GetComponent<PlayerMovementV2>();
 
+            hooksInRange++;
             if (PlayerMovement.Instance.HaveHability("hook"))
             {
-                
-
-                
-                
-                
                 canHook = true;
-                
                 //if (PlayerMovement.Instance.GetPosition() )
                 //Debug.Log("hook");
-                
             }
             
             
@@ -67,6 +118,7 @@ public class Hook : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            hooksInRange--;
             canHook = false;
         }
     }
@@ -78,7 +130,7 @@ public class Hook : MonoBehaviour
             Gizmos.DrawLine(transform.position, PlayerMovement.Instance.GetPosition()  );
             
         }
-        //Gizmos.DrawSphere(transform.position,cc.radius/4);
+        //Gizmos.DrawSphere(transform.position,cc.radius/5);
         
     }
 

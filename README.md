@@ -36,8 +36,8 @@
         <li>- [x] Movimiento basico (moverse, saltar)</li>
         <li>- [x] Atacar</li>
         <li>- [x] Usar gancho</li>
-        <li>- [ ] Mejorar gancho (cambiarlo a algo mejor de usar)</li>
-        <li>- [ ] Arreglar la velocidad al usar el gancho</li>
+        <li>- [x] Mejorar gancho (cambiarlo a algo mejor de usar)</li>
+        <li>- [x] Arreglar la velocidad al usar el gancho</li>
         <li>- [x] Usar bola de fuego</li>
         <li>- [x] Usar doble salto</li>
         <li>- [x] Arreglar doble salto</li>
@@ -45,6 +45,9 @@
         <li>- [x] Coger objetos y añadirlos al inventario</li>
         <li>- [x] Coger objetos especiales(habilidades) y que se vean en el inventario</li>
         <li>- [x] Matar jefes y que no aparezcan de nuevo en el archivo de guardado</li>
+        <li>- [ ] Mejorar batalla contra jefe01(Kai)</li>
+        <li>- [ ] Arreglar enemigos basicos</li>
+        <li>- [ ] Crear minimo otro tipo de enemigo(si son dos nuevos mejor)</li>
         <li>- [ ] Recoger trozos de alma y que no aparezcan de nuevo y que aparezcan si no lo tienes</li>
     </ul>
 </details>
@@ -54,13 +57,14 @@
 <br>
     <ul>
         <li>- [ ] MainMenu</li>
-        <li>- [ ] Inventario</li>
+        <li>- [x] Inventario</li>
         <li>- [ ] Opciones</li>
         <li>- [ ] Mapa</li>
         <li>- [ ] Hacer la UI mas bonito (ya que ahora es muy basico)</li>
     </ul>
 </details>
 
+<details>
 <summary>Persistencia de datos</summary>
 <br>
     <ul>

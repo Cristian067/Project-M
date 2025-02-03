@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerMovement;
 
 public class AttackV2 : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class AttackV2 : MonoBehaviour
 
     private void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        //sr = GetComponent<SpriteRenderer>();
     }
     void Start()
     {
@@ -31,11 +32,23 @@ public class AttackV2 : MonoBehaviour
     {
         Rigidbody2D collisionRb = collision.GetComponent<Rigidbody2D>();
         
-        if(gameObject.transform.parent.gameObject.tag == "Player")
+
+        if(collision.gameObject.tag == "Player")
+        {
+            //Debug.Log("hit");
+            //GameManager.Instance.LoseLive(1);
+            collisionRb.velocity = Vector3.zero;
+            //collisionRb.AddForce(
+            Vector3 dir = (collision.transform.position - transform.position);
+            PlayerMovement.Instance.Damaged(1, dir);
+
+        }
+
+        if (gameObject.transform.parent.gameObject.tag == "Player")
         {
             if (collision.gameObject.tag == "Enemy")
             {
-                EnemyV2 enemy = collision.gameObject.GetComponent<EnemyV2>();
+                EnemyBasics enemy = collision.gameObject.GetComponent<EnemyBasics>();
                 //enemy.LoseLive(GameManager.Instance.GetPlayerDamage());
                 collisionRb.velocity = Vector3.zero;
                 //TODO: Arreglar el porque el enemigo sale disparado hacia arriba en de de un poco atras
@@ -45,7 +58,7 @@ public class AttackV2 : MonoBehaviour
                 enemy.Damaged(GameManager.Instance.GetPlayerDamage(), dir);
                 PlayerMovement playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovement>();
 
-                if (playerMovement.GetDirectionLook() == "down")
+                if (playerMovement.GetDirectionLook() == LookDirection.Down)
                 {
                     Rigidbody2D playerRb = gameObject.transform.parent.gameObject.GetComponent<Rigidbody2D>();
                     playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
@@ -66,7 +79,7 @@ public class AttackV2 : MonoBehaviour
                 cu.Damaged(GameManager.Instance.GetPlayerDamage(), dir);
                 PlayerMovement playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovement>();
 
-                if (playerMovement.GetDirectionLook() == "down")
+                if (playerMovement.GetDirectionLook() == LookDirection.Down)
                 {
                     Rigidbody2D playerRb = gameObject.transform.parent.gameObject.GetComponent<Rigidbody2D>();
                     playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
@@ -74,19 +87,6 @@ public class AttackV2 : MonoBehaviour
                 }
             }
 
-            
-        }
-
-        
-
-        if(collision.gameObject.tag == "Player")
-        {
-            //Debug.Log("hit");
-            //GameManager.Instance.LoseLive(1);
-            collisionRb.velocity = Vector3.zero;
-            //collisionRb.AddForce(
-            Vector3 dir = (collision.transform.position - transform.position);
-            PlayerMovement.Instance.Damaged(1, dir);
 
         }
 

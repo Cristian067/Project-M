@@ -7,6 +7,7 @@ public class FireBall : MonoBehaviour
     [SerializeField] private int damage;
 
     [SerializeField] private int speed;
+    [SerializeField] private bool enemy;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,10 @@ public class FireBall : MonoBehaviour
         {
             Stats stats = collision.gameObject.GetComponent<Stats>();
             stats.LoseLive(damage);
+        }
+        if (enemy && collision.gameObject.tag == "Player")
+        {
+            PlayerMovement.Instance.Damaged(1,Vector3.zero);
         }
     }
     private IEnumerator Disapear()

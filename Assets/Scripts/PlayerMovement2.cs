@@ -58,7 +58,14 @@ public class PlayerMovement : MonoBehaviour
     private bool fireballInCooldown;
     [SerializeField] private float fireballCooldown;
 
-    [SerializeField] private string lookDirection;
+    public enum LookDirection
+    {
+        Left,
+        Right,
+        Up,
+        Down
+    }
+    private LookDirection lookDirection;
 
     [Header("Saltos")]
     [SerializeField] private int maxJumps;
@@ -204,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!GameManager.Instance.IsPaused() && !interacting)
         {
-            ApplyMovement();
+            StartCoroutine(ApplyMovement());
         }
             
         CheckSurrondings();
@@ -215,25 +222,25 @@ public class PlayerMovement : MonoBehaviour
         Vector3 offset = new Vector3(0, 0, 0);
         Quaternion attackRotation = Quaternion.identity;
 
-        if (lookDirection == "left")
+        if (lookDirection == LookDirection.Left)
         {
             //attackDirection = new Vector3(-1f,0,0);
             offset = new Vector3(-1f, 0, 0);
             attackRotation = transform.rotation;
         }
-        else if (lookDirection == "right")
+        else if (lookDirection == LookDirection.Right)
         {
             //attackDirection = new Vector3(1f,0,0);
             offset = new Vector3(1f, 0, 0);
             attackRotation = transform.rotation;
         }
-        else if (lookDirection == "up")
+        else if (lookDirection == LookDirection.Up)
         {
             attackDirection = new Vector3(0f, 0, 0);
             offset = new Vector3(0f, 1, 0);
             attackRotation = Quaternion.Euler(0, 0, -90);
         }
-        else if (lookDirection == "down")
+        else if (lookDirection == LookDirection.Down)
         {
             attackDirection = new Vector3(0f, 0, 0);
             offset = new Vector3(0f, -1, 0);
@@ -261,7 +268,7 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    private void ApplyMovement()
+    private IEnumerator ApplyMovement()
     {
         if (!knockback)
         {
@@ -304,11 +311,15 @@ public class PlayerMovement : MonoBehaviour
                 if (rb.velocity.x > maxTotalSpeed)
                 {
                     rb.velocity = new Vector2(maxTotalSpeed, rb.velocity.y);
+                    yield return new WaitForSeconds(0.4f);
+                    hookUsed = false;
                 }
 
                 if (rb.velocity.x < -maxTotalSpeed)
                 {
                     rb.velocity = new Vector2(-maxTotalSpeed, rb.velocity.y);
+                    yield return new WaitForSeconds(0.4f);
+                    hookUsed = false;
                 }
             }
         
@@ -435,6 +446,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         attackInCooldown = false;
     }
+
     private void Flip()
     {
         if (!isWallSliding)
@@ -443,36 +455,36 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKey("s") && !isOnGround)
             {
-                lookDirection = "down";
+                lookDirection = LookDirection.Down;
             }
             else
             {
                 transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
-                lookDirection = "left";
+                lookDirection = LookDirection.Left;
             }
         }
         if (Input.GetKey("d"))
         {
             if (Input.GetKey("s") && !isOnGround)
             {
-                lookDirection = "down";
+                lookDirection = LookDirection.Down;
             }
             else
             {
                 transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
-                lookDirection = "right";
+                lookDirection = LookDirection.Right;
             }
         }
         if(rb.velocity.x == 0f && !isOnGround)
         {
             if (Input.GetKey("s"))
             {
-                lookDirection = "down";
+                lookDirection = LookDirection.Down;
             }
         }
         if (Input.GetKey("w"))
         {
-            lookDirection = "up";
+            lookDirection = LookDirection.Up;
         }
         }
         else
@@ -489,12 +501,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Input.GetKey("s") && !isOnGround)
                 {
-                    lookDirection = "down";
+                    lookDirection = LookDirection.Down;
                 }
                 else
                 {
                     transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
-                    lookDirection = "left";
+                    lookDirection = LookDirection.Left;
                 }
             }
 
@@ -502,24 +514,24 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Input.GetKey("s") && !isOnGround)
                 {
-                    lookDirection = "down";
+                    lookDirection = LookDirection.Down;
                 }
                 else
                 {
                     transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
-                    lookDirection = "right";
+                    lookDirection = LookDirection.Right;
                 }
             }
             if (rb.velocity.x == 0f && !isOnGround)
             {
                 if (Input.GetKey("s"))
                 {
-                    lookDirection = "down";
+                    lookDirection = LookDirection.Down;
                 }
             }
             if (Input.GetKey("w"))
             {
-                lookDirection = "up";
+                lookDirection = LookDirection.Up;
             }
         }
         else
@@ -546,19 +558,19 @@ public class PlayerMovement : MonoBehaviour
     {
         Quaternion attackRotation = Quaternion.identity;
 
-        if (lookDirection == "left")
+        if (lookDirection == LookDirection.Left)
         {
             //attackDirection = new Vector3(-1f,0,0);
             //offset = new Vector3(-1f, 0, 0);
             attackRotation = transform.rotation;
         }
-        else if (lookDirection == "right")
+        else if (lookDirection == LookDirection.Right)
         {
             //attackDirection = new Vector3(1f,0,0);
             //offset = new Vector3(1f, 0, 0);
             attackRotation = transform.rotation;
         }
-        else if (lookDirection == "down")
+        else if (lookDirection == LookDirection.Down)
         {
             //attackDirection = new Vector3(0f, 0, 0);
             //offset = new Vector3(0f, -1, 0);
@@ -589,7 +601,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public string GetDirectionLook()
+    public LookDirection GetDirectionLook()
     {
         return lookDirection;
     }

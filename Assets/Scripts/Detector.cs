@@ -9,6 +9,7 @@ public class Detector : MonoBehaviour
     private Rigidbody2D rb;
 
     private CircleCollider2D circleCollider;
+    [SerializeField]private float chasingRadius;
 
     private Enemy enemy;
 
@@ -38,10 +39,14 @@ public class Detector : MonoBehaviour
 
            
             enemy.GetDistance(_distance);
-            circleCollider.radius = 6;
+            circleCollider.radius = chasingRadius;
 
             //Debug.Log(rb.velocity.x);
         }
+    }
+    public float GetChasingRadius()
+    {
+        return chasingRadius;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -55,4 +60,5 @@ public class Detector : MonoBehaviour
 
         }
     }
+
 }

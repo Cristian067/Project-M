@@ -61,7 +61,7 @@ public class ItemSlot : MonoBehaviour, IDeselectHandler
 
     public void OnDeselect(BaseEventData data)
     {
-        Debug.Log("Deslect");
+        //Debug.Log("Deslect");
         UiManager.Instance.HideItemInfo();
     }
 

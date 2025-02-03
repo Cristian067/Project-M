@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerMovement;
 
 public class Attack : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class Attack : MonoBehaviour
                 collisionRb.AddForce((collision.transform.position - transform.position).normalized * knockback * 4);
                 PlayerMovement playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovement>();
 
-                if (playerMovement.GetDirectionLook() == "down")
+                if (playerMovement.GetDirectionLook() == LookDirection.Down)
                 {
                     Rigidbody2D playerRb = gameObject.transform.parent.gameObject.GetComponent<Rigidbody2D>();
                     playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
@@ -50,7 +51,7 @@ public class Attack : MonoBehaviour
                 collisionRb.AddForce((collision.transform.position - transform.position).normalized * knockback);
                 PlayerMovement playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovement>();
 
-                if (playerMovement.GetDirectionLook() == "down")
+                if (playerMovement.GetDirectionLook() == LookDirection.Down)
                 {
                     Rigidbody2D playerRb = gameObject.transform.parent.gameObject.GetComponent<Rigidbody2D>();
                     playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
