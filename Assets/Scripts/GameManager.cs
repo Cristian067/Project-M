@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     //Referencia del jugador para colocarse en el punto donde se guardo
     [SerializeField] private GameObject player;
 
+    private bool isMapChanged;
+    private Vector2 posToChange;
 
     //Los trozos de almas que se consiguen
     [SerializeField] private int souls;
@@ -69,9 +71,31 @@ public class GameManager : MonoBehaviour
         Save.Instance.LoadData(fileNum);
 
         paused = false;
+        //Debug.Log(PlayerPrefs.GetFloat("newPosX") + PlayerPrefs.GetFloat("newPosY"));
+        if (PlayerPrefs.GetInt("mapInChange") == 1)
+        {
+            Debug.Log($"{PlayerPrefs.GetFloat("newPosX")} + {PlayerPrefs.GetFloat("newPosY")}");
+            player.transform.position = new Vector2(PlayerPrefs.GetFloat("newPosX"), PlayerPrefs.GetFloat("newPosY"));
+            PlayerPrefs.SetInt("mapInChange",0);
+        }
 
     }
+    
+    public void MapChanged(bool mapChange, float posToBeX, float posToBeY, int mapId)
+    {
+        if (mapChange)
+        {
+            PlayerPrefs.SetInt("mapInChange", 1);
+            //Debug.Log(posToBeY);
+            PlayerPrefs.SetFloat("newPosX", posToBeX);
+            PlayerPrefs.SetFloat("newPosY", posToBeY);
+            
+            GoTo(mapId);
+            //posToChange = posToBe;
+            //isMapChanged = true;
+        }
 
+    }
     // Update is called once per frame
     void Update()
     {

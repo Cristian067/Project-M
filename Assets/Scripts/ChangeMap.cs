@@ -9,6 +9,7 @@ public class ChangeMap : MonoBehaviour
 
     [SerializeField] private int sceneId;
     [SerializeField] private bool haveToInteract;
+    [SerializeField] private Vector2 posTobe;
     private bool canInteract;
 
     private void Update()
@@ -29,7 +30,8 @@ public class ChangeMap : MonoBehaviour
             }
             else
             {
-                GameManager.Instance.GoTo(sceneId);
+                GameManager.Instance.MapChanged(true,posTobe.x,posTobe.y,sceneId);
+                //GameManager.Instance.GoTo(sceneId);
             }
             
         }

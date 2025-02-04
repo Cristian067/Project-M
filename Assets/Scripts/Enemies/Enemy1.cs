@@ -46,11 +46,18 @@ public class EnemyV2 : MonoBehaviour
     public LayerMask whatIsGround;
 
     private RaycastHit2D hitGround1;
-
     private RaycastHit2D hitGround2;
+
+    private Animator animator;
+    private EnemyBasics basicStats;
 
     [SerializeField] private float chasingRadius;
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        basicStats = GetComponent<EnemyBasics>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -75,29 +82,34 @@ public class EnemyV2 : MonoBehaviour
          hitGround1 = Physics2D.Raycast(transform.position + new Vector3(-0.5f, -0.51f, 0), Vector3.down, 0.1f, whatIsGround);
         hitGround2 = Physics2D.Raycast(transform.position + new Vector3(0.5f, -0.51f, 0), Vector3.down, 0.1f, whatIsGround);
         //Debug.DrawLine(transform.position + new Vector3(0,-0.51f,0), transform.position + new Vector3(0,-0.61f,0));
-
-        if (hitGround1 || hitGround2)
+        if (!basicStats.IsKnockbacked())
         {
-            isOnGround = true;
+            if (hitGround1 || hitGround2)
+            {
+                isOnGround = true;
+            }
+            else if (!hitGround1 && !hitGround2)
+            {
+                isOnGround = false;
+            }
+
+            Debug.DrawLine(transform.position + new Vector3(0.5f, 0, 0), transform.position + transform.right, Color.blue);
+
+            rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 15f * Time.deltaTime), rb.velocity.y);
+
+            if (_distance.x < attackLenght && !thinking && _distance.x != 0)
+            {
+                StartCoroutine("ThinkAttack");
+            }
         }
-        else if (!hitGround1 && !hitGround2)
-        {
-            isOnGround = false;
-        }
-
-        Debug.DrawLine(transform.position + new Vector3(0.5f,0,0), transform.position + transform.right, Color.blue);
-
-        rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 15f * Time.deltaTime), rb.velocity.y);
-
-        if (_distance.x < attackLenght && !thinking && _distance.x != 0)
-        {
-            StartCoroutine("ThinkAttack");
-        }
-
     }
 
     private void FixedUpdate()
     {
+        if(!basicStats.IsKnockbacked())
+        {
+
+        
         RaycastHit2D hitWall = Physics2D.Raycast(transform.position, transform.right, 0.8f, whatIsGround);
         if (hitWall)
         {
@@ -149,20 +161,22 @@ public class EnemyV2 : MonoBehaviour
             rb.velocity = new Vector2(speed * (_distance.x/10), rb.velocity.y);
         }
 
-        //Debug.Log(_distance);
-        /*
-        GameObject target = FindAnyObjectByType<PlayerMovement>().gameObject;
+            //Debug.Log(_distance);
+            /*
+            GameObject target = FindAnyObjectByType<PlayerMovement>().gameObject;
 
 
-        Vector2 distance = target.transform.position - transform.position;
+            Vector2 distance = target.transform.position - transform.position;
 
-        if(distance.x > -5 && distance.x < 5)
-        {
-            rb.velocity = distance;
+            if(distance.x > -5 && distance.x < 5)
+            {
+                rb.velocity = distance;
+            }
+            */
+
+            //Debug.Log(distance);
+
         }
-        */
-
-        //Debug.Log(distance);
     }
 
     

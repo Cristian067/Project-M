@@ -9,6 +9,10 @@ public class EnemyBasics : MonoBehaviour
     private Rigidbody2D rb;
     private bool knockback;
 
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -31,14 +35,14 @@ public class EnemyBasics : MonoBehaviour
 
     public void Damaged(int damage, Vector3 knockbackDir)
     {
-
+        StartCoroutine(KnockbackTime());
         LoseLive(damage);
         //animator.SetTrigger("isDamaged");
 
-        Debug.Log(knockbackDir.normalized);
+        //Debug.Log(knockbackDir.normalized);
         rb.velocity = (new Vector3(0f, 0.5f, 0) + knockbackDir.normalized) * 10;
 
-        StartCoroutine(KnockbackTime());
+        
         //animator.ResetTrigger("isDamaged");
 
     }
@@ -48,5 +52,9 @@ public class EnemyBasics : MonoBehaviour
         knockback = true;
         yield return new WaitForSeconds(0.5f);
         knockback = false;
+    }
+    public bool IsKnockbacked()
+    {
+        return knockback;
     }
 }

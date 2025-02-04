@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 58541468539118211}
   - component: {fileID: 9213684486659273811}
   - component: {fileID: 6477036528769376605}
-  - component: {fileID: 915268444217616291}
+  - component: {fileID: 7073891290061202103}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -131,7 +131,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -173,20 +173,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572b897844f2cbe46a6a77b5c00d9297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 5
   attack: {fileID: 8595484723746548853, guid: e1b126fa5e380144a8f2f2bb8abaa312, type: 3}
+  attackLenght: 3
   lookDirection: 
   attackCooldown: 1
   speed: 4
   maxSpeed: 0
   _distance: {x: 0, y: 0}
   jumpForce: 400
-  isOnGround: 0
-  attackLenght: 3
-  layerToJump:
+  whatIsGround:
     serializedVersion: 2
     m_Bits: 0
---- !u!114 &915268444217616291
+  chasingRadius: 0
+--- !u!114 &7073891290061202103
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,22 +194,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2870647903995712113}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3beb243f2b1ac2499911722eab60030, type: 3}
+  m_Script: {fileID: 11500000, guid: 08b84cb48c9669942b93fc20c810ee28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 5
-  attack: {fileID: 8595484723746548853, guid: e1b126fa5e380144a8f2f2bb8abaa312, type: 3}
-  lookDirection: left
-  attackCooldown: 1
-  speed: 5
-  maxSpeed: 0
-  _distance: {x: 0, y: 0}
-  jumpForce: 400
-  isOnGround: 0
-  attackLenght: 3
-  layerToJump:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!1 &7167824678308921940
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _distance: {x: 0, y: 0}
+  chasingRadius: 0
 --- !u!58 &5036807579874531351
 CircleCollider2D:
   m_ObjectHideFlags: 0

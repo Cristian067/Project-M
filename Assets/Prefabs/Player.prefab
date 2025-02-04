@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 3913749559125713474}
   - component: {fileID: 274111319494551631}
   - component: {fileID: 2402290376792863311}
+  - component: {fileID: 680269510277088747}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -252,10 +253,9 @@ MonoBehaviour:
   hookDistance: 9
   hookForce: 18
   attack: {fileID: 8595484723746548853, guid: e1b126fa5e380144a8f2f2bb8abaa312, type: 3}
-  attackCooldown: 0.7
-  fireball: {fileID: 6388315038851373263, guid: fa673291f85afec4da6ccb8c40e89dec, type: 3}
+  attackCooldown: 0.4
+  fireballObject: {fileID: 6388315038851373263, guid: fa673291f85afec4da6ccb8c40e89dec, type: 3}
   fireballCooldown: 1.5
-  lookDirection: 
   maxJumps: 1
   whatIsHook:
     serializedVersion: 2
@@ -303,6 +303,27 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1}
   m_Direction: 0
+--- !u!95 &680269510277088747
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436931492728552864}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e5fcb8e61aa657e4fbd776440b22aea7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6592459681147594416
 GameObject:
   m_ObjectHideFlags: 0
