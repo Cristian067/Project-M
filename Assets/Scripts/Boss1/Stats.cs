@@ -11,11 +11,11 @@ public class Stats : MonoBehaviour
     [SerializeField] private int lives;
     [SerializeField] private int damage;
 
-    private ControlUnit controlUnit;
+    
 
     private void Awake()
     {
-        controlUnit = GetComponent<ControlUnit>();
+        
     }
 
     void Start()

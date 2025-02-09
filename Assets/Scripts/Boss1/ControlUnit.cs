@@ -341,21 +341,11 @@ public class ControlUnit : MonoBehaviour
         Jump(new Vector2(0, 1), true);
         //StartCoroutine(StayInAir());
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        GameObject spin = Instantiate(spinGO, transform.position, Quaternion.identity);
-        spin.transform.parent = transform;
+        //GameObject spin = Instantiate(spinGO, transform.position, Quaternion.identity);
+        //spin.transform.parent = transform;
         //spin.transform.parent = transform;
         //Debug.Log(transform.rotation.eulerAngles.y);
-        if (transform.rotation.eulerAngles.y == 180)
-        {
-            rb.velocity = Vector3.zero;
-            //spin.transform.localPosition = new Vector3(2.5f, 0, 0); //= Instantiate(attack, transform.position - new Vector3(-5,0,0), Quaternion.identity);
-        }
-        else if (transform.rotation.y == 0)
-        {
-            rb.velocity = Vector3.zero;
-            //spin.transform.localPosition = new Vector3(2.5f, 0, 0);
-            //attackInv = Instantiate(attack, transform.position - new Vector3(5, 0, 0), Quaternion.identity);
-        }
+        
     }
 
     // Segunda fase -------------------------------------------------------------------------------------
