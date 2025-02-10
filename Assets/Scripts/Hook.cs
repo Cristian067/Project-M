@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Hook : MonoBehaviour
@@ -7,7 +8,7 @@ public class Hook : MonoBehaviour
 
     private bool canHook;
 
-    [SerializeField] private LayerMask whatGround;
+    
     [SerializeField] private CircleCollider2D cc;
 
     [SerializeField]private static int hooksInRange;
@@ -26,40 +27,52 @@ public class Hook : MonoBehaviour
 
         if (canHook && Input.GetKeyDown(KeyCode.Mouse1))
         {
-            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, PlayerMovement.Instance.GetPosition() - transform.position, cc.radius /5, whatGround);
+            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, PlayerMovement.Instance.GetPosition() - transform.position);
+            
             //Debug.Log(hit2D.collider.gameObject.name);
             Debug.DrawRay(transform.position, PlayerMovement.Instance.GetPosition() - transform.position);
             if (hit2D)
             {
-                return;
+                if (hit2D.collider.gameObject.tag == "Player")
+                {
+                    if (hooksInRange > 1)
+                    {
+                        if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Up && PlayerMovement.Instance.GetPosition().y - transform.position.y < 0)
+                        {
+                            PlayerMovement.Instance.Hook(transform.position);
+                        }
+                        if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Down && PlayerMovement.Instance.GetPosition().y - transform.position.y > 0)
+                        {
+                            PlayerMovement.Instance.Hook(transform.position);
+                        }
+                        if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Left && PlayerMovement.Instance.GetPosition().x - transform.position.x > 0)
+                        {
+                            PlayerMovement.Instance.Hook(transform.position);
+                        }
+                        if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Right && PlayerMovement.Instance.GetPosition().x - transform.position.x < 0)
+                        {
+                            PlayerMovement.Instance.Hook(transform.position);
+                        }
+                    }
+                    else
+                    {
+                        PlayerMovement.Instance.Hook(transform.position);
+                    }
+                }
+                else if (hit2D.collider.gameObject.tag == "Ground")
+                {
+                    return;
+                }
+                
             }
             else
             {
-                if(hooksInRange > 1)
-                {
-                    if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Up && PlayerMovement.Instance.GetPosition().y - transform.position.y < 0)
-                    {
-                        PlayerMovement.Instance.Hook(transform.position);
-                    }
-                    if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Down && PlayerMovement.Instance.GetPosition().y - transform.position.y > 0)
-                    {
-                        PlayerMovement.Instance.Hook(transform.position);
-                    }
-                    if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Left && PlayerMovement.Instance.GetPosition().x - transform.position.x > 0)
-                    {
-                        PlayerMovement.Instance.Hook(transform.position);
-                    }
-                    if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Right && PlayerMovement.Instance.GetPosition().x - transform.position.x < 0)
-                    {
-                        PlayerMovement.Instance.Hook(transform.position);
-                    }
-                }
-                else
-                {
-                    PlayerMovement.Instance.Hook(transform.position);
-                }
+                //Debug.Log("Hay suelo en medio");
+
+                return;
+
                 //Debug.Log(PlayerMovement.Instance.GetPosition().y - transform.position.y);
-                
+
 
             }
             

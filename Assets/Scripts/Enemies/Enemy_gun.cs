@@ -32,6 +32,7 @@ public class Enemy_gun : MonoBehaviour
     [SerializeField] private float maxSpeed;
 
     [SerializeField] private Vector2 _distance;
+    [SerializeField] private float targetRange;
 
     [SerializeField] private float jumpForce;
     private bool isOnGround;
@@ -152,7 +153,9 @@ public class Enemy_gun : MonoBehaviour
                     }
 
                     float stopChasingDistance = chasingRadius;
-                    if (Vector2.Distance(transform.position, PlayerMovement.Instance.GetPosition()) > stopChasingDistance)
+                    RaycastHit2D hit2D = Physics2D.Raycast(transform.position, PlayerMovement.Instance.GetPosition() - transform.position,Vector3.Distance(transform.position, PlayerMovement.Instance.GetPosition()) , whatIsGround);
+                    //Debug.Log(hit2D.collider.name);
+                    if (Vector2.Distance(transform.position, PlayerMovement.Instance.GetPosition()) > stopChasingDistance || hit2D)
                     {
                         currentState = States.Roaming;
                     }
@@ -296,8 +299,8 @@ public class Enemy_gun : MonoBehaviour
 
     private void FindTarget()
     {
-        float targetRange = 5f;
-        if (Vector3.Distance(transform.position, PlayerMovement.Instance.GetPosition()) < targetRange)
+        float _targetRange = targetRange;
+        if (Vector3.Distance(transform.position, PlayerMovement.Instance.GetPosition()) < _targetRange && !(PlayerMovement.Instance.GetPosition().y < transform.position.y -1))
         {
             currentState = States.Chase;
         }
@@ -309,5 +312,10 @@ public class Enemy_gun : MonoBehaviour
         {
             PlayerMovement.Instance.Damaged(1, Vector3.zero);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        //Gizmos.DrawWireSphere(transform.position, targetRange);
     }
 }

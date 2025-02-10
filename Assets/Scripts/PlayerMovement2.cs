@@ -288,7 +288,13 @@ public class PlayerMovement : MonoBehaviour
                     rb.velocity = new Vector2((speed * horizontal)/6, rb.velocity.y);
                 }
             }
+            else if (inHook)
+            {
+               // interacting = true;
+
+            }
         
+
             if (!hookUsed)
             {
                 if (rb.velocity.x > maxSpeed)
@@ -384,6 +390,7 @@ public class PlayerMovement : MonoBehaviour
     {
         hookUsed = true;
         inHook = true;
+        ChangeInteracting(true);
         rb.velocity = new Vector2(rb.velocity.x,0);
         /*
         rb.AddForce((hit.collider.transform.position - transform.position ).normalized* (hookForce), ForceMode2D.Impulse);
@@ -396,14 +403,16 @@ public class PlayerMovement : MonoBehaviour
         
         hookedPos = new Vector3(destiny.x, destiny.y, 0);
         isOnGround = false;
+        
         StartCoroutine(CooldownHook());
         //transform.Translate(hit.transform.position);
     }
     
     private IEnumerator CooldownHook()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.25f);
         inHook = false;
+        interacting = false;
     }
     /*
     private void Attack()

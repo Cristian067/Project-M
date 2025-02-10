@@ -309,6 +309,7 @@ MonoBehaviour:
   speed: 4
   maxSpeed: 4
   _distance: {x: 0, y: 0}
+  targetRange: 8
   jumpForce: 400
   whatIsGround:
     serializedVersion: 2
