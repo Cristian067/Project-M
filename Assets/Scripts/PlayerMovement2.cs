@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+
 //using System.Drawing;
 using UnityEngine;
 
@@ -67,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private LookDirection lookDirection;
 
+    private (int, int) directionCoord;
+
     [Header("Saltos")]
     [SerializeField] private int maxJumps;
     private int remainingJumps;
@@ -85,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckRadius;
     
     private float horizontal;
+    private float vertical;
 
     private Vector3 hookedPos;
 
@@ -125,23 +130,24 @@ public class PlayerMovement : MonoBehaviour
         velocityY = rb.velocity.y;
         if (!GameManager.Instance.IsPaused() && !interacting)
         {
-            Flip();
+            Flipv2();
 
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = Input.GetAxisRaw("Vertical");
 
             Vector3 direction = (mousePos - transform.position).normalized;
 
             //DrawLine(transform.position, mousePos, Color.blue);
 
             //Saltar
-            if (Input.GetKeyDown("space"))
+            if (InputControl.Jump())
             { 
                 Jump();
             }
 
             //Atacar
-            if (Input.GetKeyDown(KeyCode.Mouse0) && !attackInCooldown && melee)
+            if (InputControl.Attack() && !attackInCooldown && melee)
             {
                 Attack();
             }
@@ -167,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
             catch { Debug.Log("Gancho no ganchado"); }
 
             //Usar Bola de fuego
-            if (Input.GetKeyDown("q") && fireball)
+            if (InputControl.Fireball() && fireball)
             {
                 if (!fireballInCooldown)
                 {
@@ -178,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
             //Usar acciones hacia abajo
             try
             {
-                if (Input.GetKeyDown("s"))
+                if (InputControl.Down())
                 {
                     DownActions();
                 }
@@ -219,33 +225,19 @@ public class PlayerMovement : MonoBehaviour
     private void Attack()
     {
         Vector3 attackDirection = new Vector3(0, 0, 0);
-        Vector3 offset = new Vector3(0, 0, 0);
+        Vector3 offset = new Vector3(directionCoord.Item1, directionCoord.Item2, 0);
         Quaternion attackRotation = Quaternion.identity;
-
-        if (lookDirection == LookDirection.Left)
+        //offset = new Vector3(directionCoord.Item1, 0, 0);
+        attackRotation = transform.rotation;
+        
+        if (directionCoord.Item2 != 0)
         {
-            //attackDirection = new Vector3(-1f,0,0);
-            offset = new Vector3(-1f, 0, 0);
-            attackRotation = transform.rotation;
-        }
-        else if (lookDirection == LookDirection.Right)
-        {
-            //attackDirection = new Vector3(1f,0,0);
-            offset = new Vector3(1f, 0, 0);
-            attackRotation = transform.rotation;
-        }
-        else if (lookDirection == LookDirection.Up)
-        {
-            attackDirection = new Vector3(0f, 0, 0);
-            offset = new Vector3(0f, 1, 0);
+            //attackDirection = new Vector3(0f, 0, 0);
+            
             attackRotation = Quaternion.Euler(0, 0, -90);
+            offset = new Vector3(0, directionCoord.Item2, 0);
         }
-        else if (lookDirection == LookDirection.Down)
-        {
-            attackDirection = new Vector3(0f, 0, 0);
-            offset = new Vector3(0f, -1, 0);
-            attackRotation = Quaternion.Euler(0, 0, -90);
-        }
+        
 
         Instantiate(attack, transform.position + attackDirection + offset, attackRotation, this.transform);
         StartCoroutine(AttackCooldown());
@@ -455,57 +447,16 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
         attackInCooldown = false;
     }
-
+    /*
     private void Flip()
     {
         if (!isWallSliding)
         {
-        if (Input.GetKey("a"))
-        {
-            if (Input.GetKey("s") && !isOnGround)
+            while (Input.GetKey("w"))
             {
-                lookDirection = LookDirection.Down;
+                lookDirection = LookDirection.Up;
             }
-            else
-            {
-                transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
-                lookDirection = LookDirection.Left;
-            }
-        }
-        if (Input.GetKey("d"))
-        {
-            if (Input.GetKey("s") && !isOnGround)
-            {
-                lookDirection = LookDirection.Down;
-            }
-            else
-            {
-                transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
-                lookDirection = LookDirection.Right;
-            }
-        }
-        if(rb.velocity.x == 0f && !isOnGround)
-        {
-            if (Input.GetKey("s"))
-            {
-                lookDirection = LookDirection.Down;
-            }
-        }
-        if (Input.GetKey("w"))
-        {
-            lookDirection = LookDirection.Up;
-        }
-        }
-        else
-        {
 
-        }
-    }
-
-    private void Flipv2()
-    {
-        if (!isWallSliding)
-        {
             if (Input.GetKey("a"))
             {
                 if (Input.GetKey("s") && !isOnGround)
@@ -531,17 +482,50 @@ public class PlayerMovement : MonoBehaviour
                     lookDirection = LookDirection.Right;
                 }
             }
-            if (rb.velocity.x == 0f && !isOnGround)
+            if(rb.velocity.x == 0f && !isOnGround)
             {
                 if (Input.GetKey("s"))
                 {
                     lookDirection = LookDirection.Down;
                 }
             }
-            if (Input.GetKey("w"))
+        
+        }
+        else
+        {
+
+        }
+    }
+    */
+    private void Flipv2()
+    {
+        if (!isWallSliding)
+        {
+            directionCoord = (horizontal.ConvertTo<int>(), vertical.ConvertTo<int>());
+
+            if (directionCoord == (directionCoord.Item1, 1))
             {
-                lookDirection = LookDirection.Up;
+
             }
+
+            if (directionCoord == (directionCoord.Item1, -1))
+            {
+
+            }
+
+            if (directionCoord == (1, directionCoord.Item2))
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
+                //lookDirection = LookDirection.Right;
+            }
+
+            if (directionCoord == (-1, directionCoord.Item2))
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
+                //lookDirection = LookDirection.Left;
+            }
+
+
         }
         else
         {

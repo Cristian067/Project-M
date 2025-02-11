@@ -25,7 +25,7 @@ public class Hook : MonoBehaviour
         cc = GetComponent<CircleCollider2D>();
         
 
-        if (canHook && Input.GetKeyDown(KeyCode.Mouse1))
+        if (canHook && InputControl.Hook())
         {
             RaycastHit2D hit2D = Physics2D.Raycast(transform.position, PlayerMovement.Instance.GetPosition() - transform.position);
             

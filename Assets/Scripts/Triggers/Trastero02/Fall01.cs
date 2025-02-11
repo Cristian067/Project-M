@@ -30,14 +30,17 @@ public class Fall01 : MonoBehaviour
     {
         Animator anim = GetComponent<Animator>();
         anim.SetTrigger("trumble");
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
         EndCutscene();
 
         
     }
     public void EndCutscene()
     {
-        PlayerMovement.Instance.ChangeInteracting(false);
+        GameManager.Instance.ChangeInteractingWithTime(1.5f, false);
         Destroy(gameObject);
+        
+        
+        
     }
 }

@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
     {
 
         timePlayed = Time.time;
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(InputControl.Esc())
         {
             
             if(!paused)
@@ -297,6 +297,19 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log(SceneManager.GetActiveScene().buildIndex);
         GoTo(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ChangeInteractingWithTime(float time, bool change)
+    {
+
+        StartCoroutine(ChangeInteractCoroutine(time, change));
+
+    }
+
+    private IEnumerator ChangeInteractCoroutine(float time, bool change)
+    {
+        yield return new WaitForSeconds(time);
+        PlayerMovement.Instance.ChangeInteracting(change);
     }
 
     public void FullRestore()
