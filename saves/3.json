@@ -1,1 +1,23 @@
-{"file":3,"souls":0,"lives":2,"fuel":100,"damage":1,"map":"Trastero02","mapPosition":{"x":-43.160003662109378,"y":-10.610000610351563,"z":-1.1460262537002564},"haveMelee":false,"haveHook":false,"haveFireball":false,"haveDobleJump":false,"haveWallJump":false,"timePlayed":58.09952926635742,"items":[],"specialItems":["Aguja","Hilo"],"itemsID":[1],"bossesKilledID":[]}
+{
+  "file": 3,
+  "souls": 0,
+  "lives": 2,
+  "fuel": 100,
+  "damage": 1,
+  "map": "Trastero02",
+  "mapPosition": {
+    "x": -43.160003662109378,
+    "y": -10.610000610351563,
+    "z": -1.1460262537002564
+  },
+  "haveMelee": false,
+  "haveHook": false,
+  "haveFireball": false,
+  "haveDobleJump": false,
+  "haveWallJump": false,
+  "timePlayed": 58.09952926635742,
+  "items": [],
+  "specialItems": [ "Aguja", "Hilo", "Pedernal" ],
+  "itemsID": [ 1 ],
+  "bossesKilledID": []
+}
