@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEditor;
-using System.Linq;
-using Unity.VisualScripting;
+
+
 
 public class Save : MonoBehaviour
 {
@@ -26,11 +26,11 @@ public class Save : MonoBehaviour
 
         if (!File.Exists(path))
         {
-            AssetDatabase.CreateFolder("../", "saves");
+            //AssetDatabase.CreateFolder("../", "saves");
         }
         if (!File.Exists(path +"bosses/"))
         {
-            AssetDatabase.CreateFolder("../saves/", "bosses");
+            //AssetDatabase.CreateFolder("../saves/", "bosses");
         }
 
         foreach (ItemSO i in _specialItems)

@@ -21,7 +21,8 @@ public class GetItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        audioSource = FindFirstObjectByType<AudioSource>();
         if(Save.Instance.LoadItemData(GameManager.Instance.GetFileNum()).Contains(id))
         {
             Destroy(gameObject);

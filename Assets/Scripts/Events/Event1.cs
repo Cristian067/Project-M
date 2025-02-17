@@ -9,8 +9,8 @@ public class Event1 : MonoBehaviour
 
     //Pensamiento: Modificar el script para añadir otros scripts en una rray y que hagan lo que tiene dentro de los otros scripts en orden
 
-    private bool alreadyUsed;
-    [SerializeField] private LayerMask layerToInteract;
+    [SerializeField]private bool alreadyUsed;
+    [SerializeField] private int layerToInteractId;
     //[SerializeField] private Layer;
 
     [SerializeField] private PlayerMovement playerMov;
@@ -31,7 +31,7 @@ public class Event1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        Debug.Log(collision.gameObject.layer);
         if (alreadyUsed)
         {
             return;
@@ -40,12 +40,13 @@ public class Event1 : MonoBehaviour
         idx = 0;
         //Debug.Log(collision.gameObject.layer);
         //Debug.Log(layerToInteract.ToString());
-        if ((layerToInteract & 1 << collision.gameObject.layer) == 1 << collision.gameObject.layer) //if(collision.gameObject.layer.CompareTo(layerToInteract) << 0 )
+        if (collision.gameObject.layer == layerToInteractId) //if(collision.gameObject.layer.CompareTo(layerToInteract) << 0 )
         {
             //PlayerMovementV2.Instance.ChangeInteracting(true);
             if(!isInProcess)
             {
                 PlayerMovement.Instance.ChangeInteracting(true);
+                Debug.Log("a1");
                 PlayerMovement.Instance.ForceStop();
                 isInProcess = true;
                 Next();
@@ -57,17 +58,22 @@ public class Event1 : MonoBehaviour
     }
     public void Next()
     {
-        if (idx < scripts.Length)
-        {
-            scripts[idx].Invoke("Use", 0f);
-            idx++;
-            if (idx >= scripts.Length)
+        idx++;
+        if (idx > scripts.Length)
             {
                 PlayerMovement.Instance.ChangeInteracting(false);
                 alreadyUsed = true;
                 isInProcess = false;
             }
+        else
+        {
+            scripts[idx - 1].Invoke("Use", 0f);
         }
+        
+            
+            
+        
+        
     }
     public void InProcces(bool start)
     {

@@ -25,6 +25,7 @@ public class Move : MonoBehaviour
     {
         if (move)
         {
+            targetRb.constraints = RigidbodyConstraints2D.None;
             if (target.transform.position.x != moveTo.x)
             {
                 MoveToPos(moveTo);

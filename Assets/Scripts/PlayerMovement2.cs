@@ -237,7 +237,18 @@ public class PlayerMovement : MonoBehaviour
             attackRotation = Quaternion.Euler(0, 0, -90);
             offset = new Vector3(0, directionCoord.Item2, 0);
         }
-        
+        if (directionCoord.Item1 == 0 && directionCoord.Item2 == 0)
+        {
+            if (lookDirection == LookDirection.Right)
+            {
+                offset = new Vector3(1f, 0, 0);
+            }
+            if (lookDirection == LookDirection.Left)
+            {
+                offset = new Vector3(-1f, 0, 0);
+            }
+
+        }
 
         Instantiate(attack, transform.position + attackDirection + offset, attackRotation, this.transform);
         StartCoroutine(AttackCooldown());
@@ -516,13 +527,13 @@ public class PlayerMovement : MonoBehaviour
             if (directionCoord == (1, directionCoord.Item2))
             {
                 transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
-                //lookDirection = LookDirection.Right;
+                lookDirection = LookDirection.Right;
             }
 
             if (directionCoord == (-1, directionCoord.Item2))
             {
                 transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
-                //lookDirection = LookDirection.Left;
+                lookDirection = LookDirection.Left;
             }
 
 

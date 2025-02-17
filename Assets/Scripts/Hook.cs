@@ -12,6 +12,9 @@ public class Hook : MonoBehaviour
     [SerializeField] private CircleCollider2D cc;
 
     [SerializeField]private static int hooksInRange;
+    [SerializeField] private Transform hookPoint;
+
+    [SerializeField] private GameObject arrow;
 
     // Start is called before the first frame update
     void Start()
@@ -27,10 +30,10 @@ public class Hook : MonoBehaviour
 
         if (canHook && InputControl.Hook())
         {
-            RaycastHit2D hit2D = Physics2D.Raycast(transform.position, PlayerMovement.Instance.GetPosition() - transform.position);
+            RaycastHit2D hit2D = Physics2D.Raycast(hookPoint.transform.position, PlayerMovement.Instance.GetPosition() - hookPoint.transform.position);
             
             //Debug.Log(hit2D.collider.gameObject.name);
-            Debug.DrawRay(transform.position, PlayerMovement.Instance.GetPosition() - transform.position);
+            Debug.DrawRay(hookPoint.transform.position, PlayerMovement.Instance.GetPosition() - hookPoint.transform.position);
             if (hit2D)
             {
                 if (hit2D.collider.gameObject.tag == "Player")
@@ -39,24 +42,24 @@ public class Hook : MonoBehaviour
                     {
                         if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Up && PlayerMovement.Instance.GetPosition().y - transform.position.y < 0)
                         {
-                            PlayerMovement.Instance.Hook(transform.position);
+                            PlayerMovement.Instance.Hook(hookPoint.transform.position);
                         }
                         if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Down && PlayerMovement.Instance.GetPosition().y - transform.position.y > 0)
                         {
-                            PlayerMovement.Instance.Hook(transform.position);
+                            PlayerMovement.Instance.Hook(hookPoint.transform.position);
                         }
                         if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Left && PlayerMovement.Instance.GetPosition().x - transform.position.x > 0)
                         {
-                            PlayerMovement.Instance.Hook(transform.position);
+                            PlayerMovement.Instance.Hook(hookPoint.transform.position);
                         }
                         if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Right && PlayerMovement.Instance.GetPosition().x - transform.position.x < 0)
                         {
-                            PlayerMovement.Instance.Hook(transform.position);
+                            PlayerMovement.Instance.Hook(hookPoint.transform.position);
                         }
                     }
                     else
                     {
-                        PlayerMovement.Instance.Hook(transform.position);
+                        PlayerMovement.Instance.Hook(hookPoint.transform.position);
                     }
                 }
                 else if (hit2D.collider.gameObject.tag == "Ground")
@@ -64,6 +67,7 @@ public class Hook : MonoBehaviour
                     return;
                 }
                 
+
             }
             else
             {
@@ -78,34 +82,51 @@ public class Hook : MonoBehaviour
             
         }
 
+        
         SetVisuals();
+        
     }
 
 
     private void SetVisuals()
     {
-        if (hooksInRange > 1)
+        if (canHook)
+        {
+            arrow.SetActive(true);
+
+
+            if (hooksInRange > 1)
         {
             if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Up && PlayerMovement.Instance.GetPosition().y - transform.position.y < 0)
             {
+                arrow.transform.rotation = Quaternion.Euler(0, Vector2.Distance(new Vector2(hookPoint.position.x, hookPoint.position.y), PlayerMovement.Instance.GetPosition()), 0);
                 //PlayerMovement.Instance.Hook(transform.position);
             }
             if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Down && PlayerMovement.Instance.GetPosition().y - transform.position.y > 0)
             {
+                arrow.transform.rotation = Quaternion.Euler(0, Vector2.Distance(new Vector2(hookPoint.position.x, hookPoint.position.y), PlayerMovement.Instance.GetPosition()), 0);
                 //PlayerMovement.Instance.Hook(transform.position);
             }
             if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Left && PlayerMovement.Instance.GetPosition().x - transform.position.x > 0)
             {
+                arrow.transform.rotation = Quaternion.Euler(0, Vector2.Distance(new Vector2(hookPoint.position.x, hookPoint.position.y), PlayerMovement.Instance.GetPosition()), 0);
                 //PlayerMovement.Instance.Hook(transform.position);
             }
             if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Right && PlayerMovement.Instance.GetPosition().x - transform.position.x < 0)
             {
-               // PlayerMovement.Instance.Hook(transform.position);
+                arrow.transform.rotation = Quaternion.Euler(0, Vector2.Distance(new Vector2(hookPoint.position.x, hookPoint.position.y), PlayerMovement.Instance.GetPosition()), 0);
+                // PlayerMovement.Instance.Hook(transform.position);
             }
         }
         else
         {
+            arrow.transform.Rotate(PlayerMovement.Instance.GetPosition());
             //PlayerMovement.Instance.Hook(transform.position);
+        }
+        }
+        else
+        {
+            arrow.SetActive(false);
         }
     }
 
