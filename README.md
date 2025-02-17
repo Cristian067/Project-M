@@ -47,7 +47,7 @@
         <li>- [x] Matar jefes y que no aparezcan de nuevo en el archivo de guardado</li>
         <li>- [ ] Mejorar batalla contra jefe01(Kai)</li>
         <li>- [ ] Arreglar enemigos basicos</li>
-        <li>- [ ] Crear minimo otro tipo de enemigo(si son dos nuevos mejor)</li>
+        <li>- [x] Crear minimo otro tipo de enemigo(si son dos nuevos mejor) [enemigos actuales: normal(esta roto) y gunner]</li>
         <li>- [ ] Recoger trozos de alma y que no aparezcan de nuevo y que aparezcan si no lo tienes</li>
     </ul>
 </details>
@@ -60,6 +60,7 @@
         <li>- [x] Inventario</li>
         <li>- [ ] Opciones</li>
         <li>- [ ] Mapa</li>
+        <li>- [x] Tutoriales</li>
         <li>- [ ] Hacer la UI mas bonito (ya que ahora es muy basico)</li>
     </ul>
 </details>

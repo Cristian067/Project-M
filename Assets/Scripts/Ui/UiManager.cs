@@ -21,6 +21,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] private GameObject GOPanel;
 
     [SerializeField] private GameObject InfoPanel;
+    [SerializeField] private Image InfoImage;
     [SerializeField] private TextMeshProUGUI InfoNameText;
     [SerializeField] private TextMeshProUGUI InfoDescriptionText;
 
@@ -75,10 +76,12 @@ public class UiManager : MonoBehaviour
         }
         escPanels[panel].SetActive(true);
     }
-    public void ShowItemInfo(string itemName, string description)
+    public void ShowItemInfo(string itemName, string description, Sprite image)
     {
         InfoPanel.SetActive(true);
+        InfoImage.sprite = image;
         InfoNameText.text = itemName;
+
         InfoDescriptionText.text = description;
     }
     public void HideItemInfo()
@@ -106,4 +109,6 @@ public class UiManager : MonoBehaviour
     {
         GOPanel.SetActive(false);
     }
+
+
 }

@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e22edd728317544aab7802034c9b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOnTrigger: 0
-  isOnCollision: 1
+  isOnTrigger: 1
+  isOnCollision: 0
   animator: {fileID: 0}
   targetAnimator: {fileID: 0}
   tagString: 

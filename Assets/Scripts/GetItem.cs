@@ -16,13 +16,20 @@ public class GetItem : MonoBehaviour
 
     [SerializeField] private GameObject itemPoint;
 
+    private Tutorial tutorialScript;
+    [SerializeField] private bool haveTutorial;
+
     private bool canInteract;
     [SerializeField]private bool isTaken;
     // Start is called before the first frame update
     void Start()
     {
-
-        audioSource = FindFirstObjectByType<AudioSource>();
+        if (haveTutorial)
+        {
+            tutorialScript = GetComponent<Tutorial>();
+        }
+        
+        audioSource = GameObject.Find("Sfx").GetComponent<AudioSource>();
         if(Save.Instance.LoadItemData(GameManager.Instance.GetFileNum()).Contains(id))
         {
             Destroy(gameObject);
@@ -37,6 +44,11 @@ public class GetItem : MonoBehaviour
         
         if (!audioSource.isPlaying && isTaken)
         {
+            if (haveTutorial)
+            {
+                tutorialScript.DeployTutorial();
+            }
+            
             Destroy(gameObject);
         }
 

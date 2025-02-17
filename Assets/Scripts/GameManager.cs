@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     private bool isMapChanged;
     private Vector2 posToChange;
 
+
+
     //Los trozos de almas que se consiguen
     [SerializeField] private int souls;
 

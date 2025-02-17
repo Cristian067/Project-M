@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class SaveGame : MonoBehaviour
 {
     [SerializeField] private bool canSave;
+
+    [SerializeField] private bool haveToInteract;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,23 +17,32 @@ public class SaveGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canSave && Input.GetKeyDown(KeyCode.E))
+        if (canSave && InputControl.Interact())
         {
-
-            for (int i = 0; i < Inventory.Instance.GetItemsForSave(true).Count; i++)
-            {
-                Debug.Log(Inventory.Instance.GetItemsForSave(true)[i]);
-            }
-
-            Save.Instance.saveData(GameManager.Instance.GetFileNum(), GameManager.Instance.GetSouls(), GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetOil(), GameManager.Instance.GetPlayerDamage(), SceneManager.GetActiveScene().name, transform.position, GameManager.Instance.GetHabilities("basic"), GameManager.Instance.GetHabilities("hook"), GameManager.Instance.GetHabilities("fireball"), GameManager.Instance.GetHabilities("doblejump"), GameManager.Instance.GetHabilities("walljump"), GameManager.Instance.GetTimePlayed(), Inventory.Instance.GetItemsForSave(false), Inventory.Instance.GetItemsForSave(true));
+            SaveGameScript();
         }
     }
+    private void SaveGameScript()
+    {
+        for (int i = 0; i < Inventory.Instance.GetItemsForSave(true).Count; i++)
+        {
+            Debug.Log(Inventory.Instance.GetItemsForSave(true)[i]);
+        }
 
+        Save.Instance.saveData(GameManager.Instance.GetFileNum(), GameManager.Instance.GetSouls(), GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetOil(), GameManager.Instance.GetPlayerDamage(), SceneManager.GetActiveScene().name, PlayerMovement.Instance.GetPosition(), GameManager.Instance.GetHabilities("basic"), GameManager.Instance.GetHabilities("hook"), GameManager.Instance.GetHabilities("fireball"), GameManager.Instance.GetHabilities("doblejump"), GameManager.Instance.GetHabilities("walljump"), GameManager.Instance.GetTimePlayed(), Inventory.Instance.GetItemsForSave(false), Inventory.Instance.GetItemsForSave(true));
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            canSave = true;
+            if (haveToInteract)
+            {
+                canSave = true;
+            }
+            else
+            {
+                SaveGameScript();
+            }
         }
         
     }

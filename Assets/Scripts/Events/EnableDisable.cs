@@ -15,6 +15,7 @@ public class EnableDisable : MonoBehaviour
     {
         
         target.SetActive(enable);
+        mainEvent.Next();
         
         
     }

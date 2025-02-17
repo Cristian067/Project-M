@@ -232,16 +232,41 @@ public class PlayerMovement : MonoBehaviour
         
         if (directionCoord.Item2 != 0)
         {
-            //attackDirection = new Vector3(0f, 0, 0);
+            //directionCoord.Item1 = 0;
+            if (isOnGround)
+            {
+                if (lookDirection == LookDirection.Up)
+                {
+                    attackRotation = Quaternion.Euler(0, 0, -90);
+                    offset = new Vector3(0, 1, 0);
+                }
+                if (lookDirection == LookDirection.Down)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (lookDirection == LookDirection.Up)
+                {
+                    attackRotation = Quaternion.Euler(0, 0, -90);
+                    offset = new Vector3(0, 1, 0);
+                }
+                if (lookDirection == LookDirection.Down)
+                {
+                    attackRotation = Quaternion.Euler(0, 0, -90);
+                    offset = new Vector3(0, -1, 0);
+                }
+            }
             
-            attackRotation = Quaternion.Euler(0, 0, -90);
-            offset = new Vector3(0, directionCoord.Item2, 0);
+            
         }
         if (directionCoord.Item1 == 0 && directionCoord.Item2 == 0)
         {
+            offset = new Vector3(transform.right.x, 0, 0);
             if (lookDirection == LookDirection.Right)
             {
-                offset = new Vector3(1f, 0, 0);
+                offset = new Vector3(1, 0, 0);
             }
             if (lookDirection == LookDirection.Left)
             {
@@ -252,6 +277,53 @@ public class PlayerMovement : MonoBehaviour
 
         Instantiate(attack, transform.position + attackDirection + offset, attackRotation, this.transform);
         StartCoroutine(AttackCooldown());
+    }
+    private void Flipv2()
+    {
+        if (!isWallSliding)
+        {
+            directionCoord = (horizontal.ConvertTo<int>(), vertical.ConvertTo<int>());
+            if (directionCoord == (1, directionCoord.Item2))
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
+                lookDirection = LookDirection.Right;
+            }
+
+            if (directionCoord == (-1, directionCoord.Item2))
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
+                lookDirection = LookDirection.Left;
+            }
+
+            if (directionCoord == (directionCoord.Item1, 1))
+            {
+                lookDirection = LookDirection.Up;
+            }
+
+            if (directionCoord == (directionCoord.Item1, -1))
+            {
+                lookDirection = LookDirection.Down;
+            }
+
+           
+
+
+        }
+        else
+        {
+            if (directionCoord == (1, directionCoord.Item2))
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
+                lookDirection = LookDirection.Left;
+            }
+
+            if (directionCoord == (-1, directionCoord.Item2))
+            {
+                transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
+                lookDirection = LookDirection.Right;
+            }
+
+        }
     }
 
     private void CheckIfWallSliding()
@@ -508,41 +580,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     */
-    private void Flipv2()
-    {
-        if (!isWallSliding)
-        {
-            directionCoord = (horizontal.ConvertTo<int>(), vertical.ConvertTo<int>());
-
-            if (directionCoord == (directionCoord.Item1, 1))
-            {
-
-            }
-
-            if (directionCoord == (directionCoord.Item1, -1))
-            {
-
-            }
-
-            if (directionCoord == (1, directionCoord.Item2))
-            {
-                transform.rotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
-                lookDirection = LookDirection.Right;
-            }
-
-            if (directionCoord == (-1, directionCoord.Item2))
-            {
-                transform.rotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
-                lookDirection = LookDirection.Left;
-            }
-
-
-        }
-        else
-        {
-
-        }
-    }
+    
 
     private void Jump()
     {

@@ -141,7 +141,22 @@ public class InputControl
         return false;
     }
 
+    // Controles de interaccion
 
+    public static bool Interact()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            return true;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+        {
+            return true;
+        }
+        return false;
+    }
 
 
 }

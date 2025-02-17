@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
+using static UnityEngine.Rendering.DebugUI;
 
 
 
@@ -26,6 +28,7 @@ public class ControlUnit : MonoBehaviour
     [SerializeField] private GameObject spinGO;
 
     [SerializeField] private float speed;
+    private Vector2 posToMove;
 
     private Vector3 targetPoint;
 
@@ -62,7 +65,7 @@ public class ControlUnit : MonoBehaviour
 
     private int idx;
     private bool walking;
-    private bool knockback;
+    
 
 
     // Start is called before the first frame update
@@ -86,11 +89,12 @@ public class ControlUnit : MonoBehaviour
 
         targetPoint = player.transform.position - transform.position;
 
-        if (!thinking && !knockback)
+        if (!thinking)
         {
             switch (currentFase)
             {
                 case Phases.Phase1:
+                    /*
                     switch (attack)
                     {
                         case Attacks.Wait:
@@ -153,14 +157,17 @@ public class ControlUnit : MonoBehaviour
 
                             break;
                     }
-                    break; 
+                     
+                    */
+                    StartCoroutine(Moveset2());
+                    break;
                 case Phases.Phase2:
 
                     break;
             }
             
-            StartCoroutine(Wait(1f));
-            Next();
+            //StartCoroutine(Wait(1f));
+            //Next();
         }
 
         
@@ -186,17 +193,25 @@ public class ControlUnit : MonoBehaviour
         }
 
         
-
+        if(walking)
+        {
+            Vector2 pos = new Vector2(transform.position.x, transform.position.y);
+            Vector2 goTo = posToMove - pos;
+            while (transform.position.x != pos.x)
+            {
+                rb.velocity = new Vector2(goTo.normalized.x * speed, rb.velocity.y);
+            }
+        }
     }
 
     private void FixedUpdate()
-    {
+    {/*
         if (walking)
         {
 
             Walk();
-
-        }
+        
+        }*/
     }
     private IEnumerator WaitAfterWalk()
     {
@@ -223,7 +238,9 @@ public class ControlUnit : MonoBehaviour
     {
         Vector2 pos = new Vector2(transform.position.x, transform.position.y);
         Vector2 goTo = posToMove - pos;
-        rb.velocity = new Vector2(goTo.normalized.x * speed, rb.velocity.y); //new Vector2((goTo.normalized) *speed, transform.position.y);
+        walking = true;
+        
+         //new Vector2((goTo.normalized) *speed, transform.position.y);
 
     }
     private void StopWalk()
@@ -274,10 +291,10 @@ public class ControlUnit : MonoBehaviour
     }
     private IEnumerator StayInAir()
     {
-        StartCoroutine(Wait(1));
-        yield return new WaitForSeconds(0.2f);
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        //StartCoroutine(Wait(1));
         yield return new WaitForSeconds(0.3f);
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        yield return new WaitForSeconds(1.3f);
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
     }
@@ -287,7 +304,7 @@ public class ControlUnit : MonoBehaviour
         Vector2 dir = PlayerMovement.Instance.GetPosition() - transform.position;
 
         rb.velocity = new Vector2(dir.normalized.x,0) * force;
-        StartCoroutine(ForceStop(0.3f));
+        //StartCoroutine(ForceStop(0.3f));
         
     
     }
@@ -326,16 +343,11 @@ public class ControlUnit : MonoBehaviour
         //Debug.Log(knockbackDir.normalized);
         rb.velocity = (new Vector3(0f, 0.5f, 0) + knockbackDir.normalized) * 10;
 
-        StartCoroutine(KnockbackTime());
+        
         //animator.ResetTrigger("isDamaged");
 
     }
-    private IEnumerator KnockbackTime()
-    {
-        knockback = true;
-        yield return new WaitForSeconds(0.5f);
-        knockback = false;
-    }
+    
     private void SpinAttack()
     {
         Jump(new Vector2(0, 1), true);
@@ -347,6 +359,35 @@ public class ControlUnit : MonoBehaviour
         //Debug.Log(transform.rotation.eulerAngles.y);
         
     }
+
+    // Primera fase -------------------------------------------------------------------------------------
+
+    public IEnumerator Moveset1()
+    {
+        thinking = true;
+        Debug.Log("a");
+        Dash(40);
+        //Wait(5);
+        yield return new WaitForSeconds(2);
+        Dash(40);
+        yield return new WaitForSeconds(2);
+        
+        thinking=false;
+        
+    }
+
+    public IEnumerator Moveset2()
+    {
+        thinking = true;
+        Jump(new Vector2(transform.right.x, 1), true);
+        yield return new WaitForSeconds(1.4f);
+        Jump(new Vector2(0, -1), false);
+        yield return new WaitForSeconds(5);
+        thinking = false;
+
+    }
+
+
 
     // Segunda fase -------------------------------------------------------------------------------------
 

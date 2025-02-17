@@ -62,7 +62,7 @@ public class AttackV2 : MonoBehaviour
                 {
                     Rigidbody2D playerRb = gameObject.transform.parent.gameObject.GetComponent<Rigidbody2D>();
                     playerRb.velocity = new Vector2(playerRb.velocity.x, 0);
-                    playerRb.AddForce((-transform.right) * 150);
+                    playerRb.AddForce((-transform.right) * 250);
                 }
             }
 

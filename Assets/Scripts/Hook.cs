@@ -92,35 +92,42 @@ public class Hook : MonoBehaviour
     {
         if (canHook)
         {
-            arrow.SetActive(true);
+            
 
 
             if (hooksInRange > 1)
         {
             if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Up && PlayerMovement.Instance.GetPosition().y - transform.position.y < 0)
             {
-                arrow.transform.rotation = Quaternion.Euler(0, Vector2.Distance(new Vector2(hookPoint.position.x, hookPoint.position.y), PlayerMovement.Instance.GetPosition()), 0);
+                    arrow.SetActive(true);
+                    arrow.transform.right = PlayerMovement.Instance.GetPosition() - arrow.transform.position;
                 //PlayerMovement.Instance.Hook(transform.position);
             }
             if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Down && PlayerMovement.Instance.GetPosition().y - transform.position.y > 0)
             {
-                arrow.transform.rotation = Quaternion.Euler(0, Vector2.Distance(new Vector2(hookPoint.position.x, hookPoint.position.y), PlayerMovement.Instance.GetPosition()), 0);
+                    arrow.SetActive(true);
+                    arrow.transform.right = PlayerMovement.Instance.GetPosition() - arrow.transform.position;
                 //PlayerMovement.Instance.Hook(transform.position);
             }
+                arrow.SetActive(true);
             if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Left && PlayerMovement.Instance.GetPosition().x - transform.position.x > 0)
             {
-                arrow.transform.rotation = Quaternion.Euler(0, Vector2.Distance(new Vector2(hookPoint.position.x, hookPoint.position.y), PlayerMovement.Instance.GetPosition()), 0);
+                    arrow.SetActive(true);
+                    arrow.transform.right = PlayerMovement.Instance.GetPosition() - arrow.transform.position;
                 //PlayerMovement.Instance.Hook(transform.position);
             }
             if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Right && PlayerMovement.Instance.GetPosition().x - transform.position.x < 0)
             {
-                arrow.transform.rotation = Quaternion.Euler(0, Vector2.Distance(new Vector2(hookPoint.position.x, hookPoint.position.y), PlayerMovement.Instance.GetPosition()), 0);
-                // PlayerMovement.Instance.Hook(transform.position);
-            }
+                    arrow.SetActive(true);
+                    arrow.transform.right = PlayerMovement.Instance.GetPosition() - arrow.transform.position;
+                    // PlayerMovement.Instance.Hook(transform.position);
+                }
         }
         else
         {
-            arrow.transform.Rotate(PlayerMovement.Instance.GetPosition());
+                arrow.SetActive(true);
+                // arrow.transform.rotation = Quaternion.Euler(0, 0, Vector2.Distance(new Vector2(hookPoint.position.x, hookPoint.position.y), PlayerMovement.Instance.GetPosition()));
+                arrow.transform.right = PlayerMovement.Instance.GetPosition() - arrow.transform.position;
             //PlayerMovement.Instance.Hook(transform.position);
         }
         }

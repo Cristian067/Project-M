@@ -26,7 +26,7 @@ public class FireBall : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            EnemyBasics enemy = collision.gameObject.GetComponent<EnemyBasics>();
             enemy.LoseLive(damage);
         }
         if (collision.gameObject.tag == "Boss")

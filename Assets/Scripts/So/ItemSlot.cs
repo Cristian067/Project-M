@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour, IDeselectHandler
 {
@@ -16,6 +17,7 @@ public class ItemSlot : MonoBehaviour, IDeselectHandler
     [SerializeField] private string description;
     [SerializeField] private GameObject amountTextPanel;
     [SerializeField] private TextMeshProUGUI amountText;
+    //[SerializeField] private Image ItemImage;
 
 
     private void Start()
@@ -48,7 +50,7 @@ public class ItemSlot : MonoBehaviour, IDeselectHandler
 
     public void ShowInfo()
     {
-        UiManager.Instance.ShowItemInfo(itemName, description);
+        UiManager.Instance.ShowItemInfo(itemName, description, item.image);
     }
     public void AddAmount()
     {

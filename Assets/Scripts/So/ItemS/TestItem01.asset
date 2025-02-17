@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   image: {fileID: -1764156262, guid: 41a2956bb5ed8054abd2eed8151c482c, type: 3}
   description: TestItem01_description
+  stackable: 0
   amount: 0
   specialItem: 0
   ifSpecialItem: 
