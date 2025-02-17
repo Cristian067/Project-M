@@ -1,8 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.Rendering.DebugUI;
+
 
 
 
@@ -94,7 +93,7 @@ public class ControlUnit : MonoBehaviour
             switch (currentFase)
             {
                 case Phases.Phase1:
-                    /*
+                    
                     switch (attack)
                     {
                         case Attacks.Wait:
@@ -158,8 +157,9 @@ public class ControlUnit : MonoBehaviour
                             break;
                     }
                      
-                    */
-                    StartCoroutine(Moveset2());
+                    
+                    //int ran = UnityEngine.Random.Range(1, 2);
+                    //StartCoroutine($"Moveset{ran}");
                     break;
                 case Phases.Phase2:
 
