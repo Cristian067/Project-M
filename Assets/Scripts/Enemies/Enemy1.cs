@@ -96,70 +96,82 @@ public class EnemyV2 : MonoBehaviour
             Debug.DrawLine(transform.position + new Vector3(0.5f, 0, 0), transform.position + transform.right, Color.blue);
 
             rb.velocity = new Vector2(Mathf.MoveTowards(rb.velocity.x, 0f, 15f * Time.deltaTime), rb.velocity.y);
-
+            /*
             if (_distance.x < attackLenght && !thinking && _distance.x != 0)
             {
                 StartCoroutine("ThinkAttack");
-            }
+            }*/
         }
     }
 
     private void FixedUpdate()
     {
-        if(!basicStats.IsKnockbacked())
+        if (!basicStats.IsKnockbacked())
         {
+            RaycastHit2D hitWall = Physics2D.Raycast(transform.position, transform.right, 0.8f, whatIsGround);
+            if (hitWall)
+            {
+                //Debug.Log(hitWall.collider.gameObject.name);
+            }
 
-        
-        RaycastHit2D hitWall = Physics2D.Raycast(transform.position, transform.right, 0.8f, whatIsGround);
-        if (hitWall)
-        {
-            //Debug.Log(hitWall.collider.gameObject.name);
-        }
+            if (hitWall && _distance.x != 0 && isOnGround)
+            {
+                //Debug.Log("jenye");
+                Jump();
+            }
+            else if (!hitWall)
+            {
 
-        if (hitWall && _distance.x != 0 && isOnGround)
-        {
-            //Debug.Log("jenye");
-            Jump();
-        }
-        else if (!hitWall)
-        {
+            }
 
-        }
+            switch (currentState)
+            {
+                case States.Roaming:
+                    MoveTo(roamPos);
 
-        switch (currentState)
-        {
-            case States.Roaming:
-                MoveTo(roamPos);
+                    RaycastHit2D hitWall2 = Physics2D.Raycast(transform.position + new Vector3(0f, 0, 0), transform.right, 1f, whatIsGround);
+                    float reachedPositionDistance = 1f;
+                    if (Vector2.Distance(transform.position, roamPos) < reachedPositionDistance || hitWall2)
+                    {
+                        roamPos.x = GetRoamingPos();
+                    }
+                    FindTarget();
+                    break;
 
-                RaycastHit2D hitWall2 = Physics2D.Raycast(transform.position + new Vector3(0f, 0, 0), transform.right, 1f, whatIsGround);
-                float reachedPositionDistance = 1f;
-                if (Vector2.Distance(transform.position, roamPos) < reachedPositionDistance || hitWall2)
-                {
-                    roamPos.x = GetRoamingPos();
-                }
-                FindTarget();
-                break;
+                case States.Chase:
+                    if (!knockback)
+                    {
+                        MoveTo(PlayerMovement.Instance.GetPosition());
+                        if (!attackInCooldown && !animator.GetBool("preattack"))
+                        {
+                            
+                            if (Vector2.Distance(transform.position, PlayerMovement.Instance.GetPosition()) < attackLenght)
+                            {
+                                StartCoroutine(PreAttack());
+                            }
+                            //animator.SetBool(0, true);
 
-            case States.Chase:
-                if (!knockback)
-                {
-                    MoveTo(PlayerMovement.Instance.GetPosition());
-                }
+                        }
 
-                float stopChasingDistance = chasingRadius;
-                if (Vector2.Distance(transform.position, PlayerMovement.Instance.GetPosition()) > stopChasingDistance)
-                {
-                    currentState = States.Roaming;
-                }
-                break;
+                    }
+
+                    float stopChasingDistance = chasingRadius;
+                    RaycastHit2D hit2D = Physics2D.Raycast(transform.position, PlayerMovement.Instance.GetPosition() - transform.position, Vector3.Distance(transform.position, PlayerMovement.Instance.GetPosition()), whatIsGround);
+                    //Debug.Log(hit2D.collider.name);
+                    if (Vector2.Distance(transform.position, PlayerMovement.Instance.GetPosition()) > stopChasingDistance || hit2D)
+                    {
+                        currentState = States.Roaming;
+                    }
+                    break;
 
 
-        }
+            }
+            Debug.Log(Vector2.Distance(transform.position, PlayerMovement.Instance.GetPosition()));
 
-        if (_distance != new Vector2(0, 0))
-        {
-            rb.velocity = new Vector2(speed * (_distance.x/10), rb.velocity.y);
-        }
+            if (_distance != new Vector2(0, 0))
+            {
+                rb.velocity = new Vector2(speed * (_distance.x / 10), rb.velocity.y);
+            }
 
             //Debug.Log(_distance);
             /*
@@ -175,7 +187,6 @@ public class EnemyV2 : MonoBehaviour
             */
 
             //Debug.Log(distance);
-
         }
     }
 
@@ -189,6 +200,14 @@ public class EnemyV2 : MonoBehaviour
         
 
         rb.velocity = new Vector2(goTo.normalized.x * speed,rb.velocity.y); //new Vector2((goTo.normalized) *speed, transform.position.y);
+    }
+
+    private IEnumerator PreAttack()
+    {
+        animator.SetBool("preattack", true);
+
+        yield return new WaitForSeconds(0.5f);
+        Attack();
     }
     public void Attack()
     {
@@ -213,6 +232,7 @@ public class EnemyV2 : MonoBehaviour
         
 
         Instantiate(attack, transform.position + attackDirection + offset, attackRotation, this.transform);
+        animator.SetBool("preattack", false);
         StartCoroutine("AttackCooldown");
 
     }

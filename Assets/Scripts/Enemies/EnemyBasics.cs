@@ -40,7 +40,7 @@ public class EnemyBasics : MonoBehaviour
         //animator.SetTrigger("isDamaged");
 
         //Debug.Log(knockbackDir.normalized);
-        rb.velocity = (new Vector3(0f, 0.5f, 0) + knockbackDir.normalized) * 10;
+        rb.velocity = (new Vector3(0f, 1f, 0) + knockbackDir.normalized) * 5;
 
         
         //animator.ResetTrigger("isDamaged");
@@ -50,7 +50,7 @@ public class EnemyBasics : MonoBehaviour
     private IEnumerator KnockbackTime()
     {
         knockback = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         knockback = false;
     }
     public bool IsKnockbacked()

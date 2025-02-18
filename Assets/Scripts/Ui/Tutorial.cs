@@ -21,6 +21,7 @@ public class Tutorial : MonoBehaviour
     {
         PlayerMovement.Instance.ForceStop();
         PlayerMovement.Instance.ChangeInteracting(true);
+        Time.timeScale = 0;
         tutorialPanel.SetActive(true);
     }
 }

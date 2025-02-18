@@ -16,6 +16,7 @@ public class TutorialPanel : MonoBehaviour
 
         if (InputControl.Interact())
         {
+            Time.timeScale = 1;
             PlayerMovement.Instance.ChangeInteracting(false);
             Destroy(gameObject);
         }

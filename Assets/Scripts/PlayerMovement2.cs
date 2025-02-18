@@ -758,7 +758,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("isDamaged");
 
             //Debug.Log(knockbackDir.normalized);
-            rb.velocity = (new Vector3(0f, 0.5f, 0) + knockbackDir.normalized) * 20;
+            rb.velocity = (new Vector3(0f, 2f, 0) + knockbackDir.normalized) * 10;
 
             StartCoroutine(KnockbackTime());
             //animator.ResetTrigger("isDamaged");

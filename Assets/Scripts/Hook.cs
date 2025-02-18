@@ -31,9 +31,6 @@ public class Hook : MonoBehaviour
         if (canHook && InputControl.Hook())
         {
             RaycastHit2D hit2D = Physics2D.Raycast(hookPoint.transform.position, PlayerMovement.Instance.GetPosition() - hookPoint.transform.position);
-            
-            //Debug.Log(hit2D.collider.gameObject.name);
-            Debug.DrawRay(hookPoint.transform.position, PlayerMovement.Instance.GetPosition() - hookPoint.transform.position);
             if (hit2D)
             {
                 if (hit2D.collider.gameObject.tag == "Player")
@@ -66,25 +63,16 @@ public class Hook : MonoBehaviour
                 {
                     return;
                 }
-                
-
             }
             else
             {
                 //Debug.Log("Hay suelo en medio");
-
                 return;
-
                 //Debug.Log(PlayerMovement.Instance.GetPosition().y - transform.position.y);
-
-
             }
             
         }
-
-        
-        SetVisuals();
-        
+        SetVisuals();        
     }
 
 
@@ -92,44 +80,58 @@ public class Hook : MonoBehaviour
     {
         if (canHook)
         {
-            
-
 
             if (hooksInRange > 1)
-        {
-            if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Up && PlayerMovement.Instance.GetPosition().y - transform.position.y < 0)
             {
+                if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Up && PlayerMovement.Instance.GetPosition().y - transform.position.y < 0)
+                {
                     arrow.SetActive(true);
                     arrow.transform.right = PlayerMovement.Instance.GetPosition() - arrow.transform.position;
-                //PlayerMovement.Instance.Hook(transform.position);
-            }
-            if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Down && PlayerMovement.Instance.GetPosition().y - transform.position.y > 0)
-            {
+                    //PlayerMovement.Instance.Hook(transform.position);
+                }
+                else
+                {
+                    arrow.SetActive(false);
+                }
+                if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Down && PlayerMovement.Instance.GetPosition().y - transform.position.y > 0)
+                {
                     arrow.SetActive(true);
                     arrow.transform.right = PlayerMovement.Instance.GetPosition() - arrow.transform.position;
-                //PlayerMovement.Instance.Hook(transform.position);
-            }
-                arrow.SetActive(true);
-            if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Left && PlayerMovement.Instance.GetPosition().x - transform.position.x > 0)
-            {
+                    //PlayerMovement.Instance.Hook(transform.position);
+                }
+                else
+                {
+                    arrow.SetActive(false);
+                }
+                //arrow.SetActive(true);
+                if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Left && PlayerMovement.Instance.GetPosition().x - transform.position.x > 0)
+                {
                     arrow.SetActive(true);
                     arrow.transform.right = PlayerMovement.Instance.GetPosition() - arrow.transform.position;
-                //PlayerMovement.Instance.Hook(transform.position);
-            }
-            if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Right && PlayerMovement.Instance.GetPosition().x - transform.position.x < 0)
-            {
+                    //PlayerMovement.Instance.Hook(transform.position);
+                }
+                else
+                {
+                    arrow.SetActive(false);
+                }
+                if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Right && PlayerMovement.Instance.GetPosition().x - transform.position.x < 0)
+                {
                     arrow.SetActive(true);
                     arrow.transform.right = PlayerMovement.Instance.GetPosition() - arrow.transform.position;
                     // PlayerMovement.Instance.Hook(transform.position);
                 }
-        }
-        else
-        {
+                else
+                {
+                    arrow.SetActive(false);
+                }
+            }
+            else
+            {
                 arrow.SetActive(true);
                 // arrow.transform.rotation = Quaternion.Euler(0, 0, Vector2.Distance(new Vector2(hookPoint.position.x, hookPoint.position.y), PlayerMovement.Instance.GetPosition()));
                 arrow.transform.right = PlayerMovement.Instance.GetPosition() - arrow.transform.position;
-            //PlayerMovement.Instance.Hook(transform.position);
-        }
+                //PlayerMovement.Instance.Hook(transform.position);
+            }
         }
         else
         {
@@ -168,7 +170,7 @@ public class Hook : MonoBehaviour
     {
         if (canHook)
         {
-            Gizmos.DrawLine(transform.position, PlayerMovement.Instance.GetPosition()  );
+            Gizmos.DrawLine(hookPoint.transform.position, PlayerMovement.Instance.GetPosition()  );
             
         }
         //Gizmos.DrawSphere(transform.position,cc.radius/5);

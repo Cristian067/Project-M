@@ -95,7 +95,6 @@ GameObject:
   - component: {fileID: 8334450953468839074}
   - component: {fileID: 206308491950270652}
   - component: {fileID: 4941991886325428043}
-  - component: {fileID: 3913749559125713474}
   - component: {fileID: 274111319494551631}
   - component: {fileID: 2402290376792863311}
   - component: {fileID: 680269510277088747}
@@ -196,42 +195,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &3913749559125713474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6436931492728552864}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3adaa94e9a200549879903d557527f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  jumpForce: 18
-  inHook: 0
-  isOnGround: 0
-  canJump: 0
-  maxSpeed: 8
-  maxTotalSpeed: 16
-  hookDistance: 9
-  hookForce: 18
-  attack: {fileID: 8595484723746548853, guid: e1b126fa5e380144a8f2f2bb8abaa312, type: 3}
-  attackCooldown: 0.7
-  fireball: {fileID: 6388315038851373263, guid: fa673291f85afec4da6ccb8c40e89dec, type: 3}
-  fireballCooldown: 1.5
-  lookDirection: right
-  maxJumps: 1
-  remainingJumps: 0
-  whatIsHook:
-    serializedVersion: 2
-    m_Bits: 128
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 256
-  groundCheck: {fileID: 2301488813903304012}
-  groundCheckRadius: 0.45
 --- !u!114 &274111319494551631
 MonoBehaviour:
   m_ObjectHideFlags: 0
