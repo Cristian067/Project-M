@@ -167,7 +167,7 @@ public class ControlUnit : MonoBehaviour
             }
             
             //StartCoroutine(Wait(1f));
-            //Next();
+            Next();
         }
 
         

@@ -67,6 +67,11 @@ public class MainManager : MonoBehaviour
         file3.CheckFiles();
     }
 
+    public void ToCredits()
+    {
+        SceneManager.LoadScene(3);
+    }
+
     public void Exit()
     {
         Application.Quit();

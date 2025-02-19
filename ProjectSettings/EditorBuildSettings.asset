@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Trastero02.unity
     guid: 7b0f4e747e938ab4d9be97be39d23bcb
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 3fad512904491804baf73094054f452a
   m_configObjects: {}
