@@ -307,11 +307,11 @@ public class Enemy_gun : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
+    {/*
         if (collision.gameObject.tag == "Player")
         {
             PlayerMovement.Instance.Damaged(1, Vector3.zero);
-        }
+        }*/
     }
 
     private void OnDrawGizmos()

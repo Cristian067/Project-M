@@ -66,6 +66,7 @@ public class UiManager : MonoBehaviour
     public void HideEscMenu()
     {
         escMenu.SetActive(false);
+        InfoPanel.SetActive(false);
     }
 
     public void ChangeManuPanel(int panel)

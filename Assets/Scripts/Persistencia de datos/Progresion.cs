@@ -34,6 +34,7 @@ public class Progresion
 
     public List<int> itemsID;
     public List<int> bossesKilledID;
+    public List<int> soulsGetID;
     
 
 

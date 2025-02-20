@@ -14,18 +14,11 @@ public class BreakWall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        saveData();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
 
     public void saveData()
     {
-        
         /*
         if (!File.Exists(path))
         {
@@ -35,15 +28,10 @@ public class BreakWall : MonoBehaviour
         {
             AssetDatabase.CreateFolder("../saves/", "bosses");
         }
-
         */
-
         string jsonContent = JsonUtility.ToJson(breaked);
         Debug.Log(jsonContent);
         File.WriteAllText(path + $"{GameManager.Instance.GetFileNum()}a.json", jsonContent);
-
-
-
     }
 
     public void Damage()

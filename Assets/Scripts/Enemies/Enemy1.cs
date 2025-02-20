@@ -166,7 +166,7 @@ public class EnemyV2 : MonoBehaviour
 
 
             }
-            Debug.Log(Vector2.Distance(transform.position, PlayerMovement.Instance.GetPosition()));
+            //Debug.Log(Vector2.Distance(transform.position, PlayerMovement.Instance.GetPosition()));
 
             if (_distance != new Vector2(0, 0))
             {

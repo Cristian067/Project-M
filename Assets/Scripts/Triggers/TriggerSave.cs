@@ -65,7 +65,7 @@ public class TriggerSave : MonoBehaviour
 
     public void Use()
     {
-        Save.Instance.saveData(GameManager.Instance.GetFileNum(), GameManager.Instance.GetSouls(), GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetOil(), GameManager.Instance.GetPlayerDamage(), SceneManager.GetActiveScene().name, transform.position, GameManager.Instance.GetHabilities("basic"), GameManager.Instance.GetHabilities("hook"), GameManager.Instance.GetHabilities("fireball"), GameManager.Instance.GetHabilities("doblejump"), GameManager.Instance.GetHabilities("walljump"), GameManager.Instance.GetTimePlayed(), Inventory.Instance.GetItemsForSave(false), Inventory.Instance.GetItemsForSave(true));
+        Save.Instance.SaveData(GameManager.Instance.GetFileNum(), GameManager.Instance.GetSouls(), GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetOil(), GameManager.Instance.GetPlayerDamage(), SceneManager.GetActiveScene().name, transform.position, GameManager.Instance.GetHabilities("basic"), GameManager.Instance.GetHabilities("hook"), GameManager.Instance.GetHabilities("fireball"), GameManager.Instance.GetHabilities("doblejump"), GameManager.Instance.GetHabilities("walljump"), GameManager.Instance.GetTimePlayed(), Inventory.Instance.GetItemsForSave(false), Inventory.Instance.GetItemsForSave(true));
 
         for (int i = 0; i < InfoObjects.objects.Count; i++)
         {

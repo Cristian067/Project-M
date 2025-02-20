@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -101,6 +102,8 @@ public class PlayerMovement : MonoBehaviour
 
     private CapsuleCollider2D cc;
 
+    [SerializeField] private CinemachineVirtualCamera cam;
+
     private void Awake()
     {
         if (Instance == null)
@@ -119,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cam = FindFirstObjectByType<CinemachineVirtualCamera>();
         inHook = false;
         CheckHabilities();
     }
@@ -191,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
             } 
             catch 
             { 
-                Debug.Log(""); 
+                //Debug.Log(""); 
             }
 
             /*
@@ -210,6 +214,8 @@ public class PlayerMovement : MonoBehaviour
         if (isDead)
         {
             cc.enabled = false;
+            cam.Follow = null;
+            // cam.transform.position = cam;
         }
 
     }
@@ -672,10 +678,6 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetBool(animName, activation);
     }
-    public void SetBools(string boolName, bool activation)
-    {
-
-    }
     public void KillPlayer()
     {
         isDead = true;
@@ -758,7 +760,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("isDamaged");
 
             //Debug.Log(knockbackDir.normalized);
-            rb.velocity = (new Vector3(0f, 2f, 0) + knockbackDir.normalized) * 10;
+            rb.velocity = (new Vector3(knockbackDir.normalized.x/2, 1f,0 )) * 10;
 
             StartCoroutine(KnockbackTime());
             //animator.ResetTrigger("isDamaged");

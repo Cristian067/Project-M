@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log($"{PlayerPrefs.GetFloat("newPosX")} + {PlayerPrefs.GetFloat("newPosY")}");
             player.transform.position = new Vector2(PlayerPrefs.GetFloat("newPosX"), PlayerPrefs.GetFloat("newPosY"));
+            Save.Instance.SaveData(GetFileNum(),GetSouls(), GetPlayerHealth(), GetOil(), GetPlayerDamage(), SceneManager.GetActiveScene().name, PlayerMovement.Instance.GetPosition(),GetHabilities("basic"), GetHabilities("hook"), GetHabilities("fireball"), GetHabilities("doblejump"), GetHabilities("walljump"), GetTimePlayed(), Inventory.Instance.GetItemsForSave(false), Inventory.Instance.GetItemsForSave(true));
             PlayerPrefs.SetInt("mapInChange",0);
         }
 

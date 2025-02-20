@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class Fall01 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        if (SaveEvents.Instance.CheckIfComplete(name))
+        {
+            //Debug.Log("si");
+            Destroy(gameObject);
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -38,6 +33,7 @@ public class Fall01 : MonoBehaviour
     public void EndCutscene()
     {
         GameManager.Instance.ChangeInteractingWithTime(1.5f, false);
+        SaveEvents.Instance.StoreData(name);
         Destroy(gameObject);
         
         

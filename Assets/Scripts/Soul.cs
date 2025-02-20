@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class Soul : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private int soulId;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,15 +12,17 @@ public class Soul : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GameManager.Instance.GetASoul();
-            
+
             //PlayerPrefs.SetInt(name + "_" + GameManager.Instance.GetFileNum(), 1);
+            Save.Instance.AddTempData("Soul", soulId);
             Destroy(gameObject);
         }
     }
     private void OnEnable()
     {
-        if(PlayerPrefs.GetInt(name +"_"+ GameManager.Instance.GetFileNum()) == 1)
+        if((Save.Instance.LoadSoulsData(GameManager.Instance.GetFileNum()).Contains(soulId)))
         {
+            Save.Instance.AddTempData("Soul", soulId);
             Destroy(gameObject);
         }
     }

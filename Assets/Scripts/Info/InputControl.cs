@@ -27,7 +27,6 @@ public class InputControl
         }
         return false;
     }
-
     public static bool Down()
     {
         if (Input.GetKeyDown(KeyCode.S))
@@ -40,7 +39,6 @@ public class InputControl
         }
         return false;
     }
-
     public static bool Left()
     {
         if (Input.GetKeyDown(KeyCode.A))
@@ -53,7 +51,6 @@ public class InputControl
         }
         return false;
     }
-
     public static bool Right()
     {
         if (Input.GetKeyDown(KeyCode.D))
@@ -95,7 +92,6 @@ public class InputControl
         }
         return false;
     }
-
     public static bool Hook()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
@@ -110,7 +106,6 @@ public class InputControl
         }
         return false;
     }
-
     public static bool Attack()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))

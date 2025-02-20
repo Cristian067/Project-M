@@ -12,6 +12,7 @@ public class Save : MonoBehaviour
 
     private List<int> tempItemId = new List<int>();
     private List<int> tempBossId = new List<int>();
+    private List<int> tempSoulsId = new List<int>();
 
     private string path = Application.dataPath + "/../saves/";
 
@@ -19,26 +20,30 @@ public class Save : MonoBehaviour
     {
         Instance = this;
     }
-    public void saveData(int fileNum,int souls,int lives, int fuel, int damage, string mapIn, Vector3 setPos, bool melee, bool hook, bool fireball, bool dobleJump, bool wallJump, float setTimePlayed, List<ItemSO> _items, List<ItemSO> _specialItems /*List<int> itemId*/)
+    private void Start()
+    {
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+        /*
+        if (!Directory.Exists(path + "bosses/"))
+        {
+            //Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            //Directory.CreateDirectory
+            Directory.CreateDirectory(path +"/bosses");
+        }*/
+    }
+    public void SaveData(int fileNum,int souls,int lives, int fuel, int damage, string mapIn, Vector3 setPos, bool melee, bool hook, bool fireball, bool dobleJump, bool wallJump, float setTimePlayed, List<ItemSO> _items, List<ItemSO> _specialItems /*List<int> itemId*/)
     {
         string[] specialItemsStringArray;
-        List<string> specialItemsStringList = new List<string>();
-
-        if (!File.Exists(path))
-        {
-            //AssetDatabase.CreateFolder("../", "saves");
-        }
-        if (!File.Exists(path +"bosses/"))
-        {
-            //AssetDatabase.CreateFolder("../saves/", "bosses");
-        }
+        List<string> specialItemsStringList = new List<string>(); 
 
         foreach (ItemSO i in _specialItems)
         {
             specialItemsStringList.Add(i.name);
         }
         specialItemsStringArray = specialItemsStringList.ToArray();
-        
 
         Progresion save = new Progresion
         {
@@ -65,17 +70,14 @@ public class Save : MonoBehaviour
             
             itemsID = tempItemId,
             bossesKilledID = tempBossId,
+            soulsGetID = tempSoulsId,
 
             
         };
         
-
         string jsonContent = JsonUtility.ToJson(save);
         Debug.Log(jsonContent);
         File.WriteAllText(path + $"{fileNum}.json", jsonContent);
-
-
-
     }
 
 
@@ -91,6 +93,10 @@ public class Save : MonoBehaviour
             tempBossId.Add(tempNumber);
         }
 
+        if( dataType == "Soul")
+        {
+            tempSoulsId.Add(tempNumber);
+        }
     }
     public List<int> LoadItemData(int fileNum)
     {
@@ -101,7 +107,6 @@ public class Save : MonoBehaviour
             return save.itemsID;
         }
         return null;
-
     }
     public List<int> LoadBossData(int fileNum)
     {
@@ -113,9 +118,15 @@ public class Save : MonoBehaviour
         }
         return null;
     }
-    public void SaveItemData()
+    public List<int> LoadSoulsData(int fileNum)
     {
-
+        if (File.Exists(path + $"{fileNum}.json"))
+        {
+            string jsonContent = File.ReadAllText(path + $"{fileNum}.json");
+            Progresion save = JsonUtility.FromJson<Progresion>(jsonContent);
+            return save.soulsGetID;
+        }
+        return null;
     }
     public void LoadData(int fileNum)
     {
@@ -173,6 +184,13 @@ public class Save : MonoBehaviour
         {
             File.Delete(path + $"{fileNum}.json");
         }
+
+        if(File.Exists(path + $"events/{fileNum}.json"))
+        {
+            File.Delete(path + $"events/{fileNum}.json");
+        }
+
+        
     }
 
     public void LoadDataTittleScreen(int fileNum)

@@ -63,5 +63,8 @@ public class Stats : MonoBehaviour
     {
         return isAlive;
     }
-
+    private void OnDestroy()
+    {
+        KillNpc() ;
+    }
 }

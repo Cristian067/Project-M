@@ -23,11 +23,6 @@ public class AttackV2 : MonoBehaviour
     {
         StartCoroutine(Desactivate());
     }
-
-    private void Attack()
-    {
-
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Rigidbody2D collisionRb = collision.GetComponent<Rigidbody2D>();

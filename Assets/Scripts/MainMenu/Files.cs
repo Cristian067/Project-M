@@ -50,20 +50,8 @@ public class Files : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < System.Enum.GetValues(typeof(InfoNames.BossNames)).Length; i++)
-            {
-                //Debug.Log((InfoNames.BossNames)(i));
-                PlayerPrefs.DeleteKey((InfoNames.BossNames)(i) + "_isDead_" + fileNum);
-                PlayerPrefs.DeleteKey("Soul1" + "_" + fileNum);
-                PlayerPrefs.DeleteKey("Soul2" + "_" + fileNum);
-                PlayerPrefs.DeleteKey("Soul3" + "_" + fileNum);
-                PlayerPrefs.DeleteKey("Soul4" + "_" + fileNum);
-            }
-            
             noExistPanel.SetActive(true);
             infoPanel.SetActive(false);
-            
-
         }
     }
 }

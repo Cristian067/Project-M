@@ -216,7 +216,7 @@ MonoBehaviour:
   hookDistance: 9
   hookForce: 18
   attack: {fileID: 8595484723746548853, guid: e1b126fa5e380144a8f2f2bb8abaa312, type: 3}
-  attackCooldown: 0.4
+  attackCooldown: 0.25
   fireballObject: {fileID: 6388315038851373263, guid: fa673291f85afec4da6ccb8c40e89dec, type: 3}
   fireballCooldown: 1.5
   maxJumps: 1
@@ -231,6 +231,7 @@ MonoBehaviour:
   wallSilidingSpeed: 0.3
   groundCheck: {fileID: 2301488813903304012}
   groundCheckRadius: 0.45
+  cam: {fileID: 0}
 --- !u!70 &2402290376792863311
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

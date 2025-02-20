@@ -20,6 +20,7 @@ public class SaveGame : MonoBehaviour
         if (canSave && InputControl.Interact())
         {
             SaveGameScript();
+            SaveEvents.Instance.SaveData(GameManager.Instance.GetFileNum());
         }
     }
     private void SaveGameScript()
@@ -29,7 +30,7 @@ public class SaveGame : MonoBehaviour
             Debug.Log(Inventory.Instance.GetItemsForSave(true)[i]);
         }
 
-        Save.Instance.saveData(GameManager.Instance.GetFileNum(), GameManager.Instance.GetSouls(), GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetOil(), GameManager.Instance.GetPlayerDamage(), SceneManager.GetActiveScene().name, PlayerMovement.Instance.GetPosition(), GameManager.Instance.GetHabilities("basic"), GameManager.Instance.GetHabilities("hook"), GameManager.Instance.GetHabilities("fireball"), GameManager.Instance.GetHabilities("doblejump"), GameManager.Instance.GetHabilities("walljump"), GameManager.Instance.GetTimePlayed(), Inventory.Instance.GetItemsForSave(false), Inventory.Instance.GetItemsForSave(true));
+        Save.Instance.SaveData(GameManager.Instance.GetFileNum(), GameManager.Instance.GetSouls(), GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetOil(), GameManager.Instance.GetPlayerDamage(), SceneManager.GetActiveScene().name, PlayerMovement.Instance.GetPosition(), GameManager.Instance.GetHabilities("basic"), GameManager.Instance.GetHabilities("hook"), GameManager.Instance.GetHabilities("fireball"), GameManager.Instance.GetHabilities("doblejump"), GameManager.Instance.GetHabilities("walljump"), GameManager.Instance.GetTimePlayed(), Inventory.Instance.GetItemsForSave(false), Inventory.Instance.GetItemsForSave(true));
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

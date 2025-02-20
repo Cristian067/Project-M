@@ -27,7 +27,7 @@ public class FireBall : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             EnemyBasics enemy = collision.gameObject.GetComponent<EnemyBasics>();
-            enemy.LoseLive(damage);
+            enemy.Damaged(damage,(collision.transform.position - transform.position));
         }
         if (collision.gameObject.tag == "Boss")
         {
@@ -36,7 +36,7 @@ public class FireBall : MonoBehaviour
         }
         if (enemy && collision.gameObject.tag == "Player")
         {
-            PlayerMovement.Instance.Damaged(1,Vector3.zero);
+            PlayerMovement.Instance.Damaged(1, (collision.transform.position - transform.position));
         }
     }
     private IEnumerator Disapear()
