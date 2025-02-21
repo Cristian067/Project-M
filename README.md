@@ -46,9 +46,26 @@
         <li>- [x] Coger objetos especiales(habilidades) y que se vean en el inventario</li>
         <li>- [x] Matar jefes y que no aparezcan de nuevo en el archivo de guardado</li>
         <li>- [ ] Mejorar batalla contra jefe01(Kai)</li>
-        <li>- [ ] Arreglar enemigos basicos</li>
-        <li>- [x] Crear minimo otro tipo de enemigo(si son dos nuevos mejor) [enemigos actuales: normal(esta roto) y gunner]</li>
-        <li>- [ ] Recoger trozos de alma y que no aparezcan de nuevo y que aparezcan si no lo tienes</li>
+        <li>- [x] Arreglar enemigos basicos</li>
+        <li>- [x] Crear minimo otro tipo de enemigo(si son dos nuevos mejor) [enemigos actuales: normal y gunner]</li>
+        <li>- [x] Recoger trozos de alma y que no aparezcan de nuevo y que aparezcan si no lo tienes</li>
+        <li>- [x] Movimiento entre escenas y que guarden la posicion, inventario y stats (aka guardado automatico)</li>
+        <li>- [x] "Cutscenes"</li>
+    </ul>
+</details>
+<details>
+<summary>Musica y sonidos</summary>
+<br>
+    <ul>
+        <li>- [ ] Sfx de golpes</li>
+        <li>- [ ] Sfx de daño</li>
+        <li>- [x] Sfx de coger objeto importante</li>
+        <li>- [ ] Sfx de coger objeto</li>
+        <li>- [x] Que se cambie la musica durante el juego</li>
+        <li>- [ ] Musica MainMenu</li>
+        <li>- [x] Musica trastero01</li>
+        <li>- [x] Musica trastero02</li>
+        <li>- [x] Musica jefe01</li>
     </ul>
 </details>
 
@@ -58,9 +75,11 @@
     <ul>
         <li>- [ ] MainMenu</li>
         <li>- [x] Inventario</li>
-        <li>- [ ] Opciones</li>
+        <li>- [x] Opciones</li>
         <li>- [ ] Mapa</li>
+        <li>- [x] Controles</li>
         <li>- [x] Tutoriales</li>
+        <li>- [x] Creditos</li>
         <li>- [ ] Hacer la UI mas bonito (ya que ahora es muy basico)</li>
     </ul>
 </details>
@@ -73,6 +92,6 @@
         <li>- [x] Inventario</li>
         <li>- [x] Posicion y mapeado</li>
         <li>- [x] Jefes</li>
-        <li>- [ ] Almas</li>
+        <li>- [x] Almas</li>
     </ul>
 </details>
