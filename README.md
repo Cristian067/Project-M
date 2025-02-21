@@ -23,7 +23,7 @@
 <summary>Scriptable Object</summary>
 <br>
     <ul>
-        <li>- [ ]</li>
+        <li>- [ ] </li>
         <li>- [ ] </li>
         <li>- [ ] </li>
     </ul>
