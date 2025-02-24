@@ -10,6 +10,7 @@ public class UiManager : MonoBehaviour
     public static UiManager Instance { get; private set; }
 
     [SerializeField] private Slider fuelMeter;
+    [SerializeField] private GameObject fuelMeterGO;
     [SerializeField] private Slider live;
 
     [SerializeField] private GameObject escMenu;
@@ -24,6 +25,8 @@ public class UiManager : MonoBehaviour
     [SerializeField] private Image InfoImage;
     [SerializeField] private TextMeshProUGUI InfoNameText;
     [SerializeField] private TextMeshProUGUI InfoDescriptionText;
+
+
 
     private void Awake()
     {
@@ -42,14 +45,20 @@ public class UiManager : MonoBehaviour
     {
         escMenu.SetActive(false);
         GOPanel.SetActive(false);
+        fuelMeterGO.SetActive(false);
+
         
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        fuelMeter.value = GameManager.Instance.GetOil();
+        if (Inventory.Instance.GetItemsForSave(true).Contains(ObjectsList.Instance.GetItemByName("Pedernal")))
+        {
+            fuelMeterGO.SetActive(true);
+            fuelMeter.value = GameManager.Instance.GetOil();
+        }
+        
         
     }
 

@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
     private Vector2 posToChange;
 
 
-
     //Los trozos de almas que se consiguen
     [SerializeField] private int souls;
 
@@ -120,7 +119,6 @@ public class GameManager : MonoBehaviour
             
         }
     }
-
     private void Pause()
     {
         
@@ -128,15 +126,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         paused = true;
     }
-
     private void UnPause()
     {
         UiManager.Instance.HideEscMenu();
         Time.timeScale = 1f;
         paused = false;
     }
-
-
     public void LoseLive(int damage)
     {
         if (!invencibility)
@@ -249,7 +244,6 @@ public class GameManager : MonoBehaviour
 
 
     }
-
     public int GetFileNum()
     {
         return fileNum;
@@ -289,9 +283,6 @@ public class GameManager : MonoBehaviour
         player.transform.position = pos;
 
     }
-
-
-
     public void GoTo(int id)
     {
         SceneManager.LoadScene(id);
@@ -301,32 +292,27 @@ public class GameManager : MonoBehaviour
         //Debug.Log(SceneManager.GetActiveScene().buildIndex);
         GoTo(SceneManager.GetActiveScene().buildIndex);
     }
-
     public void ChangeInteractingWithTime(float time, bool change)
     {
 
         StartCoroutine(ChangeInteractCoroutine(time, change));
 
     }
-
     private IEnumerator ChangeInteractCoroutine(float time, bool change)
     {
         yield return new WaitForSeconds(time);
         PlayerMovement.Instance.ChangeInteracting(change);
     }
-
     public void FullRestore()
     {
         lives = maxLives;
         fuel = maxFuel;
         UiManager.Instance.RefreshLives(lives);
     }
-
     public bool IsPaused()
     {
         return paused;
     }
-
     public void GetASoul()
     {
         souls++;

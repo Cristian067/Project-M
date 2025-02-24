@@ -80,8 +80,12 @@ public class GetItem : MonoBehaviour
 
     private void Get()
     {
-        audioSource.clip = clip;
-        audioSource.Play();
+        if (isSpecialItem)
+        {
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
+        
         BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
         boxCollider.enabled = false;
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();

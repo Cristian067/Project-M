@@ -79,6 +79,8 @@ public class ControlUnit : MonoBehaviour
         attack = Attacks.Wait;
 
         player = FindAnyObjectByType<PlayerMovement>().gameObject;
+
+        StartCoroutine(FirstWait());
     }
 
     // Update is called once per frame
@@ -93,7 +95,7 @@ public class ControlUnit : MonoBehaviour
             switch (currentFase)
             {
                 case Phases.Phase1:
-                    
+                    /*
                     switch (attack)
                     {
                         case Attacks.Wait:
@@ -157,9 +159,10 @@ public class ControlUnit : MonoBehaviour
                             break;
                     }
                      
-                    
-                    //int ran = UnityEngine.Random.Range(1, 2);
-                    //StartCoroutine($"Moveset{ran}");
+                    */
+                    int ran = UnityEngine.Random.Range(1, 8);
+                    Debug.Log(ran);
+                    StartCoroutine($"Moveset{ran}");
                     break;
                 case Phases.Phase2:
 
@@ -263,10 +266,7 @@ public class ControlUnit : MonoBehaviour
         //Debug.Log(transform.rotation.eulerAngles.y);
         if (transform.rotation.eulerAngles.y == 180)
         {
-
             rb.velocity = Vector3.zero;
-            
-
             //attackInv.transform.localPosition = new Vector3(2.5f, 0, 0); //= Instantiate(attack, transform.position - new Vector3(-5,0,0), Quaternion.identity);
 
         }
@@ -298,12 +298,16 @@ public class ControlUnit : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
     }
-    private void Dash(float force)
+    private void Dash(float force, Vector2 dir, bool isInVertical)
     {
-        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
-        Vector2 dir = PlayerMovement.Instance.GetPosition() - transform.position;
+        if(!isInVertical)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        }
+        
+        //Vector2 dir = PlayerMovement.Instance.GetPosition() - transform.position;
 
-        rb.velocity = new Vector2(dir.normalized.x,0) * force;
+        rb.velocity = dir.normalized * force;
         //StartCoroutine(ForceStop(0.3f));
         
     
@@ -362,14 +366,20 @@ public class ControlUnit : MonoBehaviour
 
     // Primera fase -------------------------------------------------------------------------------------
 
+    public IEnumerator FirstWait()
+    {
+        thinking = true;
+        yield return new WaitForSeconds(2);
+        thinking = false;
+    }
     public IEnumerator Moveset1()
     {
         thinking = true;
-        Debug.Log("a");
-        Dash(40);
+        //Debug.Log("a");
+        Dash(40, PlayerMovement.Instance.GetPosition() - transform.position, false);
         //Wait(5);
         yield return new WaitForSeconds(2);
-        Dash(40);
+        Dash(40, PlayerMovement.Instance.GetPosition() - transform.position, false);
         yield return new WaitForSeconds(2);
         
         thinking=false;
@@ -379,15 +389,121 @@ public class ControlUnit : MonoBehaviour
     public IEnumerator Moveset2()
     {
         thinking = true;
+        ForceStop(0);
         Jump(new Vector2(transform.right.x, 1), true);
-        yield return new WaitForSeconds(1.4f);
+        yield return new WaitForSeconds(1.5f);
         Jump(new Vector2(0, -1), false);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
         thinking = false;
 
     }
 
+    public IEnumerator Moveset3()
+    {
+        thinking = true;
 
+        for(int i =0; i < 5; i++)
+        {
+            yield return new WaitForSeconds(1);
+            transform.position = new Vector3(58.4f, UnityEngine.Random.Range(6, 12), 0);
+            yield return new WaitForSeconds(0.5f);
+            Dash(40, PlayerMovement.Instance.GetPosition() - transform.position, false);
+        }
+        yield return new WaitForSeconds(0.5f);
+
+        thinking = false;
+    }
+
+    public IEnumerator Moveset4()
+    {
+        thinking = true;
+
+        for (int i = 0; i < 5; i++)
+        {
+            yield return new WaitForSeconds(1);
+            transform.position = new Vector3(UnityEngine.Random.Range(41, 59),13.5f, 0);
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+            yield return new WaitForSeconds(0.5f);
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            Dash(50, new Vector2(0,-1), true);
+        }
+        yield return new WaitForSeconds(0.5f);
+        transform.position = new Vector3(57, 8.5f, 0);
+
+        thinking = false;
+    }
+
+    public IEnumerator Moveset5()
+    {
+        thinking = true;
+
+        for (int i = 0; i < 5; i++)
+        {
+            yield return new WaitForSeconds(1);
+            rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+            if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Left)
+            {
+                transform.position = new Vector3(PlayerMovement.Instance.GetPosition().x + 3, PlayerMovement.Instance.GetPosition().y, 0);
+            }
+
+            if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Right)
+            {
+                transform.position = new Vector3(PlayerMovement.Instance.GetPosition().x + -3, PlayerMovement.Instance.GetPosition().y, 0);
+            }
+
+            
+            yield return new WaitForSeconds(0.5f);
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            
+            Dash(40, PlayerMovement.Instance.GetPosition() - transform.position, false);
+            ForceStop(0);
+        }
+        yield return new WaitForSeconds(0.5f);
+        transform.position = new Vector3(57, 8.5f, 0);
+
+        thinking = false;
+    }
+
+    public IEnumerator Moveset6()
+    {
+        thinking = true;
+
+        for (int i = 0; i < 5; i++)
+        {
+            yield return new WaitForSeconds(1);
+            
+            if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Left)
+            {
+                transform.position = new Vector3(PlayerMovement.Instance.GetPosition().x + 3, PlayerMovement.Instance.GetPosition().y, 0);
+            }
+
+            if (PlayerMovement.Instance.GetDirectionLook() == PlayerMovement.LookDirection.Right)
+            {
+                transform.position = new Vector3(PlayerMovement.Instance.GetPosition().x + -3, PlayerMovement.Instance.GetPosition().y, 0);
+            }
+
+
+            yield return new WaitForSeconds(0.5f);
+            
+
+            Attack();
+            ForceStop(0);
+        }
+        yield return new WaitForSeconds(0.5f);
+        transform.position = new Vector3(57, 5.5f, 0);
+
+        thinking = false;
+    }
+    public IEnumerator Moveset7()
+    {
+        thinking = true;
+        transform.position = new Vector3(57, 5.5f, 0);
+
+        yield return new WaitForSeconds(2f);
+        
+
+        thinking = false;
+    }
 
     // Segunda fase -------------------------------------------------------------------------------------
 
