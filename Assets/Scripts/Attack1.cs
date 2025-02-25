@@ -63,18 +63,15 @@ public class AttackV2 : MonoBehaviour
 
             if (collision.gameObject.tag == "Boss")
             {
-                Stats stats = collision.gameObject.GetComponent<Stats>();
+                //Stats stats = collision.gameObject.GetComponent<Stats>();
                 ControlUnit cu = collision.gameObject.GetComponent<ControlUnit>();
-                //stats.LoseLive(GameManager.Instance.GetPlayerDamage());
+               
                 collisionRb.velocity = Vector3.zero;
-                //TODO: Arreglar el porque el enemigo sale disparado hacia arriba en de de un poco atras
-
-                //collisionRb.velocity = ((collision.transform.position - transform.position).normalized * knockback * 20);
                 Vector3 dir = (collision.transform.position - PlayerMovement.Instance.GetPosition());
                 cu.Damaged(GameManager.Instance.GetPlayerDamage(), dir);
-                PlayerMovement playerMovement = gameObject.transform.parent.gameObject.GetComponent<PlayerMovement>();
+                
 
-                if (playerMovement.GetDirectionLook() == LookDirection.Down)
+                if (PlayerMovement.Instance.GetDirectionLook() == LookDirection.Down)
                 {
                     Rigidbody2D playerRb = gameObject.transform.parent.gameObject.GetComponent<Rigidbody2D>();
                     playerRb.velocity = new Vector2(playerRb.velocity.x, 0);

@@ -491,7 +491,7 @@ public class PlayerMovement : MonoBehaviour
     
     private IEnumerator CooldownHook()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.22f);
         inHook = false;
         interacting = false;
     }

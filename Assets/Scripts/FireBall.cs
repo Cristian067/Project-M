@@ -24,12 +24,12 @@ public class FireBall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "Enemy" && !enemy)
         {
             EnemyBasics enemy = collision.gameObject.GetComponent<EnemyBasics>();
             enemy.Damaged(damage,(collision.transform.position - transform.position));
         }
-        if (collision.gameObject.tag == "Boss")
+        if (collision.gameObject.tag == "Boss" && !enemy)
         {
             Stats stats = collision.gameObject.GetComponent<Stats>();
             stats.LoseLive(damage);
