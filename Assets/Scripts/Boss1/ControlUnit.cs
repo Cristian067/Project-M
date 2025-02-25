@@ -499,7 +499,7 @@ public class ControlUnit : MonoBehaviour
         thinking = true;
         transform.position = new Vector3(57, 5.5f, 0);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         
 
         thinking = false;
