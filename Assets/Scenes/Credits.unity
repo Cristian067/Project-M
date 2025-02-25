@@ -336,10 +336,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Project M\n(Marinnete)\n\nCreador: Cristian Nievas\n\n\nSprites:\n\nPersonajes:
-    Sprite basico de unity (Por ahora)\n\nTilesets: Encontrados por google (no he
-    encontrado al creador de los tilesets)\n\nBackground: Cristian Nievas\n\nDise\xF1o
-    de mapa: Cristian Nievas\n\n\nMusica:\n\nSouless - Musica proporcionada por Suno
-    Ai\n\nIt has to be this way - Por Jamie Christopherson para Metal Gear Rising\n\n\nSonidos:\n\nItem
+    Sprite basico de unity (Por ahora)\n\nTilesets: Por ipixl (ipixl.itch.io)\n\nBackground:
+    Cristian Nievas\n\nDise\xF1o de mapa: Cristian Nievas\n\n\nMusica:\n\nForgotten
+    Echoes - Musica proporcionada por Suno Ai\n\nSouless - Musica proporcionada por
+    Suno Ai\n\nIt has to be this way - Por Jamie Christopherson para Metal Gear Rising\n\n\nSonidos:\n\nItem
     Acquisition de Super Metroid (nintendo no me demandes pls)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
