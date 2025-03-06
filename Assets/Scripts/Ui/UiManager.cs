@@ -53,10 +53,17 @@ public class UiManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Inventory.Instance.GetItemsForSave(true).Contains(ObjectsList.Instance.GetItemByName("Pedernal")))
+        try
         {
-            fuelMeterGO.SetActive(true);
-            fuelMeter.value = GameManager.Instance.GetOil();
+            if (Inventory.Instance.GetItemsForSave(true).Contains(ObjectsList.Instance.GetItemByName("Pedernal")))
+            {
+                fuelMeterGO.SetActive(true);
+                fuelMeter.value = GameManager.Instance.GetOil();
+            }
+        }
+        catch
+        {
+            
         }
         
         
